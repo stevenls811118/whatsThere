@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NextJS-and-Prisma-Skeleton-JS
 
 ## Getting started
@@ -18,3 +19,6 @@ DATABASE_URL="file:./dev.db"
 This is needed in order for prisma to work on your local.
 
 Should you decide to use an upload database (So this will be a DB hosted only and shared between members) Please read the prisma docs and add accordingly
+=======
+# whatsThere
+>>>>>>> d1a1c2e55bd158ecde4385cabbb4316c0ac58fa8
