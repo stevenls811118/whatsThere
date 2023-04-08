@@ -3,13 +3,13 @@
 ## Getting started
 
 ```
-cd skeleton
+cd nextjs-whatsthere
 npm i
 ```
 
 ## Getting started with prisma
 
-In your skeleton file, create a `.env` file. In side of that file add
+In your nextjs-whatsthere file, create a `.env` file. In side of that file add
 
 ```
 DATABASE_URL="file:./dev.db"
