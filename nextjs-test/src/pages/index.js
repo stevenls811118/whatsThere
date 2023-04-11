@@ -15,8 +15,8 @@ export default function Home({posts, users}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-      <h1 className={styles.title}>Welcome, to your LHL Skeleton!</h1>
+      <main className={`bg-blue-100 ${styles.main}`}>
+      <h1 className="text-3xl font-mono font-semibold">Welcome, to your LHL Skeleton!</h1>
       <p className={styles.subtitle}>Please read the the skeleton set up for this should be in the read me one directory above your current.</p>
         <div className={styles.description}> 
           <Image
@@ -30,11 +30,12 @@ export default function Home({posts, users}) {
           />
         </div>
         <div className={styles.dbContainer}>
-          <h3>Values pulled from your DB, these values can be updated or change by typing &rdquo;npx prisma studio&rdquo; in your terminal</h3>
+          <h3 className='text-base font-mono font-semibold'>Values pulled from your DB, these values can be updated or change by typing &rdquo;npx prisma studio&rdquo; in your terminal</h3>
           {posts && posts.map(post => (
-            <div key={post.id}>
-              <h4>{users[post.authorId - 1].name}: {post.title}</h4>
-              <p>{post.content}</p>
+            <div className="text-sky-500 flex flex-col items-center" key={post.id}>
+              <h4 className="pt-8 text-base font-semibold leading-7">{users[post.authorId - 1].name}: {post.title}</h4>
+              <p className="text-gray-900">{post.content}</p>
+              <p className="text-green-600">{users[post.authorId - 1].email}</p>
             </div>
           ))}
         </div> 
@@ -47,6 +48,7 @@ export async function getServerSideProps() {
   const prisma = new PrismaClient()
   const posts = await prisma.post.findMany()
   const users = await prisma.user.findMany()
+  console.log(posts)
   return {
     props : { posts, users }
   }
