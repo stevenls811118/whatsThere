@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Console from "./components/Console/Console";
+import Map from "./components/Map/Map";
+import Header from "./components/Header/Header";
+import { CssBaseline, Grid } from "@mui/material";
+const App = () => {
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CssBaseline />
+      <Grid container spacing={1.5} style={{ width: "100%"}}>
+        <Grid direction="column" item xs={12} md={4}>  
+          <Grid item xs={12} md={4}>
+            <Header />
+          </Grid>
+          <Grid item xs={12} md={4} style={{background: "lightblue"}}>
+            <Console />
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <Map />
+        </Grid>
+      </Grid>
     </div>
-  );
-}
+  )
+};
 
 export default App;
