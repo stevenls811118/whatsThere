@@ -6,14 +6,14 @@ import { CssBaseline, Grid } from "@mui/material";
 const App = () => {
 
   return (
-    <div>
+    <div className="bg-gray-200">
       <CssBaseline />
-      <Grid container spacing={1.5} style={{ width: "100%"}}>
-        <Grid direction="column" item xs={12} md={4}>  
-          <Grid item xs={12} md={4}>
-            <Header />
+      <Grid container spacing={1.5} item xs={12}>
+        <Grid className="flex-col" item xs={12} md={4}>  
+          <Grid className="flex-col">
+            <Header  />
           </Grid>
-          <Grid item xs={12} md={4} style={{background: "lightblue"}}>
+          <Grid className="flex-col">
             <Console />
           </Grid>
         </Grid>
