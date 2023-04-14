@@ -86,7 +86,7 @@ function Planner() {
           <button onClick={handleCancelClick}>Cancel</button>
         </div>
       )}
-      {editingIndex === -1 && (
+      {editingIndex  && (
         <button onClick={handleAddClick}>Add Item</button>
       )}
     </div>
