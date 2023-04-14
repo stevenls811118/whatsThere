@@ -1,4 +1,4 @@
-import { getUsers } from '../lib/db'
+import { getUsers } from ''
 
 export default async function handler(req, res) {
   const users = await getUsers()
