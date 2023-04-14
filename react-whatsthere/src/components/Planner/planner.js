@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 
 function Planner() {
-  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+  const [items, setItems] = useState([
+    { name: 'Item 1', time: '12:00 PM' },
+    { name: 'Item 2', time: '12:00 PM' },
+    { name: 'Item 3', time: '12:00 PM' },
+  ]);
   const [editingIndex, setEditingIndex] = useState(-1);
 
   const handleEditClick = (index) => {
     setEditingIndex(index);
   };
 
-  const handleSaveClick = (index, newValue) => {
+  const handleSaveClick = (index, newName, newTime) => {
     const newItems = [...items];
-    newItems[index] = newValue;
+    newItems[index] = { name: newName, time: newTime };
     setItems(newItems);
     setEditingIndex(-1);
   };
@@ -34,15 +38,42 @@ function Planner() {
               <div>
                 <input
                   type="text"
-                  defaultValue={item}
-                  onBlur={(e) => handleSaveClick(index, e.target.value)}
+                  defaultValue={item.name}
+                  onBlur={(e) =>
+                    handleSaveClick(index, e.target.value, item.time)
+                  }
                 />
-                <button onClick={() => handleSaveClick(index, document.querySelector(`#item-${index}-input`).value)}>Save</button>
+                <input
+                  type="time"
+                  defaultValue={item.time}
+                  onChange={(e) =>
+                    handleSaveClick(index, item.name, e.target.value)
+                  }
+                />
+                <button
+                  onClick={() =>
+                    handleSaveClick(
+                      index,
+                      document.querySelector(`#item-${index}-input`).value,
+                      document.querySelector(`#item-${index}-time`).value
+                    )
+                  }
+                >
+                  Save
+                </button>
                 <button onClick={handleCancelClick}>Cancel</button>
               </div>
             ) : (
               <div>
-                <span>{item}</span>
+                <span>{item.name}</span>
+                <input
+                  type="time"
+                  value={item.time}
+                  onChange={(e) =>
+                    handleSaveClick(index, item.name, e.target.value)
+                  }
+                  readOnly
+                />
                 <button onClick={() => handleEditClick(index)}>Edit</button>
                 <button onClick={() => handleDeleteClick(index)}>Delete</button>
               </div>
