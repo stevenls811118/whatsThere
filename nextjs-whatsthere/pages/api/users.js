@@ -1,7 +1,6 @@
-export default function users () {
-    return (
-        <div>
-            <h1></h1>
-        </div>
-    )
+import { getUsers } from ''
+
+export default async function handler(req, res) {
+  const users = await getUsers()
+  res.status(200).json(users)
 }
