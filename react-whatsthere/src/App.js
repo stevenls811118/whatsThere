@@ -1,5 +1,5 @@
 import React from "react";
-import Console from "./components/Console/Console";
+// import Console from "./components/Console/Console";
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
@@ -13,10 +13,12 @@ const App = () => {
         <Grid className="flex-col" item xs={12} md={4}>  
           <Grid className="flex-col">
             <Header  />
+          </Grid>
+          <Grid>
             <Planner />
           </Grid>
           <Grid className="flex-col">
-            <Console />
+            {/* <Console /> */}
           </Grid>
         </Grid>
         <Grid item xs={12} md={8}>
