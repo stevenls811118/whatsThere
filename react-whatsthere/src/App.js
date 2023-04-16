@@ -3,11 +3,12 @@ import React from "react";
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
+import DatePickerCalender from "./components/Date-Picker/Date-Picker";
 import { CssBaseline, Grid } from "@mui/material";
 const App = () => {
 
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-300">
       <CssBaseline />
       <Grid container spacing={1.5} item xs={12}>
         <Grid className="flex-col" item xs={12} md={4}>  
@@ -19,6 +20,7 @@ const App = () => {
           </Grid>
           <Grid className="flex-col">
             {/* <Console /> */}
+            <DatePickerCalender />
           </Grid>
         </Grid>
         <Grid item xs={12} md={8}>
