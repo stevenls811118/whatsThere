@@ -10,7 +10,7 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-const Places = ({ setPlace }) => {
+export default function Places ({ setPlace }) {
   const {
     ready,
     value,
@@ -47,5 +47,3 @@ const Places = ({ setPlace }) => {
     </Combobox>
   );
 };
-
-export default Places;

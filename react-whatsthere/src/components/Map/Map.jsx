@@ -9,7 +9,7 @@ const containerStyle = {
 };
 const libraries = ["places"];
 
-const Map = () => {
+export default function Map() {
   const mapRef = useRef();
   const center = useMemo(() => ({ lat: 51.0447, lng: -114.0719 }), []);
   const options = useMemo(
@@ -54,5 +54,3 @@ const Map = () => {
     <div>Loading...</div>
   );
 };
-
-export default Map;

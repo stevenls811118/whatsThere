@@ -1,18 +1,16 @@
 import React from "react";
 
 
-const Header = () => {
+export default function Header() {
 
   return (
-    <div>
-      <div className="bg-primary text-white p-6 font-bold font-mono text-5xl text-center">
+    <div className="h-[15vh] bg-primary text-white text-center font-mono">
+      <div className="p-6 font-bold text-5xl">
         <h1>WhatsThere?</h1>
       </div>
-      <div className="bg-primary text-white text-base text-center font-mono italic pb-4">
+      <div className="bg-primary text-white italic pb-4">
         <p>The Perfect Travel Companion!</p>
       </div>
     </div>
   )
 };
-
-export default Header;
