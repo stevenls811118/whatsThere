@@ -7,6 +7,7 @@ const containerStyle = {
   width: "100%",
   height: "93vh",
 };
+
 const libraries = ["places"];
 
 export default function Map() {
