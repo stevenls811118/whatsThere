@@ -5,10 +5,6 @@ import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
 import DatePickerCalender from "./components/Date-Picker/Date-Picker";
 
-// import GoogleMaps from "./components/Map/GoogleMap";
-// import GooglePlaces from "./components/Map/GooglePlaces";
-
-
 import { CssBaseline, Grid } from "@mui/material";
 
 export default function App() {
