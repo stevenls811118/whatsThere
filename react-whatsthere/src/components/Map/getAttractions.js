@@ -1,6 +1,5 @@
 import axios from "axios";
 
-const API_key = process.env.REACT_APP_X_Rapid_API_Key;
 const URL = 'https://travel-advisor.p.rapidapi.com/attractions/list-in-boundary';
 
 const options = {
@@ -14,7 +13,7 @@ const options = {
     limit: '20',
   },
   headers: {
-    'X-RapidAPI-Key': API_key,
+    'X-RapidAPI-Key': process.env.REACT_APP_X_Rapid_API_Key,
     'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
   }
 };
