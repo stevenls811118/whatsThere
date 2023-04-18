@@ -11,7 +11,7 @@ const options = {
     bl_longitude: '-114.2228387',
     bl_latitude: '51.1076578',
     min_rating: '4.2',
-    limit: '20',
+    limit: '21',
   },
   headers: {
     'X-RapidAPI-Key': API_key,
