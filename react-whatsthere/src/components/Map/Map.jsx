@@ -30,7 +30,7 @@ export default function Map() {
 
   return isLoaded ? (
     <div>
-      <div className="flex flex-row justify-around pt-2 pb-2 font-bold font-mono text-base">
+      <div className="flex flex-row justify-between pt-2 pb-2 font-bold font-mono text-base">
         <div>
           <Places
             setPlace={(position) => {
