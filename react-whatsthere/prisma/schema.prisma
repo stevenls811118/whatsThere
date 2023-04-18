@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique @db.VarChar(255)
+  name          String   @db.VarChar(255)
+  password      String
+  address       String   @db.VarChar(255)
+  city          String   @db.VarChar(255)
+  trip_planners trip_planners[]
+}
+
+model trip_planners {
+  id            Int           @id @default(autoincrement())
+  user          users         @relation(fields: [userId], references: [id])
+  userId        Int
+  landmark      landmarks     @relation(fields: [landmarkId], references: [id])
+  landmarkId    Int
+  destination   destinations  @relation(fields: [destinationId], references: [id])
+  destinationId Int 
+}
+
+model landmarks {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(255)
+  city          String    @db.VarChar(255)
+  trip_planners trip_planners[]
+}
+
+model destinations {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(255)
+  address       String    @db.VarChar(255)
+  city          String    @db.VarChar(255)
+  trip_planners trip_planners[]
+  attraction    attractions[]
+}
+
+model attractions {
+  id            Int          @id @default(autoincrement())
+  name          String       @db.VarChar(255)
+  address       String       @db.VarChar(255)
+  city          String       @db.VarChar(255)
+  rating        Int
+  startTime     DateTime     @default(dbgenerated("NOW() + interval '1 hour'"))
+  endTime       DateTime     @default(dbgenerated("NOW() + interval '3 hours'")) 
+  destination   destinations @relation(fields: [destinationId], references: [id])
+  destinationId Int
+}
