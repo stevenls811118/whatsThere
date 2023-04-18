@@ -63,7 +63,7 @@ export default function Planner() {
         <div>Locations to Visit</div>
         <div>Edit/Delete</div>
       </div>
-      <ul className="h-[35vh] overflow-y-auto">
+      <ul className="h-[35%] overflow-y-auto">
         {items.map((item, index) => (
           <li key={index}>
             {editingIndex === index ? (
@@ -117,9 +117,13 @@ export default function Planner() {
         </div>
       )}
       {editingIndex  && (
-        <button onClick={handleAddClick} className="bg-gray-400 text-lg font-semibold p-2 ">
-          Add Location <FontAwesomeIcon icon={faMapLocationDot} size="lg"/>
-        </button>
+        <div className="flex flex-row text-lg justify-end font-semibold p-2 ">
+          <div>
+            <button onClick={handleAddClick} className="bg-gray-400 p-1 rounded-lg">
+              Add Location <FontAwesomeIcon icon={faMapLocationDot} size="lg"/>
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
