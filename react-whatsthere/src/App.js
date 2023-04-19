@@ -52,9 +52,7 @@ export default function App() {
           <Grid>
             <Login/>
           </Grid>
-          {/* <Grid>
-            <Logout/>
-          </Grid> */}
+          
           <Grid className="flex-col">
             {/* <Console /> */}
             <DatePickerCalender />
