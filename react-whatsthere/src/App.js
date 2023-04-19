@@ -9,15 +9,13 @@ import { getAttractions } from "./components/Map/getAttractions";
 
 //to be moved to homepage 
 import Login from "./components/Welcome/login";
-// import {useEffect} from 'react';
-import { gapi } from 'gapi-script';
-const clientId = "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com"
-
-
 
 export default function App() {
 
   const [attractions, setAttractions] = useState([]);
+  function handleCallbackResponses(response) {
+    
+  }
 
   useEffect(() => {
     getAttractions()
@@ -28,15 +26,17 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    function start(){
-      gapi.client.init({
-        client_id: clientId,
-        scope: ""
-      })
-    };
-    gapi.load('client:auth2', start)
-  })
+    // global google
+    google.accounts.id.initialize({
+      client_id: "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
+      callback: handleCallbackResponses,
+    });
 
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme: "outline", size: "large"}
+    )
+    }, [])
   return (
     <div className="bg-gray-300">
       <CssBaseline />
@@ -52,7 +52,6 @@ export default function App() {
           <Grid>
             <Login/>
           </Grid>
-          
           <Grid className="flex-col">
             {/* <Console /> */}
             <DatePickerCalender />

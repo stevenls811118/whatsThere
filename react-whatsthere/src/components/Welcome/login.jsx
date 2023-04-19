@@ -1,7 +1,7 @@
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 export default function Login() {
   return (
-    <div id="signInButton">
+    <div id="signInDiv">
       <GoogleOAuthProvider clientId="632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com">
         <GoogleLogin
           onSuccess={(credentialResponse) => {
