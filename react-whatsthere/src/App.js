@@ -7,6 +7,15 @@ import DatePickerCalender from "./components/Date-Picker/Date-Picker";
 import { CssBaseline, Grid } from "@mui/material";
 import { getAttractions } from "./components/Map/getAttractions";
 
+//to be moved to homepage 
+import Login from "./components/Welcome/login";
+import Logout from "./components/Welcome/logout";
+// import {useEffect} from 'react';
+import { gapi } from 'gapi-script';
+const clientId = "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com"
+
+
+
 export default function App() {
 
   const [attractions, setAttractions] = useState([]);
@@ -19,6 +28,16 @@ export default function App() {
     })
   }, [])
 
+  useEffect(() => {
+    function start(){
+      gapi.client.init({
+        client_id: clientId,
+        scope: ""
+      })
+    };
+    gapi.load('client:auth2', start)
+  })
+
   return (
     <div className="bg-gray-300">
       <CssBaseline />
@@ -30,6 +49,12 @@ export default function App() {
           <Grid>
             <Planner />
           </Grid>
+          <Grid>
+            <Login/>
+          </Grid>
+          {/* <Grid>
+            <Logout/>
+          </Grid> */}
           <Grid className="flex-col">
             {/* <Console /> */}
             <DatePickerCalender />
