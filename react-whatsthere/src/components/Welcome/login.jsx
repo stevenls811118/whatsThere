@@ -1,22 +1,20 @@
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 export default function Login() {
-
-    return (
+  return (
     <div id="signInButton">
-        <GoogleOAuthProvider clientId='632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com'>
+      <GoogleOAuthProvider clientId="632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com">
         <GoogleLogin
-  onSuccess={credentialResponse => {
-    console.log(credentialResponse);
-  }}
-  onError={() => {
-    console.log('Login Failed');
-  }}
-/>;
-        </GoogleOAuthProvider>
-
+          onSuccess={(credentialResponse) => {
+            console.log(credentialResponse);
+          }}
+          onError={() => {
+            console.log("Login Failed");
+          }}
+        />
+        ;
+      </GoogleOAuthProvider>
     </div>
-    )
-    //this component will allow users to login
-    //this will likely just handle OAuth 
-
+  );
+  //this component will allow users to login
+  //this will likely just handle OAuth
 }
