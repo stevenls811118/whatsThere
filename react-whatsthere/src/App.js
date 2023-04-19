@@ -9,7 +9,6 @@ import { getAttractions } from "./components/Map/getAttractions";
 
 //to be moved to homepage 
 import Login from "./components/Welcome/login";
-import Logout from "./components/Welcome/logout";
 // import {useEffect} from 'react';
 import { gapi } from 'gapi-script';
 const clientId = "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com"
