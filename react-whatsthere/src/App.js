@@ -48,6 +48,7 @@ export default function App() {
           <Grid>
             <Planner />
           </Grid>
+          {/* if not logged in, show login component, else show users name*/}
           <Grid>
             <Login/>
           </Grid>
