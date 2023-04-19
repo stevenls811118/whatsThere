@@ -4,13 +4,13 @@ import { faPenToSquare, faTrash, faMapLocationDot } from '@fortawesome/free-soli
 
 export default function Planner() {
   const [items, setItems] = useState([
-    { title: 'Item 1', time: '12:00pm' },
-    { title: 'Item 2', time: '12:00pm' },
-    { title: 'Item 3', time: '12:00pm' },
+    { title: 'Item 1', time: '12:00' },
+    { title: 'Item 2', time: '12:00' },
+    { title: 'Item 3', time: '12:00' },
   ]);
   const [editingIndex, setEditingIndex] = useState(-1);
   const [newTitle, setNewTitle] = useState('');
-  const [newTime, setNewTime] = useState('12:00pm');
+  const [newTime, setNewTime] = useState('12:00');
 
   const handleEditClick = (index) => {
     setEditingIndex(index);
