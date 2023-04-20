@@ -1,16 +1,18 @@
 import React from "react";
-import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
 import {
   Combobox,
   ComboboxInput,
   ComboboxPopover,
   ComboboxList,
   ComboboxOption,
-  ComboboxOptionText,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-export default function Place ({ setPlace }) {
+export default function Place({ setCoords, setBounds }) {
   const {
     ready,
     value,
@@ -23,9 +25,13 @@ export default function Place ({ setPlace }) {
     setValue(i, false);
     clearSuggestions();
 
-    const datas = await getGeocode({address: i});
-    const {lat, lng} = getLatLng(datas[0]);
-    setPlace({lat, lng});
+    const datas = await getGeocode({ address: i });
+    const { lat, lng } = getLatLng(datas[0]);
+    setCoords({ lat, lng });
+    setBounds({
+      ne: { lat: lat + 0.05, lng: lng + 0.1 },
+      sw: { lat: lat - 0.05, lng: lng - 0.1 },
+    });
   };
 
   return (
@@ -46,4 +52,4 @@ export default function Place ({ setPlace }) {
       </ComboboxPopover>
     </Combobox>
   );
-};
+}
