@@ -10,7 +10,7 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-export default function Places ({ setPlace }) {
+export default function Place ({ setPlace }) {
   const {
     ready,
     value,
