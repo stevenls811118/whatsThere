@@ -14,7 +14,6 @@ import "@reach/combobox/styles.css";
 
 export default function Place({ setCoords, setBounds }) {
   const {
-    ready,
     value,
     setValue,
     suggestions: { status, data },

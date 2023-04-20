@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React from "react";
 import GoogleMapReact from "google-map-react";
 import { Paper, Rating, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -9,24 +9,6 @@ import { correctLng } from "./correctLng";
 const mapContainer = {
   width: "100%",
   height: "93vh",
-};
-const attractionContainer = {
-  position: "absolute",
-  transform: "translate(-50%, -50%)",
-  zIndex: 1,
-  "&:hover": { zIndex: 2 },
-};
-
-const paperStyle = {
-  padding: "5px",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  width: "100px",
-};
-
-const pointer = {
-  cursor: "pointer",
 };
 
 export default function Map({ setCoords, setBounds, coords, attractions }) {
@@ -46,7 +28,7 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
           }}
           defaultCenter={{ lat: 51.0447, lng: -114.0719 }}
           center={coords}
-          defaultZoom={14}
+          defaultZoom={13}
           margin={[30, 30, 30, 30]}
           options={""}
           onChange={(e) => {
@@ -72,7 +54,7 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
           {attractions &&
             attractions.map((attraction, i) => (
               <div
-                style={attractionContainer}
+                className="absolute z-10 hover:z-20 hover:scale-150 hover:translate-x-1/4 hover:-translate-y-1/4"
                 lat={Number(attraction.latitude)}
                 lng={Number(attraction.longitude)}
                 key={i}
@@ -80,17 +62,15 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
                 {!desktop ? (
                   <LocationOnOutlinedIcon color="primary" fontSize="large" />
                 ) : (
-                  <Paper elevation={3} style={paperStyle}>
+                  <Paper elevation={3} className="p-1 flex flex-col justify-center cursor-pointer w-28">
                     <Typography variant="subtitle2" gutterBottom>
-                      {" "}
                       {attraction.name}
                     </Typography>
                     <img
-                      style={pointer}
                       src={
                         attraction.photo
                           ? attraction.photo.images.large.url
-                          : "https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg"
+                          : "https://www.myhometurf.com.au/wp-content/uploads/2022/05/Shadey-lawn-1536x1099.jpg"
                       }
                       alt={attraction.name}
                     />
