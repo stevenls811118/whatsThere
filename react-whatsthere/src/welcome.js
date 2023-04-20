@@ -20,7 +20,7 @@ function WelcomePage() {
     document.getElementById("signInDiv").hidden = false;
   }
   useEffect(() => {
-    // global google
+    // global google 
     google.accounts.id.initialize({
       client_id:
         "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
@@ -31,6 +31,10 @@ function WelcomePage() {
       theme: "outline",
       size: "large",
     });
+
+    //prompts users to login with usual accounts (oneTap login)
+    google.accounts.id.prompt();
+
   }, []);
     return (
       <div>
