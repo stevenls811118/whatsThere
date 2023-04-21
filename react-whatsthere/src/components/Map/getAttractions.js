@@ -14,8 +14,8 @@ export const getAttractions = async (ne, sw) => {
         tr_latitude: ne.lat,
         bl_longitude: sw.lng,
         bl_latitude: sw.lat,
-        min_rating: "4.2",
-        limit: "30",
+        min_rating: "4.1",
+        limit: "20",
       },
       headers: {
         "X-RapidAPI-Key": API_key,
@@ -23,7 +23,7 @@ export const getAttractions = async (ne, sw) => {
       },
     });
     const noAdd = data.filter((i) => i.ad_position === undefined);
-    const result = noAdd.filter((i) => i.rating >= 4.2);
+    const result = noAdd.filter((i) => i.rating >= 4);
     return result;
   } catch (error) {
     console.log(error);
