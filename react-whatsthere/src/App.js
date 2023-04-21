@@ -6,6 +6,7 @@ import DatePickerCalender from "./components/Date-Picker/Date-Picker";
 
 import { CssBaseline, Grid } from "@mui/material";
 import { getAttractions } from "./components/Map/getAttractions";
+import GetListData from "./components/Planner/GetListData";
 
 //to be moved to homepage 
 import Login from "./components/Welcome/login";
@@ -58,6 +59,7 @@ export default function App() {
           </Grid>
           <Grid>
             <Planner />
+            <GetListData />
           </Grid>
           {/* if not logged in, show login component, else show users name*/}
           <Grid>
