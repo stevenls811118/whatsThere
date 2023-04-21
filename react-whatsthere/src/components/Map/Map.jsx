@@ -7,6 +7,14 @@ import Place from "./Places";
 import { correctLng } from "./correctLng";
 import mapStyles from "./mapStyles";
 
+const buttonStyles = {
+  padding: 0,
+};
+
+const cardActionsStyles = {
+  padding: 0,
+};
+
 export default function Map({ setCoords, setBounds, coords, attractions }) {
   const desktop = useMediaQuery("(min-width:600px)");
 
@@ -26,7 +34,12 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
           defaultCenter={{ lat: 51.0447, lng: -114.0719 }}
           center={coords}
           defaultZoom={13}
-          options={{clickableIcons: false, disableDefaultUI: true, zoomControl: true, styles: mapStyles}}
+          options={{
+            clickableIcons: false,
+            disableDefaultUI: true,
+            zoomControl: true,
+            styles: mapStyles,
+          }}
           onChange={(e) => {
             if (e.marginBounds.ne.lng <= 180 && e.marginBounds.sw.lng >= -180) {
               setCoords({ lat: e.center.lat, lng: e.center.lng });
@@ -74,15 +87,19 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
                       alt={attraction.name}
                     />
                     <Rating
-                      className="justify-center mt-0.5"
+                      className="justify-center"
                       name="read-only"
                       size="medium"
                       precision={0.1}
                       value={Number(attraction.rating)}
                       readOnly
                     />
-                    <CardActions className="flex flex-row justify-between scale-75">
+                    <CardActions
+                      sx={cardActionsStyles}
+                      className="flex flex-row justify-around"
+                    >
                       <Button
+                        sx={buttonStyles}
                         size="small"
                         onClick={() =>
                           console.log({
@@ -93,22 +110,27 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
                           })
                         }
                       >
-                        Add to list
+                        Add
                       </Button>
                       <Button
                         size="small"
                         onClick={() => {
-                          console.log({attractions})
+                          console.log({ attractions });
                           console.log(attraction);
                           if (attraction.description) {
-                            console.log({description: attraction.description, ranking: attraction.ranking_subcategory})
+                            console.log({
+                              description: attraction.description,
+                              ranking: attraction.ranking_subcategory,
+                            });
                           } else {
-                            console.log({description: attraction.name, ranking: attraction.ranking_subcategory})
+                            console.log({
+                              description: attraction.name,
+                              ranking: attraction.ranking_subcategory,
+                            });
                           }
-                          ;
                         }}
                       >
-                        Learn More
+                        More
                       </Button>
                     </CardActions>
                   </Card>

@@ -11,8 +11,8 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function Place({ setCoords, setBounds }) {
   const {
@@ -37,7 +37,10 @@ export default function Place({ setCoords, setBounds }) {
 
   return (
     <div className="flex flex-row bg-white relative item-center m-2">
-      <FontAwesomeIcon icon={faMagnifyingGlass} className="z-20 relative pl-2 pt-3"/>
+      <FontAwesomeIcon
+        icon={faMagnifyingGlass}
+        className="z-20 relative pl-2 pt-3"
+      />
       <Combobox onSelect={handleSelect} className="absolute z-10">
         <ComboboxInput
           value={value}
@@ -47,7 +50,6 @@ export default function Place({ setCoords, setBounds }) {
         />
         <ComboboxPopover>
           <ComboboxList>
-            
             {status === "OK" &&
               data.map(({ place_id, description }) => (
                 <ComboboxOption key={place_id} value={description} />
@@ -57,6 +59,5 @@ export default function Place({ setCoords, setBounds }) {
       </Combobox>
       {/* <button className="w-20 mr-3 bg-blue-600 text-white rounded-xl ">Search</button> */}
     </div>
-    
   );
 }
