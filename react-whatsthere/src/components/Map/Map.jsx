@@ -1,36 +1,32 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
-import { Paper, Rating, Typography } from "@mui/material";
+import { Button, Card, CardActions, Rating, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Place from "./Places";
 import { correctLng } from "./correctLng";
-
-const mapContainer = {
-  width: "100%",
-  height: "93vh",
-};
+import mapStyles from "./mapStyles";
 
 export default function Map({ setCoords, setBounds, coords, attractions }) {
   const desktop = useMediaQuery("(min-width:600px)");
 
   return (
-    <div>
-      <div className="flex flex-row justify-between pt-2 pb-2 font-bold font-mono text-base">
+    <div className="flex flex-col relative">
+      <div className="flex flex-row justify-between pl-3 pt-2 pb-2 font-bold font-mono text-base z-10">
         <div>
           <Place setCoords={setCoords} setBounds={setBounds} />
         </div>
       </div>
-      <div style={mapContainer}>
+      <div className="z-0 absolute w-full h-screen">
         <GoogleMapReact
           bootstrapURLKeys={{
             key: process.env.REACT_APP_GOOGLE_API_KEY,
+            // clickableIcons: false,
           }}
           defaultCenter={{ lat: 51.0447, lng: -114.0719 }}
           center={coords}
           defaultZoom={13}
-          margin={[30, 30, 30, 30]}
-          options={""}
+          options={{clickableIcons: false, disableDefaultUI: true, zoomControl: true, styles: mapStyles}}
           onChange={(e) => {
             if (e.marginBounds.ne.lng <= 180 && e.marginBounds.sw.lng >= -180) {
               setCoords({ lat: e.center.lat, lng: e.center.lng });
@@ -54,7 +50,7 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
           {attractions &&
             attractions.map((attraction, i) => (
               <div
-                className="absolute z-10 hover:z-20 hover:scale-150 hover:translate-x-1/4 hover:-translate-y-1/4"
+                className="absolute z-10 hover:z-20 hover:scale-125 hover:translate-x-1/4 hover:-translate-y-1/4"
                 lat={Number(attraction.latitude)}
                 lng={Number(attraction.longitude)}
                 key={i}
@@ -62,8 +58,11 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
                 {!desktop ? (
                   <LocationOnOutlinedIcon color="primary" fontSize="large" />
                 ) : (
-                  <Paper elevation={3} className="p-1 flex flex-col justify-center cursor-pointer w-28">
-                    <Typography variant="subtitle2" gutterBottom>
+                  <Card
+                    elevation={3}
+                    className="w-40 p-1 flex flex-col cursor-pointer"
+                  >
+                    <Typography variant="subtitle2">
                       {attraction.name}
                     </Typography>
                     <img
@@ -77,12 +76,42 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
                     <Rating
                       className="justify-center mt-0.5"
                       name="read-only"
-                      size="small"
+                      size="medium"
                       precision={0.1}
                       value={Number(attraction.rating)}
                       readOnly
                     />
-                  </Paper>
+                    <CardActions className="flex flex-row justify-between scale-75">
+                      <Button
+                        size="small"
+                        onClick={() =>
+                          console.log({
+                            name: attraction.name,
+                            address: attraction.address,
+                            city: attraction.address_obj.city,
+                            rating: attraction.rating,
+                          })
+                        }
+                      >
+                        Add to list
+                      </Button>
+                      <Button
+                        size="small"
+                        onClick={() => {
+                          console.log({attractions})
+                          console.log(attraction);
+                          if (attraction.description) {
+                            console.log({description: attraction.description, ranking: attraction.ranking_subcategory})
+                          } else {
+                            console.log({description: attraction.name, ranking: attraction.ranking_subcategory})
+                          }
+                          ;
+                        }}
+                      >
+                        Learn More
+                      </Button>
+                    </CardActions>
+                  </Card>
                 )}
               </div>
             ))}
