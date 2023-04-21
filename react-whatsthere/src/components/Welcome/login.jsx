@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const [user, setUser] = useState({});
@@ -30,9 +31,9 @@ const Login = () => {
 
   return (
     <div>
-      <head>
+      <Helmet>
         <script src="https://accounts.google.com/gsi/client" async></script>
-      </head>
+      </Helmet>
       {Object.keys(user).length !== 0 && (
         <div>
           <button onClick={handleSignOut}>Sign out</button>
