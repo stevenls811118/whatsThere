@@ -31,7 +31,7 @@ export default function App() {
             <Planner />
           </Grid>
           <Grid>
-            <Login></Login>
+            <Login />
           </Grid>
           <Grid className="flex-col">
             {/* <Console /> */}
