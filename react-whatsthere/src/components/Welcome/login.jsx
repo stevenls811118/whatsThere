@@ -30,7 +30,9 @@ const Login = () => {
     });
 
     // prompts users to login with usual accounts (oneTap login)
-    google.accounts?.id.prompt();
+    if (Object.keys(user)) {
+      google.accounts?.id.prompt();
+    }
   }, []);
 
   return (
