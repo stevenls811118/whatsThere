@@ -13,24 +13,24 @@ const Login = () => {
 
   const handleSignOut = () => {
     setUser({});
-    google.accounts.id.prompt();
+    google.accounts?.id.prompt();
   };
 
   useEffect(() => {
     // global google
-    google.accounts.id.initialize({
+    google.accounts?.id.initialize({
       client_id:
         "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
 
-    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+    google.accounts?.id.renderButton(document.getElementById("signInDiv"), {
       theme: "outline",
       size: "large",
     });
 
     // prompts users to login with usual accounts (oneTap login)
-    google.accounts.id.prompt();
+    google.accounts?.id.prompt();
   }, []);
 
   return (
