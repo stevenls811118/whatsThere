@@ -16,16 +16,27 @@ const clientId = "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleuserc
 
 
 export default function App() {
-
   const [attractions, setAttractions] = useState([]);
+  const [coords, setCoords] = useState({});
+  const [bounds, setBounds] = useState({});
 
   useEffect(() => {
-    getAttractions()
-    .then(data => {
-      setAttractions(data);
-      console.log(data);
-    })
-  }, [])
+    navigator.geolocation.getCurrentPosition((e) => {
+      setCoords({ lat: e.coords.latitude, lng: e.coords.longitude });
+      setBounds({
+        ne: { lat: e.coords.latitude + 0.05, lng: e.coords.longitude + 0.1 },
+        sw: { lat: e.coords.latitude - 0.05, lng: e.coords.longitude - 0.1 },
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (bounds.ne && bounds.sw) {
+      getAttractions(bounds.ne, bounds.sw).then((data) => {
+        setAttractions(data);
+      });
+    }
+  }, [coords, bounds]);
 
   useEffect(() => {
     function start(){
@@ -41,9 +52,9 @@ export default function App() {
     <div className="bg-gray-300">
       <CssBaseline />
       <Grid container spacing={1.5} item xs={12}>
-        <Grid className="flex-col" item xs={12} md={4}>  
+        <Grid className="flex-col" item xs={12} md={4}>
           <Grid className="flex-col">
-            <Header  />
+            <Header />
           </Grid>
           <Grid>
             <Planner />
@@ -54,14 +65,18 @@ export default function App() {
           </Grid>
           
           <Grid className="flex-col">
-            {/* <Console /> */}
             <DatePickerCalender />
           </Grid>
         </Grid>
         <Grid item xs={12} md={8}>
-          <Map />
+          <Map
+            setCoords={setCoords}
+            setBounds={setBounds}
+            coords={coords}
+            attractions={attractions}
+          />
         </Grid>
       </Grid>
     </div>
-  )
-};
+  );
+}
