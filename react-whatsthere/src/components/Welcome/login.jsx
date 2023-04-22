@@ -33,17 +33,7 @@ const Login = () => {
         "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
-    // global google
-    google.accounts?.id.initialize({
-      client_id:
-        "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
-      callback: handleCallbackResponse,
-    });
 
-    google.accounts?.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "large",
-    });
     google.accounts?.id.renderButton(document.getElementById("signInDiv"), {
       theme: "outline",
       size: "large",
@@ -69,7 +59,7 @@ const Login = () => {
       {Object.keys(user).length === 0 && <div id="signInDiv"></div>}
 
       {Object.keys(user).length !== 0 && (
-        <div>
+        <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
           <button onClick={handleSignOut}>Sign out</button>
         </div>
       )}
