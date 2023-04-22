@@ -10,7 +10,7 @@ import axios from "axios";
 
 export default function App() {
   const [attractions, setAttractions] = useState([]);
-  const [attraction, setAttraction] = useState();
+  const [attraction, setAttraction] = useState('');
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState({});
 
@@ -33,7 +33,7 @@ export default function App() {
   }, [coords, bounds]);
 
   useEffect(() => {
-    if (attraction) {
+    if (attraction !== '') {
       axios.put("/api/attractions", attraction);
     }
   }, [attraction]);
@@ -47,13 +47,13 @@ export default function App() {
             <Header />
           </Grid>
           <Grid>
-            <Planner />
+            <Planner attraction={attraction}/>
           </Grid>
           <Grid>
             <Login />
           </Grid>
           <Grid className="flex-col">
-            <DatePickerCalender />
+            {/* <DatePickerCalender /> */}
           </Grid>
         </Grid>
         <Grid item xs={12} md={8}>

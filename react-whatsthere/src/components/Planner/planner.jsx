@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faTrash, faMapLocationDot } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 
-export default function Planner() {
-
+export default function Planner({attraction}) {
+  console.log(attraction.name);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,6 @@ export default function Planner() {
       .then(res => { setItems(res.data) })
       .catch(err => { console.log(err) })
   }, [])
-
 
   const [editingIndex, setEditingIndex] = useState(-1);
   const [newTitle, setNewTitle] = useState('');

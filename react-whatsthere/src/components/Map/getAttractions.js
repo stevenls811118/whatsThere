@@ -14,8 +14,8 @@ export const getAttractions = async (ne, sw) => {
         tr_latitude: ne.lat,
         bl_longitude: sw.lng,
         bl_latitude: sw.lat,
-        min_rating: "4.1",
-        limit: "15",
+        min_rating: "4.2",
+        limit: "12",
       },
       headers: {
         "X-RapidAPI-Key": API_key,

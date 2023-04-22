@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { Button, Card, CardActions, Rating, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import Place from "./Places";
 import { correctLng } from "./correctLng";
 import mapStyles from "./mapStyles";
@@ -15,11 +16,21 @@ const cardActionsStyles = {
   padding: 0,
 };
 
-export default function Map({ setCoords, setBounds, coords, attractions, setAttraction }) {
+const smallCardActionsStyles = {
+  height: "14px",
+  padding: 0,
+};
 
-  const desktop = useMediaQuery("(min-width:600px)");
+export default function Map({
+  setCoords,
+  setBounds,
+  coords,
+  attractions,
+  setAttraction,
+}) {
+  const desktop = useMediaQuery("(min-width:900px)");
 
-  const handleAdd = (a) =>{
+  const handleAdd = (a) => {
     const startTime = new Date(Date.now()).toLocaleString();
     const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
     const rating = Number(a.rating);
@@ -31,8 +42,43 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
       startTime: startTime,
       endTime: twoHours,
       listId: 1,
-    })
-  }
+    });
+  };
+
+  const handleMore = (a) => {
+    console.log({ attractions });
+    console.log(a);
+    if (a.description) {
+      console.log({
+        description: a.description,
+        ranking: a.ranking_subcategory,
+      });
+    } else {
+      console.log({
+        description: a.name,
+        ranking: a.ranking_subcategory,
+      });
+    }
+  };
+
+  const handleChange = (e) => {
+    if (e.marginBounds.ne.lng <= 180 && e.marginBounds.sw.lng >= -180) {
+      setCoords({ lat: e.center.lat, lng: e.center.lng });
+      setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+    } else {
+      const { centerLng, neLng, swLng } = correctLng(
+        e.center.lng,
+        e.marginBounds.ne.lng,
+        e.marginBounds.sw.lng
+      );
+
+      setCoords({ lat: e.center.lat, lng: centerLng });
+      setBounds({
+        ne: { lat: e.marginBounds.ne.lat, lng: neLng },
+        sw: { lat: e.marginBounds.sw.lat, lng: swLng },
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col relative">
@@ -55,24 +101,7 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
             zoomControl: true,
             styles: mapStyles,
           }}
-          onChange={(e) => {
-            if (e.marginBounds.ne.lng <= 180 && e.marginBounds.sw.lng >= -180) {
-              setCoords({ lat: e.center.lat, lng: e.center.lng });
-              setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
-            } else {
-              const { centerLng, neLng, swLng } = correctLng(
-                e.center.lng,
-                e.marginBounds.ne.lng,
-                e.marginBounds.sw.lng
-              );
-
-              setCoords({ lat: e.center.lat, lng: centerLng });
-              setBounds({
-                ne: { lat: e.marginBounds.ne.lat, lng: neLng },
-                sw: { lat: e.marginBounds.sw.lat, lng: swLng },
-              });
-            }
-          }}
+          onChange={(e) => handleChange(e)}
         >
           {attractions &&
             attractions.map((a, i) => (
@@ -82,16 +111,12 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                 lng={Number(a.longitude)}
                 key={i}
               >
-                {!desktop ? (
-                  <LocationOnOutlinedIcon color="primary" fontSize="large" />
-                ) : (
+                {desktop ? (
                   <Card
                     elevation={3}
                     className="w-40 p-1 flex flex-col cursor-pointer"
                   >
-                    <Typography variant="subtitle2">
-                      {a.name}
-                    </Typography>
+                    <Typography variant="subtitle2">{a.name}</Typography>
                     <img
                       src={
                         a.photo
@@ -115,29 +140,50 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                       <Button
                         sx={buttonStyles}
                         size="small"
-                        onClick={()=> handleAdd(a)}
+                        onClick={() => handleAdd(a)}
                       >
                         Add
                       </Button>
-                      <Button
-                        size="small"
-                        onClick={() => {
-                          console.log({ attractions });
-                          console.log(a);
-                          if (a.description) {
-                            console.log({
-                              description: a.description,
-                              ranking: a.ranking_subcategory,
-                            });
-                          } else {
-                            console.log({
-                              description: a.name,
-                              ranking: a.ranking_subcategory,
-                            });
-                          }
-                        }}
-                      >
+                      <Button size="small" onClick={() => handleMore(a)}>
                         More
+                      </Button>
+                    </CardActions>
+                  </Card>
+                ) : (
+                  <Card
+                    elevation={3}
+                    className="w-20 p-1 flex flex-col cursor-pointer"
+                  >
+                    <Typography variant="subtitle5">{a.name}</Typography>
+                    <img
+                      src={
+                        a.photo
+                          ? a.photo.images.large.url
+                          : "https://www.myhometurf.com.au/wp-content/uploads/2022/05/Shadey-lawn-1536x1099.jpg"
+                      }
+                      alt={a.name}
+                    />
+                    <Rating
+                      className="justify-center scale-75"
+                      name="read-only"
+                      size="small"
+                      precision={0.5}
+                      value={Number(a.rating)}
+                      readOnly
+                    />
+                    <CardActions
+                      sx={smallCardActionsStyles}
+                      className="flex flex-row justify-around scale-50"
+                    >
+                      <Button
+                        sx={buttonStyles}
+                        size="small"
+                        onClick={() => handleAdd(a)}
+                      >
+                        <AddCircleOutlineOutlinedIcon color="primary"/>
+                      </Button>
+                      <Button size="small" onClick={() => handleMore(a)}>
+                        <MoreHorizOutlinedIcon color="primary"/>
                       </Button>
                     </CardActions>
                   </Card>
