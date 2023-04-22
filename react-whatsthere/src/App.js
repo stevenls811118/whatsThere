@@ -53,7 +53,7 @@ export default function App() {
             <Login />
           </Grid>
           <Grid className="flex-col">
-            <DatePickerCalender />
+            {/* <DatePickerCalender /> */}
           </Grid>
         </Grid>
         <Grid item xs={12} md={8}>
