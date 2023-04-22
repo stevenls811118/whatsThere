@@ -16,7 +16,23 @@ const cardActionsStyles = {
 };
 
 export default function Map({ setCoords, setBounds, coords, attractions, setAttraction }) {
+
   const desktop = useMediaQuery("(min-width:600px)");
+
+  const handleAdd = (a) =>{
+    const startTime = new Date(Date.now()).toLocaleString();
+    const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
+    const rating = Number(a.rating);
+    setAttraction({
+      name: a.name,
+      address: a.address,
+      city: a.address_obj.city,
+      rating: rating,
+      startTime: startTime,
+      endTime: twoHours,
+      listId: 2,
+    })
+  }
 
   return (
     <div className="flex flex-col relative">
@@ -29,7 +45,6 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
         <GoogleMapReact
           bootstrapURLKeys={{
             key: process.env.REACT_APP_GOOGLE_API_KEY,
-            // clickableIcons: false,
           }}
           defaultCenter={{ lat: 51.0447, lng: -114.0719 }}
           center={coords}
@@ -58,7 +73,6 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
               });
             }
           }}
-          onChildClick={(e) => {}}
         >
           {attractions &&
             attractions.map((a, i) => (
@@ -101,20 +115,7 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                       <Button
                         sx={buttonStyles}
                         size="small"
-                        onClick={() => {
-                          const startTime = new Date(Date.now()).toLocaleString();
-                          const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
-                          const rating = Number(a.rating);
-                          setAttraction({
-                            name: a.name,
-                            address: a.address,
-                            city: a.address_obj.city,
-                            rating: rating,
-                            startTime: startTime,
-                            endTime: twoHours,
-                            listId: 2,
-                          })
-                        }}
+                        onClick={()=> handleAdd(a)}
                       >
                         Add
                       </Button>

@@ -5,8 +5,6 @@ import axios from 'axios';
 
 export default function Planner() {
 
-  // const URL = "http://localhost:3000/api/attractions"
-
   const [items, setItems] = useState([]);
 
   useEffect(() => {

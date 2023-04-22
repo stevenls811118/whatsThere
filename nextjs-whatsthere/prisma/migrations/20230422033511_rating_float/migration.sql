@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "attractions" ALTER COLUMN "rating" SET DATA TYPE DOUBLE PRECISION;
