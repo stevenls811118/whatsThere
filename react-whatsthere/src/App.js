@@ -9,6 +9,7 @@ import { getAttractions } from "./components/Map/getAttractions";
 import axios from "axios";
 
 export default function App() {
+  const [items, setItems] = useState([]);
   const [attractions, setAttractions] = useState([]);
   const [attraction, setAttraction] = useState();
   const [coords, setCoords] = useState({});
@@ -35,8 +36,16 @@ export default function App() {
   useEffect(() => {
     if (attraction) {
       axios.put("/api/attractions", attraction);
+      axios.get('/api/attractions')
+        .then(res => { setItems(res.data) })
     }
   }, [attraction]);
+
+  useEffect(() => {
+    axios.get('/api/attractions')
+      .then(res => { setItems(res.data) })
+      .catch(err => { console.log(err) })
+  }, [])
 
   return (
     <div className="bg-gray-300">
@@ -47,7 +56,10 @@ export default function App() {
             <Header />
           </Grid>
           <Grid>
-            <Planner />
+            <Planner
+              items={items}
+              setItems={setItems}
+            />
           </Grid>
           <Grid>
             <Login />
