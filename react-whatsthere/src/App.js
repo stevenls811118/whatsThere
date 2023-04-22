@@ -6,9 +6,11 @@ import DatePickerCalender from "./components/Date-Picker/Date-Picker";
 import Login from './components/Welcome/login';
 import { CssBaseline, Grid } from "@mui/material";
 import { getAttractions } from "./components/Map/getAttractions";
+import axios from "axios";
 
 export default function App() {
   const [attractions, setAttractions] = useState([]);
+  const [attraction, setAttraction] = useState({});
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState({});
 
@@ -30,6 +32,9 @@ export default function App() {
     }
   }, [coords, bounds]);
 
+  useEffect(() => {
+    axios.put('/api/attractions', attraction)
+  }, [attraction]);
   return (
     <div className="bg-gray-300">
       <CssBaseline />
@@ -54,6 +59,7 @@ export default function App() {
             setBounds={setBounds}
             coords={coords}
             attractions={attractions}
+            setAttraction={setAttraction}
           />
         </Grid>
       </Grid>
