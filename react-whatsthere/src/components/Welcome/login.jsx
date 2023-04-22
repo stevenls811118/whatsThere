@@ -3,9 +3,7 @@ import jwt_decode from "jwt-decode";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 
-
 const Login = () => {
-
   const [user, setUser] = useState({});
   const [data, setData] = useState();
 
@@ -13,14 +11,14 @@ const Login = () => {
     // response.credential is an encoded jwt
     const userObj = jwt_decode(response.credential);
     setUser(userObj); // decoded jwt object
-    
-    const userData  = {
+
+    const userData = {
       email: userObj.email,
-      name: userObj.name
-    }
+      name: userObj.name,
+    };
     setData(userData);
   };
-  
+
   const handleSignOut = () => {
     setUser({});
     google.accounts?.id.prompt();
@@ -47,20 +45,29 @@ const Login = () => {
 
   useEffect(() => {
     if (data) {
-      axios.put("/api/users", data)
+      axios.put("/api/users", data);
     }
-  }, [data])
+  }, [data]);
 
   return (
     <div>
       <Helmet>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <script
+          src="https://accounts.google.com/gsi/client"
+          async
+          defer
+        ></script>
       </Helmet>
       {Object.keys(user).length === 0 && <div id="signInDiv"></div>}
 
       {Object.keys(user).length !== 0 && (
-        <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-          <button onClick={handleSignOut}>Sign out</button>
+        <div>
+          <button
+            onClick={handleSignOut}
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          >
+            Sign out
+          </button>
         </div>
       )}
     </div>
