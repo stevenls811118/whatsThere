@@ -103,12 +103,13 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                         size="small"
                         onClick={() => {
                           const startTime = new Date(Date.now()).toLocaleString();
-                          const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString()
+                          const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
+                          const rating = Number(a.rating);
                           setAttraction({
                             name: a.name,
                             address: a.address,
                             city: a.address_obj.city,
-                            rating: a.rating,
+                            rating: rating,
                             startTime: startTime,
                             endTime: twoHours,
                             listId: 1,
