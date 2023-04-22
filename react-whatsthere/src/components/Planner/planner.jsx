@@ -5,12 +5,12 @@ import axios from 'axios';
 
 export default function Planner() {
 
-  const URL = "http://localhost:3000/api/attractions"
+  // const URL = "http://localhost:3000/api/attractions"
 
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    axios.get(URL)
+    axios.get('/api/attractions')
       .then(res => { setItems(res.data) })
       .catch(err => { console.log(err) })
   }, [])
@@ -18,7 +18,7 @@ export default function Planner() {
 
   const [editingIndex, setEditingIndex] = useState(-1);
   const [newTitle, setNewTitle] = useState('');
-  const [newTime, setNewTime] = useState('12:00');
+  const [newTime, setNewTime] = useState('');
 
   const handleEditClick = (index) => {
     setEditingIndex(index);

@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
   const attractions = await db.attractions.findMany({
     where: {
-      listId: 2,
+      listId: 1,
     },
   })
   res.status(200).json(attractions);
