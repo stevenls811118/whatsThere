@@ -14,46 +14,48 @@ model users {
   id            Int      @id @default(autoincrement())
   email         String   @unique @db.VarChar(255)
   name          String   @db.VarChar(255)
-  password      String
-  address       String   @db.VarChar(255)
-  city          String   @db.VarChar(255)
-  trip_planners trip_planners[]
+  lists         lists[]
 }
 
-model trip_planners {
+model lists {
   id            Int           @id @default(autoincrement())
   user          users         @relation(fields: [userId], references: [id])
   userId        Int
-  landmark      landmarks     @relation(fields: [landmarkId], references: [id])
-  landmarkId    Int
-  destination   destinations  @relation(fields: [destinationId], references: [id])
-  destinationId Int 
+  attrations    attractions[]
+  // landmark      landmarks     @relation(fields: [landmarkId], references: [id])
+  // landmarkId    Int
+  // destination   destinations  @relation(fields: [destinationId], references: [id])
+  // destinationId Int 
 }
 
-model landmarks {
-  id            Int       @id @default(autoincrement())
-  name          String    @db.VarChar(255)
-  city          String    @db.VarChar(255)
-  trip_planners trip_planners[]
-}
+// model landmarks {
+//   id            Int       @id @default(autoincrement())
+//   name          String    @db.VarChar(255)
+//   city          String    @db.VarChar(255)
+//   trip_planners trip_planners[]
+// }
 
-model destinations {
-  id            Int       @id @default(autoincrement())
-  name          String    @db.VarChar(255)
-  address       String    @db.VarChar(255)
-  city          String    @db.VarChar(255)
-  trip_planners trip_planners[]
-  attraction    attractions[]
-}
+// model destinations {
+//   id            Int       @id @default(autoincrement())
+//   name          String    @db.VarChar(255)
+//   address       String    @db.VarChar(255)
+//   city          String    @db.VarChar(255)
+//   trip_planners trip_planners[]
+//   // attraction    attractions[]
+// }
 
 model attractions {
   id            Int          @id @default(autoincrement())
   name          String       @db.VarChar(255)
   address       String       @db.VarChar(255)
-  city          String       @db.VarChar(255)
-  rating        Int
-  startTime     DateTime     @default(dbgenerated("NOW() + interval '1 hour'"))
-  endTime       DateTime     @default(dbgenerated("NOW() + interval '3 hours'")) 
-  destination   destinations @relation(fields: [destinationId], references: [id])
-  destinationId Int
+  city          String?      @db.VarChar(255)
+  rating        String       @db.VarChar(32)
+  // startTime     DateTime     @default(dbgenerated("NOW() + interval '1 hour'"))
+  // endTime       DateTime     @default(dbgenerated("NOW() + interval '3 hours'")) 
+  startTime     String       @db.VarChar(128)
+  endTime       String       @db.VarChar(128)
+  list          lists        @relation(fields: [listId], references: [id])
+  listId        Int
+  // destination   destinations @relation(fields: [destinationId], references: [id])
+  // destinationId Int
 }
