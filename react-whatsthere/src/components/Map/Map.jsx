@@ -110,7 +110,8 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                             city: a.address_obj.city,
                             rating: a.rating,
                             startTime: startTime,
-                            endTime: twoHours
+                            endTime: twoHours,
+                            listId: 1,
                           })
                         }}
                       >
