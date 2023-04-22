@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faTrash, faMapLocationDot } from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios';
 
-export default function Planner() {
-
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    axios.get('/api/attractions')
-      .then(res => { setItems(res.data) })
-      .catch(err => { console.log(err) })
-  }, [])
-
+export default function Planner({ items, setItems}) {
 
   const [editingIndex, setEditingIndex] = useState(-1);
   const [newTitle, setNewTitle] = useState('');
