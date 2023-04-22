@@ -52,7 +52,7 @@ const Login = () => {
   return (
     <div>
       <Helmet>
-        <script src="https://accounts.google.com/gsi/client" async></script>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
       </Helmet>
       {Object.keys(user).length === 0 && <div id="signInDiv"></div>}
 
