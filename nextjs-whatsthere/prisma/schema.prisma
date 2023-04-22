@@ -50,7 +50,7 @@ model attractions {
   name          String       @db.VarChar(255)
   address       String       @db.VarChar(255)
   city          String?      @db.VarChar(255)
-  rating        String       @db.VarChar(32)
+  rating        Int
   // startTime     DateTime     @default(dbgenerated("NOW() + interval '1 hour'"))
   // endTime       DateTime     @default(dbgenerated("NOW() + interval '3 hours'")) 
   startTime     String       @db.VarChar(128)
