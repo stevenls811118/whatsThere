@@ -30,13 +30,13 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
       rating: rating,
       startTime: startTime,
       endTime: twoHours,
-      listId: 2,
+      listId: 1,
     })
   }
 
   return (
     <div className="flex flex-col relative">
-      <div className="flex flex-row justify-between pl-3 pt-2 pb-2 font-bold font-mono text-base z-10">
+      <div className="flex flex-row justify-between pl-3 pt-2 pb-2 font-bold font-mono text-base z-10 w-96">
         <div>
           <Place setCoords={setCoords} setBounds={setBounds} />
         </div>
@@ -77,7 +77,7 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
           {attractions &&
             attractions.map((a, i) => (
               <div
-                className="absolute z-10 hover:z-20 hover:scale-125 hover:translate-x-1/4 hover:-translate-y-1/4"
+                className="absolute z-10 hover:z-20 hover:scale-125"
                 lat={Number(a.latitude)}
                 lng={Number(a.longitude)}
                 key={i}
