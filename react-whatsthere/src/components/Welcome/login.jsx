@@ -1,16 +1,26 @@
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { Helmet } from "react-helmet";
+import axios from "axios";
+
 
 const Login = () => {
+
   const [user, setUser] = useState({});
+  const [data, setData] = useState({});
 
   const handleCallbackResponse = (response) => {
     // response.credential is an encoded jwt
     const userObj = jwt_decode(response.credential);
     setUser(userObj); // decoded jwt object
+    
+    const userData  = {
+      email: userObj.email,
+      name: userObj.name
+    }
+    setData(userData);
   };
-
+  
   const handleSignOut = () => {
     setUser({});
     google.accounts?.id.prompt();
@@ -34,6 +44,10 @@ const Login = () => {
       google.accounts?.id.prompt();
     }
   }, []);
+
+  useEffect(() => {
+    axios.put("/api/users", data)
+  }, [data])
 
   return (
     <div>
