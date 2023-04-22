@@ -15,7 +15,7 @@ const cardActionsStyles = {
   padding: 0,
 };
 
-export default function Map({ setCoords, setBounds, coords, attractions }) {
+export default function Map({ setCoords, setBounds, coords, attractions, setAttraction }) {
   const desktop = useMediaQuery("(min-width:600px)");
 
   return (
@@ -61,11 +61,11 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
           onChildClick={(e) => {}}
         >
           {attractions &&
-            attractions.map((attraction, i) => (
+            attractions.map((a, i) => (
               <div
                 className="absolute z-10 hover:z-20 hover:scale-125 hover:translate-x-1/4 hover:-translate-y-1/4"
-                lat={Number(attraction.latitude)}
-                lng={Number(attraction.longitude)}
+                lat={Number(a.latitude)}
+                lng={Number(a.longitude)}
                 key={i}
               >
                 {!desktop ? (
@@ -76,22 +76,22 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
                     className="w-40 p-1 flex flex-col cursor-pointer"
                   >
                     <Typography variant="subtitle2">
-                      {attraction.name}
+                      {a.name}
                     </Typography>
                     <img
                       src={
-                        attraction.photo
-                          ? attraction.photo.images.large.url
+                        a.photo
+                          ? a.photo.images.large.url
                           : "https://www.myhometurf.com.au/wp-content/uploads/2022/05/Shadey-lawn-1536x1099.jpg"
                       }
-                      alt={attraction.name}
+                      alt={a.name}
                     />
                     <Rating
                       className="justify-center"
                       name="read-only"
                       size="medium"
                       precision={0.1}
-                      value={Number(attraction.rating)}
+                      value={Number(a.rating)}
                       readOnly
                     />
                     <CardActions
@@ -101,14 +101,18 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
                       <Button
                         sx={buttonStyles}
                         size="small"
-                        onClick={() =>
-                          console.log({
-                            name: attraction.name,
-                            address: attraction.address,
-                            city: attraction.address_obj.city,
-                            rating: attraction.rating,
+                        onClick={() => {
+                          const startTime = new Date(Date.now()).toLocaleString();
+                          const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString()
+                          setAttraction({
+                            name: a.name,
+                            address: a.address,
+                            city: a.address_obj.city,
+                            rating: a.rating,
+                            startTime: startTime,
+                            endTime: twoHours
                           })
-                        }
+                        }}
                       >
                         Add
                       </Button>
@@ -116,16 +120,16 @@ export default function Map({ setCoords, setBounds, coords, attractions }) {
                         size="small"
                         onClick={() => {
                           console.log({ attractions });
-                          console.log(attraction);
-                          if (attraction.description) {
+                          console.log(a);
+                          if (a.description) {
                             console.log({
-                              description: attraction.description,
-                              ranking: attraction.ranking_subcategory,
+                              description: a.description,
+                              ranking: a.ranking_subcategory,
                             });
                           } else {
                             console.log({
-                              description: attraction.name,
-                              ranking: attraction.ranking_subcategory,
+                              description: a.name,
+                              ranking: a.ranking_subcategory,
                             });
                           }
                         }}
