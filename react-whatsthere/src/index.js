@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./tailwind.css";
-import LandingPage from "./components/Welcome";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
