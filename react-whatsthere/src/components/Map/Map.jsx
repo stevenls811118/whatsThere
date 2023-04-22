@@ -112,7 +112,7 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                             rating: rating,
                             startTime: startTime,
                             endTime: twoHours,
-                            listId: 1,
+                            listId: 2,
                           })
                         }}
                       >
