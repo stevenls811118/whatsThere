@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { Button, Card, CardActions, Rating, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Place from "./Places";
 import { correctLng } from "./correctLng";
 import mapStyles from "./mapStyles";
+import Adding from "./Adding-Attractions";
 
 const buttonStyles = {
   padding: 0,
@@ -27,21 +28,18 @@ export default function Map({
   coords,
   attractions,
   setAttraction,
+  setDisplay,
 }) {
   const desktop = useMediaQuery("(min-width:900px)");
 
   const handleAdd = (a) => {
-    const startTime = new Date(Date.now()).toLocaleString();
-    const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
     const rating = Number(a.rating);
+    setDisplay("visiable")
     setAttraction({
       name: a.name,
       address: a.address,
       city: a.address_obj.city,
       rating: rating,
-      startTime: startTime,
-      endTime: twoHours,
-      listId: 1,
     });
   };
 
@@ -87,7 +85,7 @@ export default function Map({
           <Place setCoords={setCoords} setBounds={setBounds} />
         </div>
       </div>
-      <div className="z-0 absolute w-full h-screen">
+      <div className="z-0 absolute w-full h-screen flex">
         <GoogleMapReact
           bootstrapURLKeys={{
             key: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -180,10 +178,10 @@ export default function Map({
                         size="small"
                         onClick={() => handleAdd(a)}
                       >
-                        <AddCircleOutlineOutlinedIcon color="primary"/>
+                        <AddCircleOutlineOutlinedIcon color="primary" />
                       </Button>
                       <Button size="small" onClick={() => handleMore(a)}>
-                        <MoreHorizOutlinedIcon color="primary"/>
+                        <MoreHorizOutlinedIcon color="primary" />
                       </Button>
                     </CardActions>
                   </Card>
