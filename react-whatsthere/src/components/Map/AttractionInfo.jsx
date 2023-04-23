@@ -23,9 +23,6 @@ export default function AttractionInfo({ attractionInfoShown, attraction, attrac
               <div className="mb-2">
                 <img src={currentAttraction.photo.images.medium.url} />
               </div>
-              <div className="mb-2">
-                <img src={currentAttraction.photo.images.medium.url} />
-              </div>
             </div>
             <div className='p-3'>
               <div>
