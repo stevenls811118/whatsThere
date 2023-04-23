@@ -9,7 +9,7 @@ export default function Adding({ attraction, setDisplay, setData }) {
   const [newEndTime, setNewEndTime] = useState("");
 
   useEffect(() => {
-    console.log(attraction);
+    
     if (attraction) {
       setNewTitle(attraction.name);
     }
@@ -32,7 +32,7 @@ export default function Adding({ attraction, setDisplay, setData }) {
     setNewStartTime("");
     setNewEndTime("");
     setDisplay("invisible")
-    console.log(date.toLocaleDateString());
+    
     const startTime = `${date.toLocaleDateString()}, ${newStartTime}`
     const endTime = `${date.toLocaleDateString()}, ${newEndTime}`
     setData({...attraction, startTime: startTime, endTime: endTime, listId: 1})
@@ -71,7 +71,7 @@ export default function Adding({ attraction, setDisplay, setData }) {
       </div>
       <div className="flex flex-row space-x-2 justify-around">
         <div>
-          <button onClick={handleNewSaveClick} className="boarder-hidden rounded-2xl p-2 font-bold bg-blue-500 w-28 text-center text-white">Save</button>
+          <button onClick={handleNewSaveClick} className="border-double border-2 border-blue-500 rounded-2xl p-2 font-bold bg-blue-500 w-28 text-center text-white">Save</button>
         </div>
         <div>
           <button onClick={handleCancelClick} className="border-double border-2 border-white rounded-2xl p-2 font-bold bg-grey-600 w-28 text-center">Cancel</button>
