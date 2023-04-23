@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
-import AddAttraction from "./components/Planner/AddAttraction";
-import DatePickerCalender from "./components/Date-Picker/Date-Picker";
-import AttractionInfo from "./components/Map/AttractionInfo";
+
 
 import Login from "./components/Welcome/login";
 import { CssBaseline, Grid } from "@mui/material";

@@ -23,11 +23,10 @@ export default function Map({
   setCoords,
   setBounds,
   attractions,
+  attraction,
   setAttraction,
   attractionInfoShown,
   setAttractionInfoShown,
-  attraction,
-  setAttraction,
   setDisplay,
 }) {
   const desktop = useMediaQuery("(min-width:900px)");
@@ -36,7 +35,7 @@ export default function Map({
     const startTime = new Date(Date.now()).toLocaleString();
     const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
     const rating = Number(a.rating);
-    setDisplay("visiable")
+    setDisplay("visible")
     setAttraction({
       name: a.name,
       address: a.address,
