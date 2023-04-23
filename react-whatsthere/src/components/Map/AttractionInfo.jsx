@@ -9,7 +9,7 @@ export default function AttractionInfo({ attractionInfoShown, attraction, attrac
   const currentAttraction = attractions.find((a) => a.name === attraction.name);
 
   return (
-    <div className={`attraction-info ${attractionInfoShown ? 'show' : ''} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-md shadow-md w-[100%] h-[100%] overflow-y-auto`}>
+    <div className={`attraction-info ${attractionInfoShown ? 'show' : ''} bg-white p-4  rounded-md shadow-md w-[100%] h-[100%] overflow-y-auto`} style={{ backdropFilter: 'none', transform: 'scale(0.8)' }}>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">{currentAttraction ? currentAttraction.name : ''}</h2>
         <button onClick={handleClose}>
@@ -18,9 +18,14 @@ export default function AttractionInfo({ attractionInfoShown, attraction, attrac
       </div>
       {currentAttraction && (
         <>
-          <div className='flex p-6'>
-            <div className="mb-2">
-              <img src={currentAttraction.photo.images.medium.url} />
+          <div className='flex flex-col p-6'>
+            <div className="flex flex-row">
+              <div className="mb-2">
+                <img src={currentAttraction.photo.images.medium.url} />
+              </div>
+              <div className="mb-2">
+                <img src={currentAttraction.photo.images.medium.url} />
+              </div>
             </div>
             <div className='p-3'>
               <div>
@@ -36,9 +41,20 @@ export default function AttractionInfo({ attractionInfoShown, attraction, attrac
                 <div className="mb-2">
                   <span className="font-semibold">Category:</span> {currentAttraction.subtype[0].name}
                 </div>
+                <div className="mb-2">
+                  <span className="font-semibold">Description:</span>{" "}
+                  {currentAttraction.description ? (
+                    currentAttraction.description
+                  ) : (
+                    "No description available"
+                  )}
+                </div>
+                <div className="mb-2">
+                  <span className="font-semibold">Ranking:</span> {currentAttraction.ranking}
+                </div>
               </div>
               <div>
-                <button><FontAwesomeIcon icon={faLocationDot} /></button> 
+                <button><FontAwesomeIcon icon={faLocationDot} /></button>
               </div>
             </div>
           </div>

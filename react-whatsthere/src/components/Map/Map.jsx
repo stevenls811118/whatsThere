@@ -18,6 +18,11 @@ const cardActionsStyles = {
   padding: 0,
 };
 
+const smallCardActionsStyles = {
+  height: "14px",
+  padding: 0,
+};
+
 export default function Map({
   coords,
   setCoords,
@@ -183,7 +188,7 @@ export default function Map({
             ))}
         </GoogleMapReact>
         {attractionInfoShown && attraction && (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-md shadow-md w-4/5 h-4/5 overflow-y-auto">
+          <div className="absolute top-1/2 left-1/2 p-4 rounded-md shadow-md w-[100%] h-[100%]" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
             <AttractionInfo
               attraction={attraction}
               attractions={attractions}
