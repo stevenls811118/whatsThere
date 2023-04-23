@@ -3,7 +3,7 @@ import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
 import DatePickerCalender from "./components/Date-Picker/Date-Picker";
-import Login from "./components/Welcome/login";
+import Login from "./components/Welcome/login" 
 import { CssBaseline, Grid } from "@mui/material";
 import { getAttractions } from "./components/Map/getAttractions";
 import axios from "axios";

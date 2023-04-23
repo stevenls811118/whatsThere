@@ -58,7 +58,8 @@ const Login = () => {
           defer
         ></script>
       </Helmet>
-      {Object.keys(user).length === 0 && <div id="signInDiv"></div>}
+      {Object.keys(user).length === 0 && 
+      <div id="signInDiv"></div>}
       {Object.keys(user).length !== 0 && (
         <div>
           <button

@@ -19,7 +19,7 @@ export default function DatePicker() {
       onChange={item => setState([item.selection])}
       moveRangeOnFirstSelection={false}
       ranges={state}
-      className="text-center"
+      className=""
     />
   )
 };
