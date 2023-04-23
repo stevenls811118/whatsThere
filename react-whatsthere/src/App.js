@@ -4,6 +4,8 @@ import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
 import AddAttraction from "./components/Planner/AddAttraction";
 import DatePickerCalender from "./components/Date-Picker/Date-Picker";
+import AttractionInfo from "./components/Map/AttractionInfo";
+
 import Login from "./components/Welcome/login";
 import { CssBaseline, Grid } from "@mui/material";
 import { getAttractions } from "./components/Map/getAttractions";
@@ -15,6 +17,7 @@ export default function App() {
   const [attraction, setAttraction] = useState();
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState({});
+  const [attractionInfoShown, setAttractionInfoShown] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((e) => {
@@ -55,7 +58,6 @@ export default function App() {
         <Grid className= "flex-col h-[100%] " item xs={12} md={4}>
           <Grid className="flex-col">
             <Header />
-            {/* <AddAttraction /> */}
           </Grid>
           <Grid>
             <Planner
@@ -76,8 +78,11 @@ export default function App() {
             setCoords={setCoords}
             setBounds={setBounds}
             coords={coords}
+            attraction={attraction}
             attractions={attractions}
             setAttraction={setAttraction}
+            attractionInfoShown={attractionInfoShown}
+            setAttractionInfoShown={setAttractionInfoShown}
           />
         </Grid>
       </Grid>
