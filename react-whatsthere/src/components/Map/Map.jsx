@@ -1,4 +1,3 @@
-import React from "react";
 import GoogleMapReact from "google-map-react";
 import { Button, Card, CardActions, Rating, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -6,6 +5,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Place from "./Places";
 import { correctLng } from "./correctLng";
 import mapStyles from "./mapStyles";
+import AttractionInfo from "./AttractionInfo";
 
 const buttonStyles = {
   padding: 0,
@@ -15,14 +15,15 @@ const cardActionsStyles = {
   padding: 0,
 };
 
-export default function Map({ setCoords, setBounds, coords, attractions, setAttraction }) {
+export default function Map({ setCoords, setBounds, coords, attractions, setAttraction, attractionInfoShown, setAttractionInfoShown, attraction }) {
 
   const desktop = useMediaQuery("(min-width:600px)");
 
-  const handleAdd = (a) =>{
+  const handleAdd = (a) => {
     const startTime = new Date(Date.now()).toLocaleString();
     const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
     const rating = Number(a.rating);
+
     setAttraction({
       name: a.name,
       address: a.address,
@@ -32,7 +33,13 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
       endTime: twoHours,
       listId: 1,
     })
-  }
+  };
+
+  const handleMore = (a) => {
+    setAttraction(a);
+    setAttractionInfoShown(true);
+  };
+
 
   return (
     <div className="flex flex-col relative">
@@ -115,27 +122,13 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                       <Button
                         sx={buttonStyles}
                         size="small"
-                        onClick={()=> handleAdd(a)}
+                        onClick={() => handleAdd(a)}
                       >
                         Add
                       </Button>
                       <Button
                         size="small"
-                        onClick={() => {
-                          console.log({ attractions });
-                          console.log(a);
-                          if (a.description) {
-                            console.log({
-                              description: a.description,
-                              ranking: a.ranking_subcategory,
-                            });
-                          } else {
-                            console.log({
-                              description: a.name,
-                              ranking: a.ranking_subcategory,
-                            });
-                          }
-                        }}
+                        onClick={() => handleMore(a)}
                       >
                         More
                       </Button>
@@ -145,6 +138,16 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
               </div>
             ))}
         </GoogleMapReact>
+        {attractionInfoShown && attraction && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-md shadow-md w-4/5 h-4/5 overflow-y-auto">
+            <AttractionInfo
+              attraction={attraction}
+              attractions={attractions}
+              attractionInfoShown={attractionInfoShown}
+              setAttractionInfoShown={setAttractionInfoShown}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
