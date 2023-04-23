@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faTrash, faMapLocationDot } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
+import { id } from 'date-fns/locale';
 
-export default function Planner({ items, setItems}) {
+export default function Planner({ items, setItems }) {
 
   const [editingIndex, setEditingIndex] = useState(-1);
   const [newTitle, setNewTitle] = useState('');
@@ -25,11 +27,19 @@ export default function Planner({ items, setItems}) {
     setNewTime('12:00pm');
   };
 
-  const handleDeleteClick = (index) => {
-    const newItems = [...items];
-    newItems.splice(index, 1);
-    setItems(newItems);
-  };
+  const handleDeleteClick = (attraction) => {
+  const where = { name: attraction.name };
+  axios.delete(`/api/attractions`, { data: { where } })
+    .then(response => {
+      console.log(response.data.name);
+      const newItems = items.filter(item => item.name !== attraction.name);
+      setItems(newItems);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
 
   const handleAddClick = () => {
     setEditingIndex(null);
@@ -54,7 +64,7 @@ export default function Planner({ items, setItems}) {
   };
 
   return (
-    <div>
+    <div className="h-[100%]">
       <div className="bg-tertiary text-white text-lg flex justify-between px-2">
         <div>Locations to Visit</div>
         <div>Edit/Delete</div>
@@ -89,7 +99,7 @@ export default function Planner({ items, setItems}) {
                   <button onClick={() => handleEditClick(index)}>
                     <FontAwesomeIcon icon={faPenToSquare} size="lg" color="white" />
                   </button>
-                  <button onClick={() => handleDeleteClick(index)}>
+                  <button onClick={() => handleDeleteClick(item)}>
                     <FontAwesomeIcon icon={faTrash} size="lg" />
                   </button>
                 </div>

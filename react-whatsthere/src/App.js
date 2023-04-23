@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
+import AddAttraction from "./components/Planner/AddAttraction";
 import DatePickerCalender from "./components/Date-Picker/Date-Picker";
 import Login from "./components/Welcome/login";
 import { CssBaseline, Grid } from "@mui/material";
@@ -47,18 +48,20 @@ export default function App() {
       .catch(err => { console.log(err) })
   }, [])
 
-  return (
-    <div className="bg-gray-300">
-      <CssBaseline />
+  return (  
+    <main className="bg-gray-300">
+    <CssBaseline />
       <Grid container spacing={1.5} item xs={12}>
-        <Grid className="flex-col" item xs={12} md={4}>
+        <Grid className= "flex-col h-[100%] " item xs={12} md={4}>
           <Grid className="flex-col">
             <Header />
+            {/* <AddAttraction /> */}
           </Grid>
           <Grid>
             <Planner
               items={items}
               setItems={setItems}
+              attraction={attraction}
             />
           </Grid>
           <Grid>
@@ -78,6 +81,6 @@ export default function App() {
           />
         </Grid>
       </Grid>
-    </div>
+    </main>
   );
 }
