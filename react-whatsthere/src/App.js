@@ -10,14 +10,17 @@ import Login from "./components/Welcome/login";
 import { CssBaseline, Grid } from "@mui/material";
 import { getAttractions } from "./components/Map/getAttractions";
 import axios from "axios";
+import Adding from "./components/Map/Adding-Attractions";
 
 export default function App() {
   const [items, setItems] = useState([]);
   const [attractions, setAttractions] = useState([]);
-  const [attraction, setAttraction] = useState();
+  const [attraction, setAttraction] = useState("");
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState({});
   const [attractionInfoShown, setAttractionInfoShown] = useState(false);
+  const [display, setDisplay] = useState("invisible");
+  const [data, setData] = useState();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((e) => {
@@ -38,40 +41,35 @@ export default function App() {
   }, [coords, bounds]);
 
   useEffect(() => {
-    if (attraction) {
-      axios.put("/api/attractions", attraction);
-      axios.get('/api/attractions')
-        .then(res => { setItems(res.data) })
+    if (data) {
+      axios.put("/api/attractions", data);
+      axios.get("/api/attractions").then((res) => {
+        setItems(res.data);
+      });
     }
-  }, [attraction]);
+  }, [data]);
 
   useEffect(() => {
-    axios.get('/api/attractions')
-      .then(res => { setItems(res.data) })
-      .catch(err => { console.log(err) })
-  }, [])
+    axios
+      .get("/api/attractions")
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (  
     <main className="bg-gray-300">
     <CssBaseline />
       <Grid container spacing={1.5} item xs={12}>
-        <Grid className= "flex-col h-[100%] " item xs={12} md={4}>
-          <Grid className="flex-col">
-            <Header />
-          </Grid>
-          <Grid>
-            <Planner
-              items={items}
-              setItems={setItems}
-              attraction={attraction}
-            />
-          </Grid>
-          <Grid>
-            <Login />
-          </Grid>
-          <Grid className="flex-col">
-            {/* <DatePickerCalender /> */}
-          </Grid>
+        <Grid className="flex-col" item xs={12} md={4}>
+          <Header />
+
+          <Planner items={items} setItems={setItems} />
+
+          <Login />
         </Grid>
         <Grid item xs={12} md={8}>
           <Map
@@ -83,7 +81,13 @@ export default function App() {
             setAttraction={setAttraction}
             attractionInfoShown={attractionInfoShown}
             setAttractionInfoShown={setAttractionInfoShown}
+            setDisplay={setDisplay}
           />
+          <div className="flex justify-center">
+            <div className={display}>
+              <Adding attraction={attraction} setDisplay={setDisplay} setData={setData} />
+            </div>
+          </div>
         </Grid>
       </Grid>
     </main>

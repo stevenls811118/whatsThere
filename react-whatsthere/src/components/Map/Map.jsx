@@ -1,11 +1,14 @@
+import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { Button, Card, CardActions, Rating, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Place from "./Places";
 import { correctLng } from "./correctLng";
 import mapStyles from "./mapStyles";
 import AttractionInfo from "./AttractionInfo";
+import Adding from "./Adding-Attractions";
 
 const buttonStyles = {
   padding: 0,
@@ -15,15 +18,25 @@ const cardActionsStyles = {
   padding: 0,
 };
 
-export default function Map({ setCoords, setBounds, coords, attractions, setAttraction, attractionInfoShown, setAttractionInfoShown, attraction }) {
-
-  const desktop = useMediaQuery("(min-width:600px)");
+export default function Map({
+  coords,
+  setCoords,
+  setBounds,
+  attractions,
+  setAttraction,
+  attractionInfoShown,
+  setAttractionInfoShown,
+  attraction,
+  setAttraction,
+  setDisplay,
+}) {
+  const desktop = useMediaQuery("(min-width:900px)");
 
   const handleAdd = (a) => {
     const startTime = new Date(Date.now()).toLocaleString();
     const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
     const rating = Number(a.rating);
-
+    setDisplay("visiable")
     setAttraction({
       name: a.name,
       address: a.address,
@@ -40,6 +53,24 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
     setAttractionInfoShown(true);
   };
 
+  const handleChange = (e) => {
+    if (e.marginBounds.ne.lng <= 180 && e.marginBounds.sw.lng >= -180) {
+      setCoords({ lat: e.center.lat, lng: e.center.lng });
+      setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+    } else {
+      const { centerLng, neLng, swLng } = correctLng(
+        e.center.lng,
+        e.marginBounds.ne.lng,
+        e.marginBounds.sw.lng
+      );
+
+      setCoords({ lat: e.center.lat, lng: centerLng });
+      setBounds({
+        ne: { lat: e.marginBounds.ne.lat, lng: neLng },
+        sw: { lat: e.marginBounds.sw.lat, lng: swLng },
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col relative">
@@ -48,7 +79,7 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
           <Place setCoords={setCoords} setBounds={setBounds} />
         </div>
       </div>
-      <div className="z-0 absolute w-full h-screen">
+      <div className="z-0 absolute w-full h-screen flex">
         <GoogleMapReact
           bootstrapURLKeys={{
             key: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -62,24 +93,7 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
             zoomControl: true,
             styles: mapStyles,
           }}
-          onChange={(e) => {
-            if (e.marginBounds.ne.lng <= 180 && e.marginBounds.sw.lng >= -180) {
-              setCoords({ lat: e.center.lat, lng: e.center.lng });
-              setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
-            } else {
-              const { centerLng, neLng, swLng } = correctLng(
-                e.center.lng,
-                e.marginBounds.ne.lng,
-                e.marginBounds.sw.lng
-              );
-
-              setCoords({ lat: e.center.lat, lng: centerLng });
-              setBounds({
-                ne: { lat: e.marginBounds.ne.lat, lng: neLng },
-                sw: { lat: e.marginBounds.sw.lat, lng: swLng },
-              });
-            }
-          }}
+          onChange={(e) => handleChange(e)}
         >
           {attractions &&
             attractions.map((a, i) => (
@@ -89,16 +103,12 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                 lng={Number(a.longitude)}
                 key={i}
               >
-                {!desktop ? (
-                  <LocationOnOutlinedIcon color="primary" fontSize="large" />
-                ) : (
+                {desktop ? (
                   <Card
                     elevation={3}
                     className="w-40 p-1 flex flex-col cursor-pointer"
                   >
-                    <Typography variant="subtitle2">
-                      {a.name}
-                    </Typography>
+                    <Typography variant="subtitle2">{a.name}</Typography>
                     <img
                       src={
                         a.photo
@@ -126,11 +136,46 @@ export default function Map({ setCoords, setBounds, coords, attractions, setAttr
                       >
                         Add
                       </Button>
+                      <Button size="small" onClick={() => handleMore(a)}>
+                        More
+                      </Button>
+                    </CardActions>
+                  </Card>
+                ) : (
+                  <Card
+                    elevation={3}
+                    className="w-20 p-1 flex flex-col cursor-pointer"
+                  >
+                    <Typography variant="subtitle5">{a.name}</Typography>
+                    <img
+                      src={
+                        a.photo
+                          ? a.photo.images.large.url
+                          : "https://www.myhometurf.com.au/wp-content/uploads/2022/05/Shadey-lawn-1536x1099.jpg"
+                      }
+                      alt={a.name}
+                    />
+                    <Rating
+                      className="justify-center scale-75"
+                      name="read-only"
+                      size="small"
+                      precision={0.5}
+                      value={Number(a.rating)}
+                      readOnly
+                    />
+                    <CardActions
+                      sx={smallCardActionsStyles}
+                      className="flex flex-row justify-around scale-50"
+                    >
                       <Button
+                        sx={buttonStyles}
                         size="small"
                         onClick={() => handleMore(a)}
                       >
-                        More
+                        <AddCircleOutlineOutlinedIcon color="primary" />
+                      </Button>
+                      <Button size="small" onClick={() => handleMore(a)}>
+                        <MoreHorizOutlinedIcon color="primary" />
                       </Button>
                     </CardActions>
                   </Card>
