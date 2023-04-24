@@ -8,7 +8,7 @@ import Place from "./Places";
 import { correctLng } from "./correctLng";
 import mapStyles from "./mapStyles";
 import AttractionInfo from "./AttractionInfo";
-import Adding from "./Adding-Attractions";
+
 
 const buttonStyles = {
   padding: 0,
