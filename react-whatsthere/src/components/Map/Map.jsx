@@ -32,7 +32,9 @@ export default function Map({
   setAttraction,
   attractionInfoShown,
   setAttractionInfoShown,
+  display,
   setDisplay,
+  addingComponent,
 }) {
   const desktop = useMediaQuery("(min-width:900px)");
 
@@ -187,17 +189,15 @@ export default function Map({
               </div>
             ))}
         </GoogleMapReact>
-        {attractionInfoShown && attraction && (
-          <div className="absolute top-1/2 left-1/2 p-4 rounded-md shadow-md w-[100%] h-[100%]" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-            <AttractionInfo
-              attraction={attraction}
-              attractions={attractions}
-              attractionInfoShown={attractionInfoShown}
-              setAttractionInfoShown={setAttractionInfoShown}
-            />
+          {attractionInfoShown && attraction && (
+                  <AttractionInfo
+                    attraction={attraction}
+                    attractions={attractions}
+                    attractionInfoShown={attractionInfoShown}
+                    setAttractionInfoShown={setAttractionInfoShown}
+                  />
+                  )}
           </div>
-        )}
-      </div>
     </div>
   );
 }

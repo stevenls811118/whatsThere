@@ -19,7 +19,7 @@ export default function App() {
   const [attractionInfoShown, setAttractionInfoShown] = useState(false);
   const [display, setDisplay] = useState("invisible");
   const [data, setData] = useState();
-
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((e) => {
       setCoords({ lat: e.coords.latitude, lng: e.coords.longitude });
