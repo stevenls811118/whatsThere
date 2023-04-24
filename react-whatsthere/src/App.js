@@ -10,6 +10,7 @@ import Planner from "./components/Planner/planner";
 import Adding from "./components/Map/Adding-Attractions";
 import Alert from "./components/Map/Alert";
 import CreateList from "./components/Planner/CreateList";
+import UserInfo from "./components/Users/UserInfo";
 
 // Helpers / Hooks
 import { getAttractions } from "./components/Map/getAttractions";
@@ -28,6 +29,7 @@ export default function App() {
   const [user, setUser] = useState({});
   const [userData, setUserData] = useState();
   const [userId, setUserId] = useState("");
+  const [userPicture, setUserPicture] = useState();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((e) => {
@@ -69,38 +71,50 @@ export default function App() {
 
 //Login Functions
   
-const handleCallbackResponse = (response) => {
-  // response.credential is an encoded jwt
-  const userObj = jwt_decode(response.credential);
-  setUser(userObj); // decoded jwt object
+  const handleCallbackResponse = (response) => {
+    // response.credential is an encoded jwt
+    const userObj = jwt_decode(response.credential);
+    setUser(userObj); // decoded jwt object
+    console.log(user)
 
-  const userData = {
-    email: userObj.email,
-    name: userObj.name,
-    };
-  setUserData(userData);
-  setUserId(userObj.id);
-};
+    const userData = {
+      email: userObj.email,
+      name: userObj.name,
+      };
+
+    const userPic ={
+      picture: userObj.picture,
+    }
+
+    setUserData(userData);
+    setUserPicture(userPic);
+    console.log(`UserData: ${userData}`)
+    setUserId(userObj.id);
+  };
 
   const handleSignOut = () => {
     setUser({});
+    setUserData({});
     google.accounts?.id.prompt();
   };
 
+  
   useEffect(() => {
     // global google
-    google.accounts?.id.initialize({
-      client_id:
-        "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
-      callback: handleCallbackResponse,
-    });
-
+    if (Object.keys(user).length === 0) {
+      google.accounts?.id.initialize({
+        client_id:
+          "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+        auto_select: false,
+      });
+    }
 
     // prompts users to login with usual accounts (oneTap login)
-    if (Object.keys(user)) {
+    if (Object.keys(user).length === 0) {
       google.accounts?.id.prompt();
     }
-  }, []);
+  }, [user]);
 
   //login communication to DB
   useEffect(() => {
@@ -115,21 +129,27 @@ const handleCallbackResponse = (response) => {
       <Grid container spacing={1.5} item xs={12}>
         <Grid className="flex-col" item xs={12} md={4}>
           <Header />
+          <div>
+            <UserInfo
+              userData={userData}
+              userPicture={userPicture}
+              />
+              {Object.keys(user).length !== 0 && (
+                <div>
+                  <button
+                    onClick={handleSignOut}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              )}
+          </div>
           <CreateList
             userId={userId}
           />
           <Planner items={items} setItems={setItems} />
-          {Object.keys(user).length !== 0 && (
-            <div>
-              <button
-                onClick={handleSignOut}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-              >
-                Sign out
-              </button>
-            </div>
-          )}
         </Grid>
         <Grid item xs={12} md={8}>
           <Map
