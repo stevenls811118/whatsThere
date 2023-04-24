@@ -40,7 +40,7 @@ export default function Map({
     const startTime = new Date(Date.now()).toLocaleString();
     const twoHours = new Date(Date.now() + 3600 * 1000 * 2).toLocaleString();
     const rating = Number(a.rating);
-    setDisplay("visible")
+    setDisplay("visible");
     setAttraction({
       name: a.name,
       address: a.address,
@@ -49,7 +49,7 @@ export default function Map({
       startTime: startTime,
       endTime: twoHours,
       listId: 1,
-    })
+    });
   };
 
   const handleMore = (a) => {
@@ -188,7 +188,14 @@ export default function Map({
             ))}
         </GoogleMapReact>
         {attractionInfoShown && attraction && (
-          <div className="absolute top-1/2 left-1/2 p-4 rounded-md shadow-md w-[100%] h-[100%]" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+          <div
+            className="absolute top-1/2 left-1/2 p-4 rounded-md shadow-md w-[100%] h-[100%]"
+            style={{
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
             <AttractionInfo
               attraction={attraction}
               attractions={attractions}
