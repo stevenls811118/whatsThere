@@ -11,7 +11,7 @@ import Alert from "./components/Map/Alert";
 import CreateList from "./components/Planner/CreateList";
 import UserInfo from "./components/Users/UserInfo";
 import Login from "./components/Users/Login";
-import LandingPage from "./components/Welcome/landingPage";
+import LandingPage from "./components/Welcome/LandingPage";
 
 // Helpers / Hooks
 import { getAttractions } from "./components/Map/getAttractions";

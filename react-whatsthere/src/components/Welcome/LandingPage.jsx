@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode"
 import axios from "axios";
-import Features from "./features";
-import VideoPlayer from "./videoPlayer";
+import Features from "./Features";
+import VideoPlayer from "./VideoPlayer";
 
 export default function LandingPage({ user, setUser, userData, setUserData, userPicture, setUserPicture, userId, setUserId }) {
 
