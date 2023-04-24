@@ -82,37 +82,32 @@ const handleCallbackResponse = (response) => {
   setUserId(userObj.id);
 };
 
-const handleSignOut = () => {
-  setUser({});
-  google.accounts?.id.prompt();
-};
-
-//Login
-useEffect(() => {
-  // global google
-  google.accounts?.id.initialize({
-    client_id:
-      "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
-    callback: handleCallbackResponse,
-  });
-
-
-  // prompts users to login with usual accounts (oneTap login)
-  if (Object.keys(user)) {
+  const handleSignOut = () => {
+    setUser({});
     google.accounts?.id.prompt();
-  }
-}, []);
-
-//login communication to DB
-useEffect(() => {
-  if (userData) {
-    axios.put("/api/users", userData);
-  }
-}, [userData]);
+  };
 
   useEffect(() => {
-    console.log("Current user ID:", userId);
-  }, [userId]);
+    // global google
+    google.accounts?.id.initialize({
+      client_id:
+        "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+
+
+    // prompts users to login with usual accounts (oneTap login)
+    if (Object.keys(user)) {
+      google.accounts?.id.prompt();
+    }
+  }, []);
+
+  //login communication to DB
+  useEffect(() => {
+    if (userData) {
+      axios.put("/api/users", userData);
+    }
+  }, [userData]);
 
   return (
     <main className="bg-gray-300">
@@ -129,6 +124,7 @@ useEffect(() => {
               <button
                 onClick={handleSignOut}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
               >
                 Sign out
               </button>
