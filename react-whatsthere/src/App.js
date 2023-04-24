@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { CssBaseline, Grid } from "@mui/material";
+import axios from "axios";
+import jwt_decode from "jwt-decode"
+
+// Components
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
-import { CssBaseline, Grid } from "@mui/material";
-import { getAttractions } from "./components/Map/getAttractions";
-import axios from "axios";
 import Adding from "./components/Map/Adding-Attractions";
 import Alert from "./components/Map/Alert";
-import jwt_decode from "jwt-decode"
+import CreateList from "./components/Planner/CreateList";
+
+// Helpers / Hooks
+import { getAttractions } from "./components/Map/getAttractions";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -22,6 +27,7 @@ export default function App() {
   //login states
   const [user, setUser] = useState({});
   const [userData, setUserData] = useState();
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((e) => {
@@ -71,8 +77,9 @@ const handleCallbackResponse = (response) => {
   const userData = {
     email: userObj.email,
     name: userObj.name,
-  };
+    };
   setUserData(userData);
+  setUserId(userObj.id);
 };
 
 const handleSignOut = () => {
@@ -103,7 +110,9 @@ useEffect(() => {
   }
 }, [userData]);
 
-
+  useEffect(() => {
+    console.log("Current user ID:", userId);
+  }, [userId]);
 
   return (
     <main className="bg-gray-300">
@@ -111,19 +120,21 @@ useEffect(() => {
       <Grid container spacing={1.5} item xs={12}>
         <Grid className="flex-col" item xs={12} md={4}>
           <Header />
-
+          <CreateList
+            userId={userId}
+          />
           <Planner items={items} setItems={setItems} />
-
           {Object.keys(user).length !== 0 && (
-  <div>
-    <button
-      onClick={handleSignOut}
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-    >
-      Sign out
-    </button>
-  </div>
-)}        </Grid>
+            <div>
+              <button
+                onClick={handleSignOut}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              >
+                Sign out
+              </button>
+            </div>
+          )}
+        </Grid>
         <Grid item xs={12} md={8}>
           <Map
             setCoords={setCoords}
