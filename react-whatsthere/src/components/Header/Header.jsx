@@ -1,8 +1,6 @@
 import React from "react";
 
-
 export default function Header() {
-
   return (
     <div className="h-[15vh] bg-primary text-white text-center font-mono">
       <div className="p-6 font-bold text-5xl">
@@ -12,5 +10,5 @@ export default function Header() {
         <p>The Perfect Travel Companion!</p>
       </div>
     </div>
-  )
-};
+  );
+}

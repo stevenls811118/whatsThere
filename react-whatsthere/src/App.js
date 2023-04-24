@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
-
-
 import Login from "./components/Welcome/login";
 import { CssBaseline, Grid } from "@mui/material";
 import { getAttractions } from "./components/Map/getAttractions";
 import axios from "axios";
 import Adding from "./components/Map/Adding-Attractions";
+import Alarm from "./components/Map/Alarm";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -58,9 +57,9 @@ export default function App() {
       });
   }, []);
 
-  return (  
+  return (
     <main className="bg-gray-300">
-    <CssBaseline />
+      <CssBaseline />
       <Grid container spacing={1.5} item xs={12}>
         <Grid className="flex-col" item xs={12} md={4}>
           <Header />
@@ -83,7 +82,12 @@ export default function App() {
           />
           <div className="flex justify-center">
             <div className={display}>
-              <Adding attraction={attraction} setDisplay={setDisplay} setData={setData} />
+              <Adding
+                attraction={attraction}
+                setDisplay={setDisplay}
+                setData={setData}
+              />
+              <Alarm items={items}/>
             </div>
           </div>
         </Grid>
