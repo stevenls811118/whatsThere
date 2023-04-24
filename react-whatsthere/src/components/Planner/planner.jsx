@@ -63,7 +63,7 @@ export default function Planner({ items, setItems }) {
   };
 
   return (
-    <div className="h-[100%]">
+    <div className="">
       <div className="bg-tertiary text-white text-lg flex justify-between px-2">
         <div>Locations to Visit</div>
         <div>Edit/Delete</div>
