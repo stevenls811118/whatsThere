@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef  } from 'react';
 // This component takes a src prop, which should be the URL of the video file you want to play.
 //  It uses a videoRef to reference the <video> element,
 //   and two event handlers to handle play and pause button clicks.
@@ -14,7 +14,7 @@ export default function VideoPlayer({ src }) {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <video
         src={src}
         ref={videoRef}
@@ -22,11 +22,7 @@ export default function VideoPlayer({ src }) {
         height="800"
         controls
       />
-      <div>
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handlePause}>Pause</button>
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactFragment } from "react";
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
 import Planner from "./components/Planner/planner";
@@ -8,6 +8,7 @@ import axios from "axios";
 import Adding from "./components/Map/Adding-Attractions";
 import Alert from "./components/Map/Alert";
 import jwt_decode from "jwt-decode";
+import LandingPage from "./components/Welcome/landingPage";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -60,7 +61,7 @@ export default function App() {
         console.log(err);
       });
   }, []);
-  
+
   //Login
 
   //Login Functions
@@ -104,47 +105,54 @@ export default function App() {
   }, [userData]);
 
   return (
-    <main className="bg-gray-300">
-      <CssBaseline />
-      <Grid container spacing={1.5} item xs={12}>
-        <Grid className="flex-col" item xs={12} md={4}>
-          <Header />
-          <Planner items={items} setItems={setItems} />
-          {Object.keys(user).length !== 0 && (
-            <div>
-              <button
-                onClick={handleSignOut}
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-              >
-                Sign out
-              </button>
-            </div>
-          )}
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Map
-            setCoords={setCoords}
-            setBounds={setBounds}
-            coords={coords}
-            attraction={attraction}
-            attractions={attractions}
-            setAttraction={setAttraction}
-            attractionInfoShown={attractionInfoShown}
-            setAttractionInfoShown={setAttractionInfoShown}
-            setDisplay={setDisplay}
-          />
-          <div className="flex justify-center">
-            <div className={display}>
-              <Adding
-                attraction={attraction}
-                setDisplay={setDisplay}
-                setData={setData}
-              />
-              <Alert items={items} setItems={setItems} />
-            </div>
-          </div>
-        </Grid>
-      </Grid>
-    </main>
+    <React.Fragment>
+      <main className="bg-gray-300">
+        {Object.keys(user).length === 0 && <LandingPage />}
+
+        {Object.keys(user).length !== 0 && (
+          <>
+            <CssBaseline />
+            <Grid container spacing={1.5} item xs={12}>
+              <Grid className="flex-col" item xs={12} md={4}>
+                <Header />
+                <Planner items={items} setItems={setItems} />
+
+                <div>
+                  <button
+                    onClick={handleSignOut}
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              </Grid>
+              <Grid item xs={12} md={8}>
+                <Map
+                  setCoords={setCoords}
+                  setBounds={setBounds}
+                  coords={coords}
+                  attraction={attraction}
+                  attractions={attractions}
+                  setAttraction={setAttraction}
+                  attractionInfoShown={attractionInfoShown}
+                  setAttractionInfoShown={setAttractionInfoShown}
+                  setDisplay={setDisplay}
+                />
+                <div className="flex justify-center">
+                  <div className={display}>
+                    <Adding
+                      attraction={attraction}
+                      setDisplay={setDisplay}
+                      setData={setData}
+                    />
+                    <Alert items={items} setItems={setItems} />
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+          </>
+        )}
+      </main>
+    </React.Fragment>
   );
 }
