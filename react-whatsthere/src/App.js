@@ -95,6 +95,7 @@ export default function App() {
   const handleSignOut = () => {
     setUser({});
     setUserData({});
+    setUserPicture({});
     google.accounts?.id.prompt();
   };
 
