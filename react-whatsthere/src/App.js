@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactFragment } from "react";
 import { CssBaseline, Grid } from "@mui/material";
 import axios from "axios";
-import jwt_decode from "jwt-decode"
 
 // Components
 import Map from "./components/Map/Map";
@@ -12,6 +11,7 @@ import Alert from "./components/Map/Alert";
 import CreateList from "./components/Planner/CreateList";
 import UserInfo from "./components/Users/UserInfo";
 import Login from "./components/Users/Login";
+import LandingPage from "./components/Welcome/landingPage";
 
 // Helpers / Hooks
 import { getAttractions } from "./components/Map/getAttractions";
@@ -71,56 +71,73 @@ export default function App() {
   }, []);
 
   return (
-    <main className="bg-gray-300">
-      <CssBaseline />
-      <Grid container spacing={1.5} item xs={12}>
-        <Grid className="flex-col" item xs={12} md={4}>
-          <Header />
-          <div>
-            <UserInfo
-              userData={userData}
-              userPicture={userPicture}
-              />
-              <Login
-                user={user}
-                setUser={setUser}
-                userData={userData}
-                setUserData={setUserData}
-                userPicture={userPicture}
-                setUserPicture={setUserPicture}
-                userId={userId}
-                setUserId={setUserId} 
-              />
-          </div>
-          <CreateList
-            userId={userId}
-          />
-          <Planner items={items} setItems={setItems} />
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Map
-            setCoords={setCoords}
-            setBounds={setBounds}
-            coords={coords}
-            attraction={attraction}
-            attractions={attractions}
-            setAttraction={setAttraction}
-            attractionInfoShown={attractionInfoShown}
-            setAttractionInfoShown={setAttractionInfoShown}
-            setDisplay={setDisplay}
-          />
-          <div className="flex justify-center">
-            <div className={display}>
-              <Adding
-                attraction={attraction}
-                setDisplay={setDisplay}
-                setData={setData}
-              />
-              <Alert items={items} setItems={setItems} />
-            </div>
-          </div>
-        </Grid>
-      </Grid>
-    </main>
+    <React.Fragment>
+      {Object.keys(user).length === 0 && 
+        <LandingPage
+          user={user}
+          setUser={setUser}
+          userData={userData}
+          setUserData={setUserData}
+          userPicture={userPicture}
+          setUserPicture={setUserPicture}
+          userId={userId}
+          setUserId={setUserId}
+          />}
+      {Object.keys(user).length !== 0 && (
+        <>
+          <main className="bg-gray-300">
+            <CssBaseline />
+            <Grid container spacing={1.5} item xs={12}>
+              <Grid className="flex-col" item xs={12} md={4}>
+                <Header />
+                <div>
+                  <UserInfo
+                    userData={userData}
+                    userPicture={userPicture}
+                  />
+                  <Login
+                    user={user}
+                    setUser={setUser}
+                    userData={userData}
+                    setUserData={setUserData}
+                    userPicture={userPicture}
+                    setUserPicture={setUserPicture}
+                    userId={userId}
+                    setUserId={setUserId}
+                  />
+                </div>
+                <CreateList
+                  userId={userId}
+                />
+                <Planner items={items} setItems={setItems} />
+              </Grid>
+              <Grid item xs={12} md={8}>
+                <Map
+                  setCoords={setCoords}
+                  setBounds={setBounds}
+                  coords={coords}
+                  attraction={attraction}
+                  attractions={attractions}
+                  setAttraction={setAttraction}
+                  attractionInfoShown={attractionInfoShown}
+                  setAttractionInfoShown={setAttractionInfoShown}
+                  setDisplay={setDisplay}
+                />
+                <div className="flex justify-center">
+                  <div className={display}>
+                    <Adding
+                      attraction={attraction}
+                      setDisplay={setDisplay}
+                      setData={setData}
+                    />
+                    <Alert items={items} setItems={setItems} />
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+          </main>
+        </>
+      )}
+    </React.Fragment>
   );
 }
