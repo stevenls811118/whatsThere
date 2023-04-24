@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { faSquareXmark, faLocationDot, faPlane, faStar, faShareAlt, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
+import { faSquareXmark, faLocationDot, faPlane, faStar, faShareAlt, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function AttractionInfo({ attractionInfoShown, attraction, attractions, setAttractionInfoShown }) {
@@ -28,9 +28,16 @@ export default function AttractionInfo({ attractionInfoShown, attraction, attrac
       </div>
       {/* Container for attraction image */}
       <div className="flex justify-center items-center flex-1">
-        <div className="relative w-full h-full">
-          <img src={currentAttraction.photo.images.large.url} className="absolute inset-0 w-full h-full object-cover" />
-        </div>
+        {currentAttraction && currentAttraction.photo && currentAttraction.photo.images && currentAttraction.photo.images.large && (
+          <div className="relative w-full h-full">
+            <img src={currentAttraction.photo.images.large.url} className="absolute inset-0 w-full h-full object-cover" />
+          </div>
+        )}
+        {!currentAttraction || !currentAttraction.photo || !currentAttraction.photo.images || !currentAttraction.photo.images.large && (
+          <div className="flex justify-center items-center w-full h-full">
+            <FontAwesomeIcon icon={faMapMarkedAlt} size="5x" color="#ccc" />
+          </div>
+        )}
       </div>
       {/* Container for attraction data */}
       {currentAttraction && (
@@ -68,3 +75,4 @@ export default function AttractionInfo({ attractionInfoShown, attraction, attrac
     </div>
   );
 }
+
