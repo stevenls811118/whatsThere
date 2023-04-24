@@ -7,7 +7,7 @@ import { CssBaseline, Grid } from "@mui/material";
 import { getAttractions } from "./components/Map/getAttractions";
 import axios from "axios";
 import Adding from "./components/Map/Adding-Attractions";
-import Alarm from "./components/Map/Alarm";
+import Alert from "./components/Map/Alert";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -18,7 +18,7 @@ export default function App() {
   const [attractionInfoShown, setAttractionInfoShown] = useState(false);
   const [display, setDisplay] = useState("invisible");
   const [data, setData] = useState();
-  
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((e) => {
       setCoords({ lat: e.coords.latitude, lng: e.coords.longitude });
@@ -87,7 +87,7 @@ export default function App() {
                 setDisplay={setDisplay}
                 setData={setData}
               />
-              <Alarm items={items}/>
+              <Alert items={items} setItems={setItems} />
             </div>
           </div>
         </Grid>
