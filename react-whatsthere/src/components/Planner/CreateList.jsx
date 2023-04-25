@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Dropdown from "./Dropdown";
+import Dropdown from "./dropdown";
 import axios from "axios";
 
 export default function CreateList({ userId, showMenu, SetShowMenu, selectedList, setSelecteList, searchName, setSearchName, lists, setLists }) {

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Logout({ user, setUser, setUserData, setUserPicture }) {
+export default function Logout({ user, setUser, setUserData, setUserPicture, setUserId }) {
 
   // const handleCallbackResponse = (response) => {
   //   // response.credential is an encoded jwt

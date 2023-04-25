@@ -6,6 +6,8 @@ import axios from "axios";
 import Features from "./Features";
 import VideoPlayer from "./VideoPlayer";
 
+import logo from "../../images/logo.png";
+
 export default function LandingPage({
   user,
   setUser,
@@ -34,11 +36,6 @@ export default function LandingPage({
     setUserPicture(userPic);
   };
 
-  const handleSignOut = () => {
-    setUser({});
-    setUserData({});
-    setUserPicture({});
-  };
 
 
   useEffect(() => {
@@ -72,15 +69,6 @@ export default function LandingPage({
           </div>
           <div className="flex-1 flex justify-end">
             <div id='signInDiv'></div>
-            {/* {Object.keys(user).length === 0 ? (
-            ) : (
-              <button
-                onClick={handleSignOut}
-                className="bg-tertiary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full"
-              >
-                Sign Out
-              </button>
-            )} */}
           </div>
         </header>
         <Features />

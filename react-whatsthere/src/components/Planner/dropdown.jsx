@@ -62,10 +62,10 @@ export default function Dropdown({ placeHolder, lists, searchable, showMenu, Set
 
   return (
     <>
-      <div className="dropdown-container">
-        <div onClick={handleInputClick} className="dropdown-input">
+      <div className="dropdown-container bg-tertiary text-black text-center text-lg">
+        <div onClick={handleInputClick} className="dropdown-input relative">
           {showMenu && (
-            <div className="dropdown-menu">
+            <div className="dropdown-menu absolute top-full left-0 w-32">
               {searchable && (
                 <div className="search-box">
                   <input
@@ -79,15 +79,15 @@ export default function Dropdown({ placeHolder, lists, searchable, showMenu, Set
                 <div
                   onClick={() => OnItemClick(list)}
                   key={list.name}
-                  classname="dropdown=item"
+                  classname="dropdown-item text-black flex items-center justify-center cursor-pointer"
                 >
                   {list.name}
                 </div>
               ))}
             </div>
           )}
-          <div className="dropdown-selected-value">{getDisplay()}</div>
-          <div className="dropdown-tools">
+          <div className="dropdown-selected-valuecursor-pointer flex-grow-0 flex-shrink-0">{getDisplay()}</div>
+          <div className="dropdown-tools ml-2 flex-grow-0 flex-shrink-0">
             <div className="dropdown-tool">
               <Icon />
             </div>
