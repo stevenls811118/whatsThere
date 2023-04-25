@@ -21,8 +21,7 @@ export default function Login({user, setUser, userData, setUserData, userPicture
 
     setUserData(userData);
     setUserPicture(userPic);
-    console.log(`UserData: ${userData}`)
-    setUserId(userObj.id);
+    console.log(`UserData: ${userData}`);
   };
 
   const handleSignOut = () => {
