@@ -62,34 +62,48 @@ export default function Dropdown({ placeHolder, lists, searchable, showMenu, Set
 
   return (
     <>
-      <div className="dropdown-container bg-tertiary text-black text-center text-lg">
+      <div className="dropdown-container bg-tertiary text-black text-center text-lg border-2 border-black p-1">
         <div onClick={handleInputClick} className="dropdown-input relative">
-          {showMenu && (
-            <div className="dropdown-menu absolute top-full left-0 w-32">
-              {searchable && (
-                <div className="search-box">
-                  <input
-                    onChange={onSearch}
-                    value={searchName}
-                    ref={searchRef}
-                  />
+          <div className="relative flex flex-row items-center">
+            <div className="mr-2 font-semibold">Trip Name:</div>
+            <div className="dropdown-container-wrapper relative flex-row items-center flex-grow">
+              {showMenu && (
+                <div className="dropdown-menu absolute top-full left-0 w-32">
+                  {searchable && (
+                    <div className="search-box">
+                      <input
+                        onChange={onSearch}
+                        value={searchName}
+                        ref={searchRef}
+                      />
+                    </div>
+                  )}
+                  {getLists().map((list) => (
+                    <div
+                      onClick={() => OnItemClick(list)}
+                      key={list.name}
+                      className="dropdown-item text-black flex items-center justify-between cursor-pointer"
+                    >
+                      <div className="flex items-center">
+                        {list.icon && (
+                          <div className="mr-2">
+                            <list.icon />
+                          </div>
+                        )}
+                        <div>{list.name}</div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
-              {getLists().map((list) => (
-                <div
-                  onClick={() => OnItemClick(list)}
-                  key={list.name}
-                  classname="dropdown-item text-black flex items-center justify-center cursor-pointer"
-                >
-                  {list.name}
-                </div>
-              ))}
+              <div className="dropdown-selected-value cursor-pointer flex-grow-0 flex-shrink-0">
+                {getDisplay()}
+              </div>
             </div>
-          )}
-          <div className="dropdown-selected-valuecursor-pointer flex-grow-0 flex-shrink-0">{getDisplay()}</div>
-          <div className="dropdown-tools ml-2 flex-grow-0 flex-shrink-0">
-            <div className="dropdown-tool">
-              <Icon />
+            <div className="dropdown-tools ml-2 flex-grow-0 flex-shrink-0">
+              <div className="dropdown-tool">
+                <Icon />
+              </div>
             </div>
           </div>
         </div>

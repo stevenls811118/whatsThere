@@ -46,10 +46,10 @@ export default function Planner({ items, setItems, selectedList }) {
 
   return (
     <div>
-      <div className="bg-tertiary text-black text-lg flex justify-center px-2 font-bold">
+      <div className="bg-tertiary text-black text-lg flex justify-center px-2 font-bold border-2 border-black">
         <div>Attractions to Visit</div>
       </div>
-      <ul className="h-[51vh] overflow-y-auto">
+      <ul className="h-[50vh] overflow-y-auto">
         {items.map((item, index) => (
           <li key={index}>
             {editingIndex === index ? (

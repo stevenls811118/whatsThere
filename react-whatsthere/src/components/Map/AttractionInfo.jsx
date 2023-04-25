@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   faSquareXmark,
-  faLocationDot,
+  faMapLocationDot,
   faPlane,
   faStar,
   faMapMarkedAlt,
@@ -37,11 +37,11 @@ export default function AttractionInfo({
     <div
       className={`attraction-info ${
         attractionInfoShown ? "show" : ""
-      } w-2/5 h-2/3 rounded-md shadow-md flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-secondary text-white`}
+      } w-2/5 h-2/3 rounded-lg shadow-md flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-black`}
       style={{ backdropFilter: "none" }}
     >
       {/* Container for attraction name and exit button */}
-      <div className="flex justify-between items-center p-1">
+      <div className="flex justify-between items-center p-1 bg-tertiary">
         <div></div>
         <h2
           className="text-lg font-semibold text-center overflow-hidden"
@@ -83,7 +83,7 @@ export default function AttractionInfo({
       </div>
       {/* Container for attraction data */}
       {currentAttraction && (
-        <div className="flex flex-col justify-end overflow-y-auto px-4">
+        <div className="flex flex-col justify-end overflow-y-auto px-4 bg-secondary rounded-lg">
           <div className="mb-2">
             <span className="font-semibold text-sm">Address:</span>{" "}
             <span className="text-xs">
@@ -126,7 +126,7 @@ export default function AttractionInfo({
                 : "No ranking available"}
             </span>
           </div>
-          <div className="flex justify-between items-center mt-2">
+          <div className="flex justify-between items-center mt-2 mb-2 px-5">
             {currentAttraction.address && (
               <button
                 onClick={() =>
@@ -135,30 +135,30 @@ export default function AttractionInfo({
                     "_blank"
                   )
                 }
-                className="bg-white text-secondary rounded-full p-2"
+                className="bg-white text-green rounded-lg p-1"
               >
-                <FontAwesomeIcon icon={faLocationDot} />
+                <FontAwesomeIcon icon={faMapLocationDot} />
               </button>
             )}
             {currentAttraction.web_url && (
               <button
                 onClick={() => window.open(currentAttraction.web_url, "_blank")}
-                className="bg-white text-secondary rounded-full p-2"
+                className="bg-white text-black rounded-lg p-1"
               >
                 <FontAwesomeIcon icon={faPlane} />
               </button>
             )}
-            <button className="bg-white text-secondary rounded-full p-2">
+            <button className="bg-white text-black rounded-lg p-1">
               <FontAwesomeIcon icon={faPlus} onClick={handleAdd} />
             </button>
-            <button
+            {/* <button
               className={`bg-white text-secondary rounded-full p-2 ${
                 isFavorite ? "bg-yellow-500" : ""
               }`}
               onClick={handleFavorite}
             >
               <FontAwesomeIcon icon={faStar} />
-            </button>
+            </button> */}
           </div>
         </div>
       )}

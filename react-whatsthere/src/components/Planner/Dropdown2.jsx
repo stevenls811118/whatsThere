@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, react } from "react";
 
 const Icon = () => {
   return (
@@ -8,10 +8,7 @@ const Icon = () => {
   );
 };
 
-export default function Dropdown({ placeHolder, lists, searchable }) {
-  const [showMenu, SetShowMenu] = useState();
-  const [selectedList, setSelecteList] = useState();
-  const [searchName, setSearchName] = useState();
+export default function Dropdown({ placeHolder, lists, searchable, showMenu, SetShowMenu, selectedList, setSelecteList, searchName, setSearchName }) {
 
   const searchRef = useRef();
 
@@ -30,13 +27,13 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
   const onSearch = (e) => {
     setSearchName(e.target.value);
   };
-  const getOptions = () => {
+
+  const getLists = () => {
     if (!searchName) {
       return lists;
     }
     return lists.filter(
-      (list) =>
-        list.name.toLowerCase().indexOf(searchName.toLowerCase()) >= 0
+      (list) => list.name.toLowerCase().indexOf(searchName.toLowerCase()) >= 0
     );
   };
 
@@ -64,47 +61,39 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
   }, [showMenu]);
 
   return (
-    <div className="dropdown-container bg-tertiary text-black text-center text-lg ">
-      <div className="dropdown-input relative">
-        <div className="relative">
-          <div className="flex items-center">
-            <div className="mr-2 font-semibold">Trip Name:</div>
-            <div className="dropdown-container-wrapper relative flex-row items-center ">
-              <div className="flex flex-row">
-                <div
-                  onClick={handleInputClick}
-                  className="dropdown-selected-value cursor-pointer flex-grow-0 flex-shrink-0"
-                >
-                  {getDisplay()}
-                </div>
-                <div className="dropdown-tools ml-2 flex-grow-0 flex-shrink-0">
-                  <div className="mr-2">
-                    <Icon />
-                  </div>
-                </div>
-              </div>
-              {showMenu && (
-                <div className="dropdown-menu absolute top-full left-0 w-32">
-                  {lists.map((list) => (
-                    <div
-                      onClick={() => OnItemClick(list)}
-                      key={list.name}
-                      className="dropdown-item text-black flex items-center justify-center cursor-pointer"
-                    >
-                      {list.icon && (
-                        <div className="mr-2">
-                          <list.icon />
-                        </div>
-                      )}
-                      <div>{list.name}</div>
-                    </div>
-                  ))}
+    <>
+      <div className="dropdown-container bg-tertiary text-black text-center text-lg">
+        <div onClick={handleInputClick} className="dropdown-input relative">
+          {showMenu && (
+            <div className="dropdown-menu absolute top-full left-0 w-32">
+              {searchable && (
+                <div className="search-box">
+                  <input
+                    onChange={onSearch}
+                    value={searchName}
+                    ref={searchRef}
+                  />
                 </div>
               )}
+              {getLists().map((list) => (
+                <div
+                  onClick={() => OnItemClick(list)}
+                  key={list.name}
+                  classname="dropdown-item text-black flex items-center justify-center cursor-pointer"
+                >
+                  {list.name}
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="dropdown-selected-valuecursor-pointer flex-grow-0 flex-shrink-0">{getDisplay()}</div>
+          <div className="dropdown-tools ml-2 flex-grow-0 flex-shrink-0">
+            <div className="dropdown-tool">
+              <Icon />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
