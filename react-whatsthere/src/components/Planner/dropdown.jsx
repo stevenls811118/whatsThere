@@ -26,12 +26,6 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
     setSelecteList(list);
   };
 
-  //   const isSelected = (list) => {
-  //     if (!selectedList) {
-  //       return false;
-  //     }
-  //     return selectedList.name === list.name;
-  //   };
 
   //search handlers
   const onSearch = (e) => {
