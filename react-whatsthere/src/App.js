@@ -16,7 +16,6 @@ import Logout from "./components/Users/Logout";
 // Helpers / Hooks
 import { getAttractions } from "./components/Map/helper/getAttractions";
 
-
 export default function App() {
   const [items, setItems] = useState([]);
   const [attractions, setAttractions] = useState([]);
@@ -85,6 +84,8 @@ export default function App() {
             } else {
               axios.put("/api/users", userData);
             }
+          } else {
+            axios.put("/api/users", userData);
           }
         })
         .catch((err) => {

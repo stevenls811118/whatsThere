@@ -4,7 +4,7 @@ import axios from "axios";
 import Features from "./Features";
 import VideoPlayer from "./VideoPlayer";
 
-export default function LandingPage({ user, setUser, userData, setUserData, userPicture, setUserPicture, userId, setUserId }) {
+export default function LandingPage({ user, setUser, userData, setUserData, setUserPicture }) {
 
   const handleCallbackResponse = (response) => {
     // response.credential is an encoded jwt
@@ -12,7 +12,7 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
     setUser(userObj); // decoded jwt object
     console.log(user)
 
-    const userData = {
+    const data = {
       email: userObj.email,
       name: userObj.name,
     };
@@ -21,10 +21,9 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
       picture: userObj.picture,
     }
 
-    setUserData(userData);
+    setUserData(data);
     setUserPicture(userPic);
     console.log(`UserData: ${userData}`)
-    setUserId(userObj.id);
   };
 
   const handleSignOut = () => {
