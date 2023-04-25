@@ -97,9 +97,9 @@ export default function App() {
   
   useEffect(() => {
     if(userId !== 0) {
-      // console.log(userId)
+      console.log(userId);
       axios.put("/api/lists", {userId}).then((res) => {
-        console.log(res);
+        console.log(res.data);
       });
       
     }

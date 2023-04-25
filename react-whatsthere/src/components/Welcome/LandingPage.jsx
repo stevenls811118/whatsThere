@@ -30,8 +30,6 @@ export default function LandingPage({
 
     setUserData(userData);
     setUserPicture(userPic);
-    console.log(`UserData: ${userData}`);
-    setUserId(userObj.id);
   };
 
   const handleSignOut = () => {
