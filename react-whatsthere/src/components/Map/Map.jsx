@@ -105,7 +105,7 @@ export default function Map({
           {attractions &&
             attractions.map((a, i) => (
               <div
-                className="absolute z-10 hover:z-20 hover:scale-125"
+                className="absolute z-10 hover:z-20 hover:scale-125 rounded-lg"
                 lat={Number(a.latitude)}
                 lng={Number(a.longitude)}
                 key={i}
