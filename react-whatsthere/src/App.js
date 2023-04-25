@@ -17,6 +17,7 @@ import Logout from "./components/Users/Logout";
 import { getAttractions } from "./components/Map/helper/getAttractions";
 
 
+
 export default function App() {
   const [items, setItems] = useState([]);
   const [attractions, setAttractions] = useState([]);
