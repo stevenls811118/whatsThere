@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+
+// Components
 import Features from "./Features";
 import VideoPlayer from "./VideoPlayer";
 
@@ -36,12 +38,8 @@ export default function LandingPage({
     setUser({});
     setUserData({});
     setUserPicture({});
-    google.accounts?.id.prompt();
   };
 
-  const handleLogin = () => {
-    google.accounts?.id.prompt();
-  };
 
   useEffect(() => {
     // global google
@@ -50,48 +48,46 @@ export default function LandingPage({
         client_id:
           "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
         callback: handleCallbackResponse,
-        auto_select: false,
-        cancel_on_tap_outside: true,
+        auto_select: true,
+        cancel_on_tap_outside: false,
       });
     }
   }, [user]);
 
-  // useEffect(() => {
-  //   if (Object.keys(userData).length !== 0) {
-  //     axios
-  //         .get("/api/users").then((res) => {
-  //           const users = res.data;
-  //           if (users.length !== 0) {
-  //             const foundUser = users.filter((i) => i.email === userData.email);
-  //             if (foundUser.length === 0) {
-  //               axios.put("/api/users", userData);
-  //             }
-  //         })
-  //   }
-  // }, [userData]);
+  google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+    theme: "filled_black",
+    size: "large",
+    shape: "pill",
+    ux_mode: "redirect",
+  });
 
   return (
-    <div>
+    <div className="h-full">
+      {/* top container with logo and login */}
       <div>
-        {Object.keys(user).length === 0 ? (
-          <button
-            onClick={handleLogin}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          >
-            Login with Google
-          </button>
-        ) : (
-          <button
-            onClick={handleSignOut}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          >
-            Sign Out
-          </button>
-        )}
-      </div>
-      <div>
+        <header className="flex items-center justify-between h-40 px-4 ">
+          <div className="flex-1"></div>
+          <div className="h-full flex items-center justify-center">
+            <img src={logo} alt="logo" className="h-full" />
+          </div>
+          <div className="flex-1 flex justify-end">
+            <div id='signInDiv'></div>
+            {/* {Object.keys(user).length === 0 ? (
+            ) : (
+              <button
+                onClick={handleSignOut}
+                className="bg-tertiary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full"
+              >
+                Sign Out
+              </button>
+            )} */}
+          </div>
+        </header>
         <Features />
-        <VideoPlayer />
+      </div>
+      <VideoPlayer />
+      <div>
+
       </div>
     </div>
   );

@@ -81,7 +81,7 @@ export default function Map({
 
   return (
     <div className="flex flex-col relative">
-      <div className="flex flex-row justify-between pl-3 pt-2 pb-2 font-bold font-mono text-base z-10 w-96">
+      <div className="flex flex-row justify-between pt-2 pb-2 font-bold font-mono text-base z-10 w-96">
         <div>
           <Place setCoords={setCoords} setBounds={setBounds} />
         </div>

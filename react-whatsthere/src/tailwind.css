@@ -3,3 +3,16 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+.dropdown-menu {
+  @apply z-10 bg-secondary rounded-md shadow-lg py-1;
+}
+
+.dropdown-input {
+  @apply inline-block;
+}
+
+.dropdown-menu.top-full {
+  @apply left-0 mt-2;
+}

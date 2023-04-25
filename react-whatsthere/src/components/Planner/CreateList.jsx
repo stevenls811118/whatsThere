@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Dropdown from "./dropdown";
+import Dropdown from "./Dropdown";
 import axios from "axios";
 
 export default function CreateList({ userId, showMenu, SetShowMenu, selectedList, setSelecteList, searchName, setSearchName, lists, setLists }) {
@@ -30,7 +30,7 @@ export default function CreateList({ userId, showMenu, SetShowMenu, selectedList
         });
       })
       .catch((error) => console.log(error));
-  };
+  }
 
   return (
     <>

@@ -1,28 +1,20 @@
-import React, { useRef  } from 'react';
-// This component takes a src prop, which should be the URL of the video file you want to play.
-//  It uses a videoRef to reference the <video> element,
-//   and two event handlers to handle play and pause button clicks.
+import React from 'react';
+import ReactPlayer from 'react-player';
+import landing3 from '../../images/landing3.png';
+
 export default function VideoPlayer({ src }) {
-  const videoRef = useRef(null);
-
-  const handlePlay = () => {
-    videoRef.current.play();
-  };
-
-  const handlePause = () => {
-    videoRef.current.pause();
-  };
-
   return (
-    <React.Fragment>
-      <video
-        src={src}
-        ref={videoRef}
-        width="1000"
-        height="800"
+    <div
+      className="bg-cover bg-center min-h-screen relative"
+      style={{ backgroundImage: `url(${landing3})` }}
+    >
+      <ReactPlayer
+        url="https://www.youtube.com/embed/eEzD-Y97ges"
+        width="41.79%"
+        height="52%"
         controls
+        className="absolute top-1/2 left-1/2 transform -translate-x-4 -translate-y-1/3"
       />
-    </React.Fragment>
+    </div>
   );
-};
-
+}
