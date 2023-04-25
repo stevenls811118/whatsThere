@@ -51,11 +51,19 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
     }
   }, [user]);
 
-  useEffect(() => {
-    if (userData) {
-      axios.put("/api/users", userData);
-    }
-  }, [userData]);
+  // useEffect(() => {
+  //   if (Object.keys(userData).length !== 0) {
+  //     axios
+  //         .get("/api/users").then((res) => {
+  //           const users = res.data;
+  //           if (users.length !== 0) {
+  //             const foundUser = users.filter((i) => i.email === userData.email);
+  //             if (foundUser.length === 0) {
+  //               axios.put("/api/users", userData);
+  //             }
+  //         })  
+  //   }
+  // }, [userData]);
 
   return (
     <div>
