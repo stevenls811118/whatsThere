@@ -70,6 +70,20 @@ export default function App() {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("/api/users")
+      .then((res) => {
+        const users = res.data;
+        const foundUser = users.filter((i) => i.email === userData.email);
+        const ID = foundUser[0].id;
+        setUserId(ID);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [userData]);
+
   return (
     <React.Fragment>
       <main> 

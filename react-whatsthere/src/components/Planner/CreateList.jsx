@@ -4,7 +4,7 @@ import axios from "axios";
 export default function CreateList({ userId }) {
   const [name, setName] = useState("");
   const inputRef = useRef(null);
-
+  
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -18,12 +18,10 @@ export default function CreateList({ userId }) {
     const newList = {
       name: name,
       userId: userId,
-      attractions: []
     };
     axios
       .put(`/api/lists`, newList)
       .then((res) => {
-        console.log(res.data);
         setName("");
       })
       .catch((error) => console.log(error));
