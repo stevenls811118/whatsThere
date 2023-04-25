@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Dropdown from "./dropdown";
 import axios from "axios";
 
 export default function CreateList({ userId }) {
@@ -27,7 +28,16 @@ export default function CreateList({ userId }) {
       .catch((error) => console.log(error));
   }
 
+  //dropdown testing info
+const lists = [
+  {name: "vancouver trip"},
+  {name: "Calgary Trip"},
+  {name: "London trip"},
+  {name: "Hong Kong Trip"}
+]
   return (
+    <>
+      <Dropdown placeHolder={"select a list"} lists={lists}/>
     <form onSubmit={handleFormSubmit}>
       <label>
         List Name:
@@ -35,5 +45,6 @@ export default function CreateList({ userId }) {
       </label>
       <button type="submit">Create List</button>
     </form>
+    </>
   );
 }
