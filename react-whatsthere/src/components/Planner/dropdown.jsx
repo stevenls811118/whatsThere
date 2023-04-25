@@ -8,10 +8,7 @@ const Icon = () => {
   );
 };
 
-export default function Dropdown({ placeHolder, lists, searchable }) {
-  const [showMenu, SetShowMenu] = useState();
-  const [selectedList, setSelecteList] = useState();
-  const [searchName, setSearchName] = useState();
+export default function Dropdown({ placeHolder, lists, searchable, showMenu, SetShowMenu, selectedList, setSelecteList, searchName, setSearchName }) {
 
   const searchRef = useRef();
 

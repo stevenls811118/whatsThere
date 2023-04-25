@@ -13,15 +13,13 @@ export default async function handler(req, res) {
       },
     });
     res.status(200).json(newList);
-  } else {
-    const lists = await db.lists.findMany();
-    res.status(200).json(lists);
   }
+  
   if (req.method === "PUT") {
-    // console.log(req.body)
-    // console.log(req.body, req.method);
+    console.log(req.body, req.method);
+   
     const userId = Number(req.body.userId);
-    console.log("userid is " , userId)
+    console.log(userId)
     try {
       const lists = await db.lists.findMany({
         where: {

@@ -3,7 +3,7 @@ import { db } from "../../../util/db.server";
 export default async function handler(req, res) {
   console.log(req.body, req.method);
 
-  if (req.method === "PUT") {
+  if (req.method === "POST") {
     try {
       const attraction = await db.attractions.create({
         data: req.body,
@@ -16,11 +16,15 @@ export default async function handler(req, res) {
     }
   }
 
-  if (req.method === "GET") {
+  if (req.method === "PUT") {
+    console.log(req.body, req.method);
+    const ID = req.body.id;
+    console.log(ID);
+
     try {
       const attractions = await db.attractions.findMany({
         where: {
-          listId: 1,
+          listId: ID,
         },
       });
       res.status(200).json(attractions);

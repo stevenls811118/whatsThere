@@ -32,6 +32,12 @@ export default function App() {
   const [userId, setUserId] = useState(0);
   const [userPicture, setUserPicture] = useState();
 
+  //Create-list and dropdown states
+  const [showMenu, SetShowMenu] = useState();
+  const [selectedList, setSelecteList] = useState();
+  const [searchName, setSearchName] = useState();
+  const [lists, setLists] = useState([]);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((e) => {
       setCoords({ lat: e.coords.latitude, lng: e.coords.longitude });
@@ -52,8 +58,8 @@ export default function App() {
 
   useEffect(() => {
     if (data) {
-      axios.put("/api/attractions", data);
-      axios.get("/api/attractions").then((res) => {
+      axios.post("/api/attractions", data);
+      axios.put("/api/attractions", {id: selectedList.id}).then((res) => {
         setItems(res.data);
       });
     }
@@ -61,7 +67,7 @@ export default function App() {
 
   useEffect(() => {
     axios
-      .get("/api/attractions")
+      .put("/api/attractions", {id: 1})
       .then((res) => {
         setItems(res.data);
       })
@@ -100,11 +106,24 @@ export default function App() {
       console.log(userId);
       axios.put("/api/lists", {userId}).then((res) => {
         console.log(res.data);
+        setLists(res.data);
       });
-      
-    }
-    
+    }   
   }, [userId])
+
+  useEffect(() => {
+    if(selectedList) {
+      axios
+      .put("/api/attractions", {id: selectedList.id})
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  }, [selectedList])
+
 
   return (
     <React.Fragment>
@@ -137,8 +156,8 @@ export default function App() {
                     setUserId={setUserId}
                   />
                 </div>
-                <CreateList userId={userId} />
-                <Planner items={items} setItems={setItems} />
+                <CreateList userId={userId} showMenu={showMenu} SetShowMenu={SetShowMenu} selectedList={selectedList} setSelecteList={setSelecteList} searchName={searchName} setSearchName={setSearchName} lists={lists} setLists={setLists} />
+                <Planner items={items} setItems={setItems} selectedList={selectedList} />
               </Grid>
               <Grid item xs={12} md={8}>
                 <Map
@@ -158,6 +177,7 @@ export default function App() {
                       attraction={attraction}
                       setDisplay={setDisplay}
                       setData={setData}
+                      selectedList={selectedList}
                     />
                     <Alert items={items} setItems={setItems} />
                   </div>

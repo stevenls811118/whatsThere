@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-export default function Adding({ attraction, setDisplay, setData }) {
+export default function Adding({ attraction, setDisplay, setData, selectedList }) {
   const [date, setDate] = useState(new Date());
   const [newTitle, setNewTitle] = useState("");
   const [newStartTime, setNewStartTime] = useState("");
@@ -34,11 +34,14 @@ export default function Adding({ attraction, setDisplay, setData }) {
 
     const startTime = `${date.toLocaleDateString()}, ${newStartTime}`;
     const endTime = `${date.toLocaleDateString()}, ${newEndTime}`;
+    const ID = selectedList.id;
+    console.log(ID);
+
     setData({
       ...attraction,
       startTime: startTime,
       endTime: endTime,
-      listId: 1,
+      listId: ID,
     });
   };
 

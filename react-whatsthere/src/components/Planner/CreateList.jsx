@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Dropdown from "./dropdown";
 import axios from "axios";
 
-export default function CreateList({ userId }) {
+export default function CreateList({ userId, showMenu, SetShowMenu, selectedList, setSelecteList, searchName, setSearchName, lists, setLists }) {
   const [name, setName] = useState("");
   const inputRef = useRef(null);
 
@@ -24,21 +24,17 @@ export default function CreateList({ userId }) {
       .post(`/api/lists`, newList)
       .then((res) => {
         setName("");
+        axios.put("/api/lists", {userId}).then((res) => {
+          console.log(res.data);
+          setLists(res.data);
+        });
       })
       .catch((error) => console.log(error));
   };
 
-  //dropdown testing info
-  const lists = [
-    { name: "vancouver trip" },
-    { name: "Calgary Trip" },
-    { name: "London trip" },
-    { name: "Hong Kong Trip" },
-  ];
-
   return (
     <>
-      <Dropdown searchable placeHolder={"select a list"} lists={lists} />
+      <Dropdown searchable placeHolder={"select a list"} lists={lists} showMenu={showMenu} SetShowMenu={SetShowMenu} selectedList={selectedList} setSelecteList={setSelecteList} searchName={searchName} setSearchName={setSearchName} />
       <form onSubmit={handleFormSubmit}>
         <label>
           List Name:
