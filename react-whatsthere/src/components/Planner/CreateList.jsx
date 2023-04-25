@@ -37,7 +37,7 @@ const lists = [
 ]
   return (
     <>
-      <Dropdown placeHolder={"select a list"} lists={lists}/>
+      <Dropdown searchable placeHolder={"select a list"} lists={lists}/>
     <form onSubmit={handleFormSubmit}>
       <label>
         List Name:

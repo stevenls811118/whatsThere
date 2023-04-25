@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, react } from "react";
 
 const Icon = () => {
   return (
@@ -26,23 +26,25 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
     setSelecteList(list);
   };
 
-//   const isSelected = (list) => {
-//     if (!selectedList) {
-//       return false;
-//     }
-//     return selectedList.name === list.name;
-//   };
+  //   const isSelected = (list) => {
+  //     if (!selectedList) {
+  //       return false;
+  //     }
+  //     return selectedList.name === list.name;
+  //   };
 
-//search handlers
-const onSearch = (e) => {
+  //search handlers
+  const onSearch = (e) => {
     setSearchName(e.target.value);
-};
-const getOptions = () => {
+  };
+  const getLists = () => {
     if (!searchName) {
-        return lists;
+      return lists;
     }
-    return lists.filter((list) => list.name.toLowerCase().indexOf(searchName.toLowerCase()) >= 0);
-};
+    return lists.filter(
+      (list) => list.name.toLowerCase().indexOf(searchName.toLowerCase()) >= 0
+    );
+  };
 
   useEffect(() => {
     //this useEffect closes the menu when users click anywhere outside of the list
@@ -68,29 +70,39 @@ const getOptions = () => {
   }, [showMenu]);
 
   return (
-    <div className="dropdown-container">
-      <div onClick={handleInputClick} className="dropdown-input">
-        {showMenu && (
-          <div className="dropdown-menu">
-            {lists.map((list) => (
-              <div
-                onClick={() => OnItemClick(list)}
-                key={list.name}
-                classname="dropdown=item"
-              >
-                {list.name}
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div className="dropdown-selected-value">{getDisplay()}</div>
-        <div className="dropdown-tools">
-          <div className="dropdown-tool">
-            <Icon />
+    <>
+      <div className="dropdown-container">
+        <div onClick={handleInputClick} className="dropdown-input">
+          {showMenu && (
+            <div className="dropdown-menu">
+              {searchable && (
+                <div className="search-box">
+                  <input
+                    onChange={onSearch}
+                    value={searchName}
+                    ref={searchRef}
+                  />
+                </div>
+              )}
+              {getLists().map((list) => (
+                <div
+                  onClick={() => OnItemClick(list)}
+                  key={list.name}
+                  classname="dropdown=item"
+                >
+                  {list.name}
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="dropdown-selected-value">{getDisplay()}</div>
+          <div className="dropdown-tools">
+            <div className="dropdown-tool">
+              <Icon />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
