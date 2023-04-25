@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPenToSquare,
   faTrash,
   faMapLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
@@ -64,12 +63,11 @@ export default function Planner({ items, setItems }) {
 
 
   return (
-    <div className="">
-      <div className="bg-tertiary text-white text-lg flex justify-between px-2">
-        <div>Locations to Visit</div>
-        <div>Edit/Delete</div>
+    <div>
+      <div className="bg-tertiary text-black text-lg flex justify-center px-2 font-bold">
+        <div>Attractions to Visit</div>
       </div>
-      <ul className="h-[35vh] overflow-y-auto">
+      <ul className="h-[51vh] overflow-y-auto">
         {items.map((item, index) => (
           <li key={index}>
             {editingIndex === index ? (
@@ -93,28 +91,31 @@ export default function Planner({ items, setItems }) {
               </div>
             ) : (
               <div className="bg-secondary flex justify-between">
-                <div className="text-black p-2 w-[80%] border">
-                  <div className="flex justify-between text-m font-semibold underline ">
+                <div className="text-black p-2 w-[85%] border">
+                  <div className="flex justify-between text-lg font-semibold underline ">
                     <span>{item.name}</span>
                   </div>
-                  <div className="text-sm">
+                  <div className="text-m">
                     <span><strong>Address:</strong> {item.address.split(',')[0]}</span>
                   </div>
-                  <div className="text-sm">
+                  <div className="text-m">
                     <span><strong>City:</strong> {item.city}</span>
                   </div>
-                  <div className="text-sm">
+                  <div className="text-m">
                     <span> <strong>Visiting:</strong> {item.startTime} to {item.endTime}</span>
                   </div>
                 </div>
-                  <div className="flex flex-col justify-around w-[20%] border">
-                  <button onClick={() => handleEditClick(index)}>
-                    <FontAwesomeIcon
-                      icon={faPenToSquare}
-                      size="lg"
-                      color="white"
-                    />
-                  </button>
+                  <div className="flex flex-col justify-around w-[15%] border">
+                    <button
+                      onClick={() =>
+                        window.open(
+                          `https://www.google.com/maps/search/?api=1&query=${item.address}`,
+                          "_blank"
+                        )
+                      }
+                    >
+                      <FontAwesomeIcon icon={faMapLocationDot} size="lg"/>
+                    </button>
                   <button onClick={() => handleDeleteClick(item.id)}>
                     <FontAwesomeIcon icon={faTrash} size="lg" />
                   </button>
@@ -124,7 +125,7 @@ export default function Planner({ items, setItems }) {
           </li>
         ))}
       </ul>
-      {editingIndex === null && (
+      {/* {editingIndex === null && (
         <div className="flex flex-row justify-between text-xl space-x-2">
           <div className="flex flex-row space-x-2 w-[100%]">
             <div className="border-double border-2 border-black p-2 rounded-md w-[100%]">
@@ -153,15 +154,15 @@ export default function Planner({ items, setItems }) {
             </div>
           </div>
         </div>
-      )}
-      {editingIndex && (
+      )} */}
+      {/* {editingIndex && (
         <button
           onClick={handleAddClick}
           className="bg-gray-400 text-lg font-semibold p-2 "
         >
           Add Location <FontAwesomeIcon icon={faMapLocationDot} size="lg" />
         </button>
-      )}
+      )} */}
     </div>
   );
 }

@@ -64,7 +64,7 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
   }, [showMenu]);
 
   return (
-    <div className="dropdown-container bg-tertiary text-white text-center ">
+    <div className="dropdown-container bg-tertiary text-black text-center text-lg ">
       <div className="dropdown-input relative">
         <div className="relative">
           <div className="flex items-center">

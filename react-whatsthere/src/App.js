@@ -137,7 +137,7 @@ export default function App() {
                           setUserPicture={setUserPicture}
                         />
                       </div>
-                      <div className="shadow-lg shadow-black bg-secondary/30 rounded-md">
+                      <div className="shadow-lg shadow-black bg-secondary/30 rounded">
                         <UserName userData={userData} />
                       </div>
                     </div>
