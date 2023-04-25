@@ -1,16 +1,23 @@
 import { useEffect } from "react";
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 import Features from "./Features";
 import VideoPlayer from "./VideoPlayer";
 
-export default function LandingPage({ user, setUser, userData, setUserData, userPicture, setUserPicture, userId, setUserId }) {
-
+export default function LandingPage({
+  user,
+  setUser,
+  userData,
+  setUserData,
+  userPicture,
+  setUserPicture,
+  userId,
+  setUserId,
+}) {
   const handleCallbackResponse = (response) => {
     // response.credential is an encoded jwt
     const userObj = jwt_decode(response.credential);
     setUser(userObj); // decoded jwt object
-    console.log(user)
 
     const userData = {
       email: userObj.email,
@@ -19,11 +26,11 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
 
     const userPic = {
       picture: userObj.picture,
-    }
+    };
 
     setUserData(userData);
     setUserPicture(userPic);
-    console.log(`UserData: ${userData}`)
+    console.log(`UserData: ${userData}`);
     setUserId(userObj.id);
   };
 
@@ -61,7 +68,7 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
   //             if (foundUser.length === 0) {
   //               axios.put("/api/users", userData);
   //             }
-  //         })  
+  //         })
   //   }
   // }, [userData]);
 
@@ -72,9 +79,9 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
           <button
             onClick={handleLogin}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-            >
-              Login with Google
-            </button>
+          >
+            Login with Google
+          </button>
         ) : (
           <button
             onClick={handleSignOut}

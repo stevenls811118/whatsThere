@@ -21,7 +21,7 @@ export default function CreateList({ userId }) {
       userId: userId,
     };
     axios
-      .put(`/api/lists`, newList)
+      .post(`/api/lists`, newList)
       .then((res) => {
         setName("");
       })
@@ -35,6 +35,7 @@ export default function CreateList({ userId }) {
     { name: "London trip" },
     { name: "Hong Kong Trip" },
   ];
+
   return (
     <>
       <Dropdown searchable placeHolder={"select a list"} lists={lists} />

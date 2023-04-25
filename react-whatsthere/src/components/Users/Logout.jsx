@@ -28,7 +28,7 @@ export default function Logout({ user, setUser, setUserData, setUserPicture, set
     setUser({});
     setUserData({});
     setUserPicture({});
-    setUserId("")
+    setUserId(0)
     google.accounts?.id.prompt();
   };
 

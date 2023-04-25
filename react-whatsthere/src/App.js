@@ -16,8 +16,6 @@ import Logout from "./components/Users/Logout";
 // Helpers / Hooks
 import { getAttractions } from "./components/Map/helper/getAttractions";
 
-
-
 export default function App() {
   const [items, setItems] = useState([]);
   const [attractions, setAttractions] = useState([]);
@@ -31,7 +29,7 @@ export default function App() {
   //login states
   const [user, setUser] = useState({});
   const [userData, setUserData] = useState({});
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(0);
   const [userPicture, setUserPicture] = useState();
 
   useEffect(() => {
@@ -82,7 +80,7 @@ export default function App() {
             const foundUser = users.filter((i) => i.email === userData.email);
             if (foundUser.length !== 0) {
               const ID = foundUser[0].id;
-              console.log(ID)
+              // console.log(ID);
               setUserId(ID);
             } else {
               axios.put("/api/users", userData);
@@ -96,6 +94,17 @@ export default function App() {
         });
     }
   }, [userData]);
+  
+  useEffect(() => {
+    if(userId !== 0) {
+      // console.log(userId)
+      axios.put("/api/lists", {userId}).then((res) => {
+        console.log(res);
+      });
+      
+    }
+    
+  }, [userId])
 
   return (
     <React.Fragment>
