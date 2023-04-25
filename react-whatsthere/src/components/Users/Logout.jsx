@@ -2,7 +2,7 @@ import React from "react";
 // import jwt_decode from "jwt-decode"
 // import axios from "axios";
 
-export default function Logout({ user, setUser, setUserData, setUserPicture }) {
+export default function Logout({ user, setUser, setUserData, setUserPicture, setUserId }) {
 
   // const handleCallbackResponse = (response) => {
   //   // response.credential is an encoded jwt
@@ -28,6 +28,7 @@ export default function Logout({ user, setUser, setUserData, setUserPicture }) {
     setUser({});
     setUserData({});
     setUserPicture({});
+    setUserId("")
     google.accounts?.id.prompt();
   };
 

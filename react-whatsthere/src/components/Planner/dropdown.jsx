@@ -26,11 +26,11 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
     setSelecteList(list);
   };
 
-
   //search handlers
   const onSearch = (e) => {
     setSearchName(e.target.value);
   };
+  
   const getLists = () => {
     if (!searchName) {
       return lists;

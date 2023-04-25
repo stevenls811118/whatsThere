@@ -5,7 +5,7 @@ import axios from "axios";
 export default function CreateList({ userId }) {
   const [name, setName] = useState("");
   const inputRef = useRef(null);
-  
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -29,22 +29,27 @@ export default function CreateList({ userId }) {
   };
 
   //dropdown testing info
-const lists = [
-  {name: "vancouver trip"},
-  {name: "Calgary Trip"},
-  {name: "London trip"},
-  {name: "Hong Kong Trip"}
-]
+  const lists = [
+    { name: "vancouver trip" },
+    { name: "Calgary Trip" },
+    { name: "London trip" },
+    { name: "Hong Kong Trip" },
+  ];
   return (
     <>
-      <Dropdown searchable placeHolder={"select a list"} lists={lists}/>
-    <form onSubmit={handleFormSubmit}>
-      <label>
-        List Name:
-        <input type="text" value={name} onChange={handleNameChange} ref={inputRef} />
-      </label>
-      <button type="submit">Create List</button>
-    </form>
+      <Dropdown searchable placeHolder={"select a list"} lists={lists} />
+      <form onSubmit={handleFormSubmit}>
+        <label>
+          List Name:
+          <input
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+            ref={inputRef}
+          />
+        </label>
+        <button type="submit">Create List</button>
+      </form>
     </>
   );
 }

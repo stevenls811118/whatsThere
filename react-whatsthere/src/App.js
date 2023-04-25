@@ -82,10 +82,13 @@ export default function App() {
             const foundUser = users.filter((i) => i.email === userData.email);
             if (foundUser.length !== 0) {
               const ID = foundUser[0].id;
+              console.log(ID)
               setUserId(ID);
             } else {
               axios.put("/api/users", userData);
             }
+          } else {
+            axios.put("/api/users", userData);
           }
         })
         .catch((err) => {
@@ -122,6 +125,7 @@ export default function App() {
                     setUser={setUser}
                     setUserData={setUserData}
                     setUserPicture={setUserPicture}
+                    setUserId={setUserId}
                   />
                 </div>
                 <CreateList userId={userId} />
