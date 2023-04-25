@@ -9,7 +9,7 @@ export default function VideoPlayer({ src }) {
       style={{ backgroundImage: `url(${landing3})` }}
     >
       <ReactPlayer
-        url="https://streamable.com/e/uraqi1"
+        url="https://streamable.com/uraqi1"
         width="41.79%"
         height="52%"
         controls
