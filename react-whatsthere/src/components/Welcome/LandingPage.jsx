@@ -66,7 +66,7 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
     <div className="h-full">
       {/* top container with logo and login */}
       <div>
-        <header className="flex items-center justify-between h-40 px-4 bg-primary bg-gradient-to-r from-primary to-tertiary">
+        <header className="flex items-center justify-between h-40 px-4 bg-primary bg-gradient-to-r from-tertiary to-primary">
           <div className="flex-1"></div>
           <div className="h-full flex items-center justify-center">
             <img src={logo} alt="logo" className="h-full" />
@@ -75,14 +75,14 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
             {Object.keys(user).length === 0 ? (
               <button
                 onClick={handleLogin}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-1/2"
+                className="bg-tertiary hover:bg-secondary text-white font-bold py-2 px-4 rounded h-1/2"
               >
                 Login with Google
               </button>
             ) : (
               <button
                 onClick={handleSignOut}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                className="bg-tertiary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full"
               >
                 Sign Out
               </button>

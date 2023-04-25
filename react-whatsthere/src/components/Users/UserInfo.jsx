@@ -12,14 +12,7 @@ export default function UserInfo({ userData, userPicture }) {
 
 
   return (
-    <div>
-      <div>
-        {userData && userData.name ? (
-          <h1>{userData.name}</h1>
-        ) : (
-          <h1>User</h1>
-        )}
-      </div>
+    <div className="flex flex-row justify-around p-4 bg-primary" >
       <div>
         {userPicture && userPicture.picture ? (
           <img
@@ -30,6 +23,15 @@ export default function UserInfo({ userData, userPicture }) {
         ) : (
           <img src="https://via.placeholder.com/150" className="rounded-full w-24 h-24" alt="user" />
         )}
+      </div>
+      <div className="flex flex-col justify-center text-xl font-bold text-white">
+        <div>
+          {userData && userData.name ? (
+            <h1>{userData.name}</h1>
+          ) : (
+            <h1>User</h1>
+          )}
+        </div>
       </div>
     </div>
   );

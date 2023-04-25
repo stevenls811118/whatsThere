@@ -59,14 +59,14 @@ export default function Login({user, setUser, userData, setUserData, userPicture
       {Object.keys(user).length === 0 ? (
         <button
           onClick={handleLogin}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          className="bg-tertiary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full"
           >
             Login with Google
           </button>
       ) : (
         <button
           onClick={handleSignOut}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-tertiary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full"
         >
           Sign Out
         </button>

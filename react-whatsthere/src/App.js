@@ -5,7 +5,7 @@ import axios from "axios";
 // Components
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
-import Planner from "./components/Planner/planner";
+import Planner from "./components/Planner/Planner";
 import Adding from "./components/Map/Adding-Attractions";
 import Alert from "./components/Map/Alert";
 import CreateList from "./components/Planner/CreateList";
@@ -102,28 +102,30 @@ export default function App() {
         <>
             <CssBaseline />
             <Grid container spacing={1.5} item xs={12}>
-              <Grid className="flex-col" item xs={12} md={4}>
+              <Grid className="flex-col" item xs={12} md={4} >
                 <Header />
-                <div>
+                <div className="flex flex-col">
                   <UserInfo
                     userData={userData}
                     userPicture={userPicture}
                   />
-                  <Login
-                    user={user}
-                    setUser={setUser}
-                    userData={userData}
-                    setUserData={setUserData}
-                    userPicture={userPicture}
-                    setUserPicture={setUserPicture}
-                    userId={userId}
-                    setUserId={setUserId}
-                  />
+                  <div className="flex flex-row justify-center bg-primary">
+                    <Login
+                      user={user}
+                      setUser={setUser}
+                      userData={userData}
+                      setUserData={setUserData}
+                      userPicture={userPicture}
+                      setUserPicture={setUserPicture}
+                      userId={userId}
+                      setUserId={setUserId}
+                    />
+                  </div>
                 </div>
+                <Planner items={items} setItems={setItems} />
                 <CreateList
                   userId={userId}
                 />
-                <Planner items={items} setItems={setItems} />
               </Grid>
               <Grid item xs={12} md={8}>
                 <Map
