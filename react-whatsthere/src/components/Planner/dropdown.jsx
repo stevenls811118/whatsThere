@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Icon = () => {
   return (
@@ -13,6 +13,8 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
   const [selectedList, setSelecteList] = useState();
   const [searchName, setSearchName] = useState();
 
+  const searchRef = useRef();
+
   const getDisplay = () => {
     if (selectedList) {
       return selectedList.name;
@@ -23,12 +25,24 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
   const OnItemClick = (list) => {
     setSelecteList(list);
   };
-  const isSelected = (list) => {
-    if (!selectedList) {
-      return false;
+
+//   const isSelected = (list) => {
+//     if (!selectedList) {
+//       return false;
+//     }
+//     return selectedList.name === list.name;
+//   };
+
+//search handlers
+const onSearch = (e) => {
+    setSearchName(e.target.value);
+};
+const getOptions = () => {
+    if (!searchName) {
+        return lists;
     }
-    return selectedList.name === list.name;
-  };
+    return lists.filter((list) => list.name.toLowerCase().indexOf(searchName.toLowerCase()) >= 0);
+};
 
   useEffect(() => {
     //this useEffect closes the menu when users click anywhere outside of the list
@@ -37,13 +51,21 @@ export default function Dropdown({ placeHolder, lists, searchable }) {
     return () => {
       window.removeEventListener("click", handler);
     };
-  });
+  }, []);
 
   //this will utilize the previous useEffect to close the dropdown menu
   const handleInputClick = (e) => {
     e.stopPropagation();
     SetShowMenu(!showMenu);
   };
+
+  //this use effect is for the search functionality of the dropdown menu
+  useEffect(() => {
+    setSearchName("");
+    if (showMenu && searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [showMenu]);
 
   return (
     <div className="dropdown-container">
