@@ -9,12 +9,17 @@ import Planner from "./components/Planner/Planner";
 import Adding from "./components/Map/Adding-Attractions";
 import Alert from "./components/Map/Alert";
 import CreateList from "./components/Planner/CreateList";
-import UserInfo from "./components/Users/UserInfo";
+import UserName from "./components/Users/UserName";
+import UserPic from "./components/Users/UserPic";
 import LandingPage from "./components/Welcome/LandingPage";
 import Logout from "./components/Users/Logout";
 
 // Helpers / Hooks
 import { getAttractions } from "./components/Map/helper/getAttractions";
+
+// Media
+import header from './images/header.jpg';
+
 
 
 
@@ -111,18 +116,34 @@ export default function App() {
       )}
       {Object.keys(user).length !== 0 && (
         <>
-            <CssBaseline />
+          <CssBaseline />
             <Grid container spacing={1.5} item xs={12}>
-              <Grid className="flex-col" item xs={12} md={4} >
-                <Header />
-                <div>
-                  <UserInfo userData={userData} userPicture={userPicture} />
-                  <Logout
-                    user={user}
-                    setUser={setUser}
-                    setUserData={setUserData}
-                    setUserPicture={setUserPicture}
-                  />
+              <Grid item xs={12} md={4} style={{height: "100%"}}>
+                <div 
+                  className="bg-cover bg-center" 
+                  style={{ backgroundImage: `url(${header})` }}
+                >
+                  <div className="h-full"> 
+                    <div>
+                      <Header />
+                    </div>
+                    <div className=" flex flex-row justify-around p-2 ">
+                      <div className="flex flex-col space-y-1 p-1 shadow-lg shadow-black bg-secondary/50 rounded-md">
+                        <UserPic userPicture={userPicture} />
+                        <Logout
+                          user={user}
+                          setUser={setUser}
+                          setUserData={setUserData}
+                          setUserPicture={setUserPicture}
+                        />
+                      </div>
+                      <div className="shadow-lg shadow-black bg-secondary/30 rounded-md">
+                        <UserName userData={userData} />
+                      </div>
+                    </div>
+                </div>
+
+
                 </div>
                 <CreateList userId={userId} />
                 <Planner items={items} setItems={setItems} />
