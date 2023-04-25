@@ -1,36 +1,31 @@
+import landing4 from '../../images/landing4.png';
+
 export default function Features() {
   return (
-      <section>
-        <article>
-          <img alt="feature 1"></img>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-            obcaecati officiis ducimus ipsa suscipit impedit ullam iusto
-            corporis! Consequuntur doloribus, quo sapiente modi deleniti
-            accusamus. Exercitationem quod architecto fuga soluta.
-          </p>
-        </article>
+    <section
+      className="bg-cover bg-center min-h-screen"
+      style={{ backgroundImage: `url(${landing4})` }}
+    >
+      <article className="p-4">
+        <img alt="feature 1"></img>
+        <p>
+          temp data
+        </p>
+      </article>
 
-        <article>
-          <img alt="feature 2"></img>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-            quae impedit non quidem vel veritatis qui, sed inventore, possimus
-            voluptatem quaerat atque laudantium eos quo iure voluptatibus at
-            minus asperiores.
-          </p>
-        </article>
+      <article className="p-4">
+        <img alt="feature 2"></img>
+        <p>
+          temp data
+        </p>
+      </article>
 
-        <article>
-          <img alt="feature 3"></img>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet ab
-            sapiente cumque beatae vitae voluptate aliquam veniam corporis, ea,
-            qui quis repellat minus quam quos quidem adipisci consequatur itaque
-            temporibus.
-          </p>
-        </article>
-      </section>
+      <article className="p-4">
+        <img alt="feature 3"></img>
+        <p>
+          Temp data
+        </p>
+      </article>
+    </section>
   );
-  //this component will display the main features of our app
 }

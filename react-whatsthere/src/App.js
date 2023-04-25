@@ -72,6 +72,7 @@ export default function App() {
 
   return (
     <React.Fragment>
+      <main> 
       {Object.keys(user).length === 0 && 
         <LandingPage
           user={user}
@@ -85,7 +86,6 @@ export default function App() {
           />}
       {Object.keys(user).length !== 0 && (
         <>
-          <main className="bg-gray-300">
             <CssBaseline />
             <Grid container spacing={1.5} item xs={12}>
               <Grid className="flex-col" item xs={12} md={4}>
@@ -135,9 +135,9 @@ export default function App() {
                 </div>
               </Grid>
             </Grid>
-          </main>
         </>
       )}
+      </main>
     </React.Fragment>
   );
 }

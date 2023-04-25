@@ -1,8 +1,13 @@
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode"
 import axios from "axios";
+
+// Components
 import Features from "./Features";
 import VideoPlayer from "./VideoPlayer";
+
+// Media
+import logo from '../../images/logo2.png';
 
 export default function LandingPage({ user, setUser, userData, setUserData, userPicture, setUserPicture, userId, setUserId }) {
 
@@ -58,27 +63,37 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
   }, [userData]);
 
   return (
-    <div>
+    <div className="h-full">
+      {/* top container with logo and login */}
       <div>
-        {Object.keys(user).length === 0 ? (
-          <button
-            onClick={handleLogin}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-            >
-              Login with Google
-            </button>
-        ) : (
-          <button
-            onClick={handleSignOut}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          >
-            Sign Out
-          </button>
-        )}
-      </div>
-      <div>
+        <header className="flex items-center justify-between h-40 px-4 bg-primary bg-gradient-to-r from-primary to-tertiary">
+          <div className="flex-1"></div>
+          <div className="h-full flex items-center justify-center">
+            <img src={logo} alt="logo" className="h-full" />
+          </div>
+          <div className="flex-1 flex justify-end">
+            {Object.keys(user).length === 0 ? (
+              <button
+                onClick={handleLogin}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-1/2"
+              >
+                Login with Google
+              </button>
+            ) : (
+              <button
+                onClick={handleSignOut}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              >
+                Sign Out
+              </button>
+            )}
+          </div>
+        </header>
         <Features />
-        <VideoPlayer />
+      </div>
+      <VideoPlayer />
+      <div>
+
       </div>
     </div>
   );

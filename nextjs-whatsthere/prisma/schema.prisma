@@ -24,6 +24,7 @@ model lists {
   userId        Int
   attractions    attractions[]
 }
+
 model attractions {
   id            Int          @id @default(autoincrement())
   name          String       @db.VarChar(255)

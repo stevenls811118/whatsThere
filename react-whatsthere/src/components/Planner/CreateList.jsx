@@ -27,7 +27,7 @@ export default function CreateList({ userId }) {
         setName("");
       })
       .catch((error) => console.log(error));
-  };
+  }
 
   return (
     <form onSubmit={handleFormSubmit}>
