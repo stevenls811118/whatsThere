@@ -5,7 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Place from "./Places";
-import { correctLng } from "./correctLng";
+import { correctLng } from "./helper/correctLng";
 import mapStyles from "./mapStyles";
 import AttractionInfo from "./AttractionInfo";
 

@@ -11,8 +11,8 @@ export default function Alert({ items, setItems }) {
   const handleAlert = (sortTimeArray) => {
     const oneHour = 1000 * 60 * 60;
     let results = [];
-    let names = "";
-    let timeDif = 1000 * 60 * 70;
+    let alertMessage = "";
+    let TD = 1000 * 60 * 70;
 
     if (sortTimeArray.length !== 0) {
       const nextComingitems = sortTimeArray.filter(
@@ -25,22 +25,27 @@ export default function Alert({ items, setItems }) {
       }
 
       results.forEach((i) => {
-        names += `${i.name}, `;
+        const ST = new Date(i.startTime).getTime();
+        TD = ST - Date.now();
+        alertMessage += `You are going to visit: ${i.name} in ${Math.ceil(
+          TD / 60000
+        )} minutes! <br/>`;
       });
-      names = names.substring(0, names.length - 2);
-      timeDif = sortTimeArray[0].startTime - Date.now();
-      console.log(timeDif);
 
+      let timeDif = sortTimeArray[0].startTime - Date.now();
       if (timeDif < oneHour && timeDif > 0) {
-        const alertMessage = `You are going to visit: \n${names} in ${Math.ceil(
-          timeDif / 60000
-        )} minutes`;
-        console.log(alertMessage);
         Swal.fire({
-          title: "Get Ready!",
-          text: alertMessage,
-          icon: "info",
-          confirmButtonText: "Got it!",
+          html: alertMessage,
+          width: "60vw",
+          timer: 5000,
+          imageUrl:
+            "http://hopeedu.com.pk/wp-content/uploads/2016/06/Get-Ready.png",
+          imageWidth: "40vw",
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+          showCloseButton: true,
         });
       }
       if (timeDif < 0) {

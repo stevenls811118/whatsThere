@@ -10,11 +10,12 @@ import Adding from "./components/Map/Adding-Attractions";
 import Alert from "./components/Map/Alert";
 import CreateList from "./components/Planner/CreateList";
 import UserInfo from "./components/Users/UserInfo";
-import Login from "./components/Users/Login";
 import LandingPage from "./components/Welcome/LandingPage";
+import Logout from "./components/Users/Logout";
 
 // Helpers / Hooks
-import { getAttractions } from "./components/Map/getAttractions";
+import { getAttractions } from "./components/Map/helper/getAttractions";
+
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -28,7 +29,7 @@ export default function App() {
 
   //login states
   const [user, setUser] = useState({});
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({});
   const [userId, setUserId] = useState("");
   const [userPicture, setUserPicture] = useState();
 
@@ -71,23 +72,31 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    axios
-      .get("/api/users")
-      .then((res) => {
-        const users = res.data;
-        const foundUser = users.filter((i) => i.email === userData.email);
-        const ID = foundUser[0].id;
-        setUserId(ID);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (Object.keys(userData).length !== 0) {
+      axios
+        .get("/api/users")
+        .then((res) => {
+          const users = res.data;
+          if (users.length !== 0) {
+            const foundUser = users.filter((i) => i.email === userData.email);
+            if (foundUser.length !== 0) {
+              const ID = foundUser[0].id;
+              setUserId(ID);
+            } else {
+              axios.put("/api/users", userData);
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [userData]);
 
   return (
     <React.Fragment>
-      <main> 
-      {Object.keys(user).length === 0 && 
+      <main>
+      {Object.keys(user).length === 0 && (
         <LandingPage
           user={user}
           setUser={setUser}
@@ -97,35 +106,25 @@ export default function App() {
           setUserPicture={setUserPicture}
           userId={userId}
           setUserId={setUserId}
-          />}
+        />
+      )}
       {Object.keys(user).length !== 0 && (
         <>
             <CssBaseline />
             <Grid container spacing={1.5} item xs={12}>
               <Grid className="flex-col" item xs={12} md={4} >
                 <Header />
-                <div className="flex flex-col ">
-                  <UserInfo
-                    userData={userData}
-                    userPicture={userPicture}
+                <div>
+                  <UserInfo userData={userData} userPicture={userPicture} />
+                  <Logout
+                    user={user}
+                    setUser={setUser}
+                    setUserData={setUserData}
+                    setUserPicture={setUserPicture}
                   />
-                  <div className="flex flex-row justify-center bg-primary">
-                    <Login
-                      user={user}
-                      setUser={setUser}
-                      userData={userData}
-                      setUserData={setUserData}
-                      userPicture={userPicture}
-                      setUserPicture={setUserPicture}
-                      userId={userId}
-                      setUserId={setUserId}
-                    />
-                  </div>
                 </div>
+                <CreateList userId={userId} />
                 <Planner items={items} setItems={setItems} />
-                <CreateList
-                  userId={userId}
-                />
               </Grid>
               <Grid item xs={12} md={8}>
                 <Map
