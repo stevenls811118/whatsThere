@@ -51,7 +51,7 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
           "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
         callback: handleCallbackResponse,
         auto_select: false,
-        cancel_on_tap_outside: true,
+        cancel_on_tap_outside: false,
       });
     }
   }, [user]);
@@ -62,6 +62,11 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
     }
   }, [userData]);
 
+  google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+    theme: "outline",
+    size: "large",
+  });
+
   return (
     <div className="h-full">
       {/* top container with logo and login */}
@@ -71,6 +76,7 @@ export default function LandingPage({ user, setUser, userData, setUserData, user
           <div className="h-full flex items-center justify-center">
             <img src={logo} alt="logo" className="h-full" />
           </div>
+          <div id='signInDiv'></div>
           <div className="flex-1 flex justify-end">
             {Object.keys(user).length === 0 ? (
               <button

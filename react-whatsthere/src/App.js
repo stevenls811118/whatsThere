@@ -104,7 +104,7 @@ export default function App() {
             <Grid container spacing={1.5} item xs={12}>
               <Grid className="flex-col" item xs={12} md={4} >
                 <Header />
-                <div className="flex flex-col">
+                <div className="flex flex-col ">
                   <UserInfo
                     userData={userData}
                     userPicture={userPicture}

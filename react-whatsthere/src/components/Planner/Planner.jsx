@@ -62,6 +62,7 @@ export default function Planner({ items, setItems }) {
     setNewTime("12:00pm");
   };
 
+
   return (
     <div className="">
       <div className="bg-tertiary text-white text-lg flex justify-between px-2">
@@ -92,21 +93,21 @@ export default function Planner({ items, setItems }) {
               </div>
             ) : (
               <div className="bg-secondary flex justify-between">
-                <div className="text-white px-2 py-2">
-                  <div className="flex justify-between text-xl font-semibold">
+                <div className="text-black p-2 w-[80%] border">
+                  <div className="flex justify-between text-m font-semibold underline ">
                     <span>{item.name}</span>
                   </div>
-                  <div className="text-m">
-                    <span>{item.address}</span>
+                  <div className="text-sm">
+                    <span><strong>Address:</strong> {item.address.split(',')[0]}</span>
                   </div>
-                  <div className="text-m">
-                    <span>{item.startTime}</span>
+                  <div className="text-sm">
+                    <span><strong>City:</strong> {item.city}</span>
                   </div>
-                  <div className="text-">
-                    <span>{item.endTime}</span>
+                  <div className="text-sm">
+                    <span> <strong>Visiting:</strong> {item.startTime} to {item.endTime}</span>
                   </div>
                 </div>
-                <div className="space-x-4 px-4 py-2">
+                  <div className="flex flex-col justify-around w-[20%] border">
                   <button onClick={() => handleEditClick(index)}>
                     <FontAwesomeIcon
                       icon={faPenToSquare}

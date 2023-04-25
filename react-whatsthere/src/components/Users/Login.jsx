@@ -66,7 +66,7 @@ export default function Login({user, setUser, userData, setUserData, userPicture
       ) : (
         <button
           onClick={handleSignOut}
-            className="bg-tertiary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full"
+            className="bg-tertiary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full h-full"
         >
           Sign Out
         </button>

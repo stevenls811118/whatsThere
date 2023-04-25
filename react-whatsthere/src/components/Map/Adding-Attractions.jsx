@@ -32,12 +32,25 @@ export default function Adding({ attraction, setDisplay, setData }) {
     setNewEndTime("");
     setDisplay("invisible");
 
+    const options = {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    };
+
     const startTime = `${date.toLocaleDateString()}, ${newStartTime}`;
     const endTime = `${date.toLocaleDateString()}, ${newEndTime}`;
+
+    const convertedStartTime = new Date(startTime).toLocaleString('en-US', options);
+    const convertedEndTime = new Date(endTime).toLocaleString('en-US', options);
+
     setData({
       ...attraction,
-      startTime: startTime,
-      endTime: endTime,
+      startTime: convertedStartTime,
+      endTime: convertedEndTime,
       listId: 1,
     });
   };
