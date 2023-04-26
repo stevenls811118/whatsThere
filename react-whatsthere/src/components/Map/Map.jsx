@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import GoogleMapReact from "google-map-react";
 import { Button, Card, CardActions, Rating, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";

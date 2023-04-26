@@ -18,10 +18,7 @@ import Logout from "./components/Users/Logout";
 import { getAttractions } from "./components/Map/helper/getAttractions";
 
 // Media
-import header from './images/header.jpg';
-
-
-
+import header from "./images/header.jpg";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -65,16 +62,17 @@ export default function App() {
 
   useEffect(() => {
     if (data) {
-      axios.post("/api/attractions", data);
-      axios.put("/api/attractions", {id: selectedList.id}).then((res) => {
-        setItems(res.data);
+      axios.post("/api/attractions", data).then((res) => {
+        axios.put("/api/attractions", { id: selectedList.id }).then((res) => {
+          setItems(res.data);
+        });
       });
     }
   }, [data]);
 
   useEffect(() => {
     axios
-      .put("/api/attractions", {id: 1})
+      .put("/api/attractions", { id: 1 })
       .then((res) => {
         setItems(res.data);
       })
@@ -107,56 +105,55 @@ export default function App() {
         });
     }
   }, [userData]);
-  
+
   useEffect(() => {
-    if(userId !== 0) {
+    if (userId !== 0) {
       console.log(userId);
-      axios.put("/api/lists", {userId}).then((res) => {
+      axios.put("/api/lists", { userId }).then((res) => {
         console.log(res.data);
         setLists(res.data);
       });
-    }   
-  }, [userId])
+    }
+  }, [userId]);
 
   useEffect(() => {
-    if(selectedList) {
+    if (selectedList) {
       axios
-      .put("/api/attractions", {id: selectedList.id})
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .put("/api/attractions", { id: selectedList.id })
+        .then((res) => {
+          setItems(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [selectedList])
-
+  }, [selectedList]);
 
   return (
     <React.Fragment>
       <main>
-      {Object.keys(user).length === 0 && (
-        <LandingPage
-          user={user}
-          setUser={setUser}
-          userData={userData}
-          setUserData={setUserData}
-          userPicture={userPicture}
-          setUserPicture={setUserPicture}
-          userId={userId}
-          setUserId={setUserId}
-        />
-      )}
-      {Object.keys(user).length !== 0 && (
-        <>
-          <CssBaseline />
+        {Object.keys(user).length === 0 && (
+          <LandingPage
+            user={user}
+            setUser={setUser}
+            userData={userData}
+            setUserData={setUserData}
+            userPicture={userPicture}
+            setUserPicture={setUserPicture}
+            userId={userId}
+            setUserId={setUserId}
+          />
+        )}
+        {Object.keys(user).length !== 0 && (
+          <>
+            <CssBaseline />
             <Grid container spacing={1.5} item xs={12}>
-              <Grid item xs={12} md={4} style={{height: "100%"}}>
-                <div 
-                  className="bg-cover bg-center" 
+              <Grid item xs={12} md={4} className="h-full">
+                <div
+                  className="bg-cover bg-center"
                   style={{ backgroundImage: `url(${header})` }}
                 >
-                  <div className="h-full"> 
+                  <div className="h-full">
                     <div>
                       <Header />
                     </div>
@@ -175,12 +172,24 @@ export default function App() {
                         <UserName userData={userData} />
                       </div>
                     </div>
+                  </div>
                 </div>
-
-
-                </div>
-                <CreateList userId={userId} showMenu={showMenu} SetShowMenu={SetShowMenu} selectedList={selectedList} setSelecteList={setSelecteList} searchName={searchName} setSearchName={setSearchName} lists={lists} setLists={setLists} />
-                <Planner items={items} setItems={setItems} selectedList={selectedList} />
+                <CreateList
+                  userId={userId}
+                  showMenu={showMenu}
+                  SetShowMenu={SetShowMenu}
+                  selectedList={selectedList}
+                  setSelecteList={setSelecteList}
+                  searchName={searchName}
+                  setSearchName={setSearchName}
+                  lists={lists}
+                  setLists={setLists}
+                />
+                <Planner
+                  items={items}
+                  setItems={setItems}
+                  selectedList={selectedList}
+                />
               </Grid>
               <Grid item xs={12} md={8}>
                 <Map
@@ -202,13 +211,17 @@ export default function App() {
                       setData={setData}
                       selectedList={selectedList}
                     />
-                    <Alert items={items} setItems={setItems} />
+                    <Alert
+                      items={items}
+                      setItems={setItems}
+                      selectedList={selectedList}
+                    />
                   </div>
                 </div>
               </Grid>
             </Grid>
-        </>
-      )}
+          </>
+        )}
       </main>
     </React.Fragment>
   );
