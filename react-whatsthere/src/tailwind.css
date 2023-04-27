@@ -6,7 +6,7 @@
 
 
 .dropdown-menu {
-  @apply z-10 bg-secondary rounded-md shadow-lg py-1;
+  @apply z-10 bg-sky-100 rounded-md shadow-lg py-1;
 }
 
 .dropdown-input {
