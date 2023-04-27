@@ -50,7 +50,7 @@ export default function Planner({ items, setItems, selectedList }) {
 
   return (
     <div>
-      <div className="bg-tertiary/80 text-black text-lg flex justify-center px-2 font-bold ">
+      <div className="bg-tertiary/90 text-black text-lg flex justify-center px-2 font-bold ">
         <div>Attractions to Visit</div>
         <div>
 
@@ -79,9 +79,9 @@ export default function Planner({ items, setItems, selectedList }) {
                 <button onClick={handleCancelClick}>Cancel</button>
               </div>
             ) : (
-                <div className=" flex justify-between shadow-md shadow-black rounded-b-md bg-secondary/80">
+                <div className=" flex justify-between shadow-md shadow-black rounded-b-md bg-secondary/90">
                   <div className="text-black p-2 w-[85%] border">
-                    <div className="flex justify-between text-lg font-semibold underline">
+                    <div className="flex justify-between text-lg font-bold underline">
                     <span>{item.name}</span>
                   </div>
                   <div className="text-m">
@@ -94,10 +94,10 @@ export default function Planner({ items, setItems, selectedList }) {
                       <strong>City:</strong> {item.city}
                     </span>
                   </div>
-                  <div className="text-m">
+                  <div className="text-sm">
                     <span>
                       {" "}
-                      <strong>Visiting:</strong> {item.startTime} to{" "}
+                      <strong><font size="3">Visiting:</font></strong> {item.startTime} to{" "}
                       {item.endTime}
                     </span>
                   </div>

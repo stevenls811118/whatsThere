@@ -20,7 +20,7 @@ export default function Logout({
       {Object.keys(user).length !== 0 && (
         <button
           onClick={handleSignOut}
-          className="bg-blue-600 hover:bg-blue-800 text-white font-bold rounded-md py-1 px-2 text-sm text-slate-200"
+          className="bg-tertiary hover:bg-red-900 font-bold rounded-md py-1 px-2 text-sm text-white"
         >
           Sign Out
         </button>

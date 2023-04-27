@@ -13,10 +13,10 @@ export default function UserInfo( {
 }) {
   return (
     <div className=" flex flex-row p-2 space-x-2 absolute top-0 right-0 z-20">
-      <div className="flex flex-col space-y-1 p-1 shadow-lg shadow-black bg-tertiary/80 rounded-md">
+      <div className="flex flex-col space-y-1 p-1 shadow-md shadow-black bg-primary/80 rounded-md border-2 border-black">
         <UserPic userPicture={userPicture} />
       </div>
-      <div className="shadow-lg shadow-black bg-tertiary/80 rounded">
+      <div className="shadow-md shadow-black bg-primary/80 rounded border-2 border-black">
         <UserName
           userData={userData}
           user={user}

@@ -50,7 +50,7 @@ export default function CreateList({
     <>
       <Dropdown
         searchable
-        placeHolder={"select a list"}
+        placeHolder={"Select a Trip"}
         userId={userId}
         setLists={setLists}
         lists={lists}
@@ -62,13 +62,13 @@ export default function CreateList({
         setSearchName={setSearchName}
         setItems={setItems}
       />
-      <div className="flex flex-col bg-tertiary/80 p-1 text-lg">
+      <div className="flex flex-col bg-tertiary/90 p-1 text-lg">
         <form
           onSubmit={handleFormSubmit}
           className="flex flex-row justify-between "
         >
           <label>
-            <strong>List Name: </strong>
+            <strong>New Trip: </strong>
             <input
               type="text"
               value={name}
@@ -79,9 +79,9 @@ export default function CreateList({
           </label>
           <button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-800 font-bold rounded-md py-1 px-2 text-sm text-slate-200"
+            className="bg-primary hover:bg-slate-900 font-bold rounded-md py-1 px-2 text-sm text-slate-200"
           >
-            Create List
+            Create Trip
           </button>
         </form>
       </div>

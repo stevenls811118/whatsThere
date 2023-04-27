@@ -89,7 +89,7 @@ export default function Dropdown({
 
   return (
     <>
-      <div className="dropdown-container bg-tertiary/80 text-black text-lg p-1 justify-between flex rounded-t-md">
+      <div className="dropdown-container bg-tertiary/90 text-black text-lg p-1 justify-between flex rounded-t-md">
         <div onClick={handleInputClick} className="dropdown-input relative">
           <div className="relative flex flex-row items-center">
             <div className="mr-2 font-bold">Trip Name:</div>
@@ -102,7 +102,7 @@ export default function Dropdown({
                         onChange={onSearch}
                         value={searchName}
                         ref={searchRef}
-                        className="p-1 border-1"
+                        className="p-1"
                       />
                     </div>
                   )}
@@ -137,7 +137,7 @@ export default function Dropdown({
         </div>
         <button
           onClick={handleDeleteList}
-          className="bg-blue-600 hover:bg-blue-800 font-bold rounded-md py-1 px-2 text-sm text-slate-200 pl-5 pr-5"
+          className="bg-primary hover:bg-red-900 font-bold rounded-md py-1 px-2 text-sm text-slate-200 pl-5 pr-5"
         >
           Delete
         </button>

@@ -36,7 +36,7 @@ export default function Place({ setCoords, setBounds }) {
   };
 
   return (
-    <div className="flex flex-row bg-white absolute top-0 left-0 item-center m-2 z-20" style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="flex flex-row bg-white absolute top-0 left-0 item-center m-2 z-20" style={{ position: 'absolute', top: '20%', left: '35%',}}>
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
         className="z-30 relative pl-2 pt-3"
@@ -45,7 +45,7 @@ export default function Place({ setCoords, setBounds }) {
         <ComboboxInput
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className="w-96 pl-8 pt-2 pb-2 pr-2 absolute"
+          className="w-[30vw] pl-8 pt-2 pb-2 pr-2 absolute border-2 border-black"
           placeholder="Search an address"
         />
         <ComboboxPopover className="z-20">
