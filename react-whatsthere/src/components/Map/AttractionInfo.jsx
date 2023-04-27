@@ -36,11 +36,11 @@ export default function AttractionInfo({
     <div
       className={`attraction-info ${
         attractionInfoShown ? "show" : ""
-      } w-2/5 h-2/3 rounded-lg shadow-md flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-black`}
+      } w-2/5 h-2/3 rounded-t-lg shadow-md flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-black`}
       style={{ backdropFilter: "none" }}
     >
       {/* Container for attraction name and exit button */}
-      <div className="flex rounded-lg justify-between items-center p-1 bg-tertiary">
+      <div className="flex rounded-t-lg justify-between items-center p-1 bg-tertiary">
         <div></div>
         <h2
           className="text-lg font-semibold text-center overflow-hidden"
@@ -66,7 +66,7 @@ export default function AttractionInfo({
             <div className="relative w-full h-full">
               <img
                 src={currentAttraction.photo.images.large.url}
-                className="absolute inset-0 w-full rounded-lg h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
                 alt={currentAttraction.name}
               />
             </div>
@@ -82,10 +82,10 @@ export default function AttractionInfo({
       </div>
       {/* Container for attraction data */}
       {currentAttraction && (
-        <div className="flex flex-col justify-end overflow-y-auto px-4 bg-secondary rounded-lg">
+        <div className="flex flex-col justify-end overflow-y-auto px-4 bg-[#bdb09a] rounded-b-lg">
           <div className="mb-2">
             <span className="font-semibold text-sm">Address:</span>{" "}
-            <span className="text-xs">
+            <span className="text-sm">
               {currentAttraction.address
                 ? currentAttraction.address
                 : "No address available"}
@@ -93,7 +93,7 @@ export default function AttractionInfo({
           </div>
           <div className="mb-2">
             <span className="font-semibold text-sm">City:</span>{" "}
-            <span className="text-xs">
+            <span className="text-sm">
               {currentAttraction.ranking_geo
                 ? currentAttraction.ranking_geo
                 : "No city available"}
@@ -101,7 +101,7 @@ export default function AttractionInfo({
           </div>
           <div className="mb-2">
             <span className="font-semibold text-sm">Rating:</span>{" "}
-            <span className="text-xs">
+            <span className="text-sm">
               {currentAttraction.rating
                 ? currentAttraction.rating
                 : "No rating available"}
@@ -110,8 +110,8 @@ export default function AttractionInfo({
           <div className="mb-2">
             <span className="font-semibold text-sm">Description:</span>
           </div>
-          <div className="mb-2 overflow-auto" style={{ maxHeight: "20vh" }}>
-            <span className="text-sm whitespace-pre-wrap">
+          <div className="mb-1 overflow-auto bg-slate-300 px-1 scale-95" style={{ maxHeight: "20vh" }}>
+            <span className="text-xs whitespace-pre-wrap">
               {currentAttraction.description
                 ? currentAttraction.description
                 : "No description available"}
@@ -119,7 +119,7 @@ export default function AttractionInfo({
           </div>
           <div className="mb-2">
             <span className="font-semibold text-sm">Ranking:</span>{" "}
-            <span className="text-xs">
+            <span className="text-sm">
               {currentAttraction.ranking
                 ? currentAttraction.ranking
                 : "No ranking available"}

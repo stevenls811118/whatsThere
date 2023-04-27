@@ -73,7 +73,7 @@ export default function Adding({
   };
 
   return (
-    <div className="border-double border-2 border-white flex flex-col justify-center text-xl space-y-2 rounded-xl w-96 bg-gray-300 scale-95 ">
+    <div className="border-double flex flex-col justify-center text-xl space-y-2 rounded-xl w-96 bg-gray-300 scale-75 ">
       <div className="flex flex-col w-full items-center">
         <div className="border-hidden p-3 pb-2 rounded-md w-full ">
           <input

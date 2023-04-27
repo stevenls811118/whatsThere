@@ -10,7 +10,10 @@ import mapStyles from "./mapStyles";
 import AttractionInfo from "./AttractionInfo";
 
 const buttonStyles = {
-  padding: 0,
+  "&:hover": {
+    color: 'white',
+    backgroundColor: '#3f5470',
+  },
 };
 
 const cardActionsStyles = {
@@ -23,7 +26,7 @@ const smallCardActionsStyles = {
 };
 
 const cardStyles = {
-  background: "#F0F9FF",
+  background: "#cfe4ff",
 }
 
 export default function Map({
@@ -147,7 +150,7 @@ export default function Map({
                       >
                         Add
                       </Button>
-                      <Button size="small" onClick={() => handleMore(a)}>
+                      <Button size="small" onClick={() => handleMore(a)} sx={buttonStyles}>
                         More
                       </Button>
                     </CardActions>

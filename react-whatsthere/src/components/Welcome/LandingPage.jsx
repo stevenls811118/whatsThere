@@ -57,13 +57,19 @@ export default function LandingPage({
   });
 
   return (
-    <div className="h-screen w-screen bg-black ">
+    <div className="h-screen w-screen bg-slate-900 ">
       <div className="absolute top-0 right-0 z-20">
         <div id='signInDiv' className="p-8"></div>
       </div>
       <Features />
       <World />
-      {/* <VideoPlayer /> */}
+      <div className="absolute bottom-0 left-0 bg-black/70">
+        <footer className="w-screen">
+          <div className="px-1 text-white text-sm">
+            <h1>WhatsThere? 2023</h1>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }
