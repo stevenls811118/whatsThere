@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
-import landing3 from '../../images/landing3.png';
+import React from "react";
+import ReactPlayer from "react-player";
+import landing3 from "../../images/landing3.png";
 
 export default function VideoPlayer({ src }) {
   return (

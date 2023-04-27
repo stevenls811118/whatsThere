@@ -40,8 +40,6 @@ export default function LandingPage({
     setUserPicture(userPic);
   };
 
-
-
   useEffect(() => {
     // global google
     if (Object.keys(user).length === 0) {
@@ -66,21 +64,22 @@ export default function LandingPage({
     <div className="h-full">
       {/* top container with logo and login */}
       <div>
-        <header className="flex items-center justify-between h-40 px-4 bg-top" style={{ backgroundImage: `url(${header})` }}>
+        <header
+          className="flex items-center justify-between h-40 px-4 bg-top"
+          style={{ backgroundImage: `url(${header})` }}
+        >
           <div className="flex-1"></div>
-          <div className="h-full flex items-center justify-center bg-cover" >
+          <div className="h-full flex items-center justify-center bg-cover">
             <img src={logo} alt="logo" className="h-full" />
           </div>
           <div className="flex-1 flex justify-end">
-            <div id='signInDiv'></div>
+            <div id="signInDiv"></div>
           </div>
         </header>
         <Features />
       </div>
       <VideoPlayer />
-      <div>
-
-      </div>
+      <div></div>
     </div>
   );
 }

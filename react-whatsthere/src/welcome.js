@@ -1,11 +1,9 @@
-import Features from "welcome/features"
+import Features from "welcome/features";
 import VideoPlayer from "./components/Welcome/videoPlayer";
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 
-
 function WelcomePage() {
-
   const [user, setUser] = useState({});
 
   function handleCallbackResponse(response) {
@@ -20,7 +18,7 @@ function WelcomePage() {
     document.getElementById("signInDiv").hidden = false;
   }
   useEffect(() => {
-    // global google 
+    // global google
     google.accounts.id.initialize({
       client_id:
         "632068121299-unggfu717fg5kklshvbmn1kl6s6nl9ue.apps.googleusercontent.com",
@@ -34,22 +32,21 @@ function WelcomePage() {
 
     //prompts users to login with usual accounts (oneTap login)
     google.accounts.id.prompt();
-
   }, []);
-    return (
+  return (
+    <div>
       <div>
-        <div>
-              <div id="signInDiv"></div>
-              {Object.keys(user).length != 0 && (
-                <div>
-                  <button onClick={(e) => handleSignOut(e)}>Sign out</button>
-                </div>
-              )}
-            </div>
-        <VideoPlayer/>
-        <Features/>
+        <div id="signInDiv"></div>
+        {Object.keys(user).length != 0 && (
+          <div>
+            <button onClick={(e) => handleSignOut(e)}>Sign out</button>
+          </div>
+        )}
       </div>
-    );
-  }
-  
-  export default WelcomePage;
+      <VideoPlayer />
+      <Features />
+    </div>
+  );
+}
+
+export default WelcomePage;

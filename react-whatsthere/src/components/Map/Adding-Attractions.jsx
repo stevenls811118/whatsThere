@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-export default function Adding({ attraction, setDisplay, setData, selectedList }) {
+export default function Adding({
+  attraction,
+  setDisplay,
+  setData,
+  selectedList,
+}) {
   const [date, setDate] = useState(new Date());
   const [newTitle, setNewTitle] = useState("");
   const [newStartTime, setNewStartTime] = useState("");
@@ -33,11 +38,11 @@ export default function Adding({ attraction, setDisplay, setData, selectedList }
     setDisplay("invisible");
 
     const options = {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
       hour12: true,
     };
 
@@ -46,9 +51,11 @@ export default function Adding({ attraction, setDisplay, setData, selectedList }
     const ID = selectedList.id;
     console.log(ID);
 
-
-    const convertedStartTime = new Date(startTime).toLocaleString('en-US', options);
-    const convertedEndTime = new Date(endTime).toLocaleString('en-US', options);
+    const convertedStartTime = new Date(startTime).toLocaleString(
+      "en-US",
+      options
+    );
+    const convertedEndTime = new Date(endTime).toLocaleString("en-US", options);
 
     setData({
       ...attraction,
