@@ -52,7 +52,9 @@ export default function Alert({ items, setItems, selectedList }) {
         if (sortTimeArray.length > 0) {
           axios
             .delete(`/api/attractions/${sortTimeArray[0].id}`)
-            .then((res) => axios.put("/api/attractions", {id: selectedList.id}))
+            .then((res) =>
+              axios.put("/api/attractions", { id: selectedList.id })
+            )
             .then((res) => setItems(res.data))
             .catch((error) => {
               console.log(error);

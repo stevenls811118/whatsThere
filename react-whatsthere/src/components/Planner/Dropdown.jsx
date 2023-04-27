@@ -21,7 +21,7 @@ export default function Dropdown({
   setSelecteList,
   searchName,
   setSearchName,
-  setItems
+  setItems,
 }) {
   const searchRef = useRef();
 

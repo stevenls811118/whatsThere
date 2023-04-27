@@ -34,5 +34,4 @@ export const correctLng = (centerLng, neLng, swLng) => {
     }
     return { centerLng, neLng, swLng };
   }
-
 };

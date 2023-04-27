@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function UserPic({userPicture}) {
+export default function UserPic({ userPicture }) {
   useEffect(() => {
     console.log("userPicture changed:", userPicture);
   }, [userPicture]);
@@ -14,8 +14,12 @@ export default function UserPic({userPicture}) {
           className="rounded-full w-20 h-20"
         />
       ) : (
-        <img src="https://via.placeholder.com/150" className="rounded-full w-20 h-20" alt="user" />
+        <img
+          src="https://via.placeholder.com/150"
+          className="rounded-full w-20 h-20"
+          alt="user"
+        />
       )}
     </div>
-  )
+  );
 }

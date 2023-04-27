@@ -9,7 +9,6 @@ import { correctLng } from "./helper/correctLng";
 import mapStyles from "./mapStyles";
 import AttractionInfo from "./AttractionInfo";
 
-
 const buttonStyles = {
   padding: 0,
 };
@@ -143,10 +142,7 @@ export default function Map({
                       >
                         Add
                       </Button>
-                      <Button
-                        size="small"
-                        onClick={() => handleMore(a)}
-                      >
+                      <Button size="small" onClick={() => handleMore(a)}>
                         More
                       </Button>
                     </CardActions>
@@ -184,10 +180,7 @@ export default function Map({
                       >
                         <AddCircleOutlineOutlinedIcon color="primary" />
                       </Button>
-                      <Button
-                        size="small"
-                        onClick={() => handleMore(a)}
-                      >
+                      <Button size="small" onClick={() => handleMore(a)}>
                         <MoreHorizOutlinedIcon color="primary" />
                       </Button>
                     </CardActions>

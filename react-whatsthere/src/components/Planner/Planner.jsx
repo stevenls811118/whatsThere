@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrash,
-  faMapLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 // import { id } from "date-fns/locale";
 
@@ -43,7 +40,6 @@ export default function Planner({ items, setItems, selectedList }) {
     setNewTime(event.target.value);
   };
 
-
   return (
     <div>
       <div className="bg-tertiary text-black text-lg flex justify-center px-2 font-bold border-2 border-black">
@@ -78,26 +74,34 @@ export default function Planner({ items, setItems, selectedList }) {
                     <span>{item.name}</span>
                   </div>
                   <div className="text-m">
-                    <span><strong>Address:</strong> {item.address.split(',')[0]}</span>
+                    <span>
+                      <strong>Address:</strong> {item.address.split(",")[0]}
+                    </span>
                   </div>
                   <div className="text-m">
-                    <span><strong>City:</strong> {item.city}</span>
+                    <span>
+                      <strong>City:</strong> {item.city}
+                    </span>
                   </div>
                   <div className="text-m">
-                    <span> <strong>Visiting:</strong> {item.startTime} to {item.endTime}</span>
+                    <span>
+                      {" "}
+                      <strong>Visiting:</strong> {item.startTime} to{" "}
+                      {item.endTime}
+                    </span>
                   </div>
                 </div>
-                  <div className="flex flex-col justify-around w-[15%] border">
-                    <button
-                      onClick={() =>
-                        window.open(
-                          `https://www.google.com/maps/search/?api=1&query=${item.address}`,
-                          "_blank"
-                        )
-                      }
-                    >
-                      <FontAwesomeIcon icon={faMapLocationDot} size="lg"/>
-                    </button>
+                <div className="flex flex-col justify-around w-[15%] border">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        `https://www.google.com/maps/search/?api=1&query=${item.address}`,
+                        "_blank"
+                      )
+                    }
+                  >
+                    <FontAwesomeIcon icon={faMapLocationDot} size="lg" />
+                  </button>
                   <button onClick={() => handleDeleteClick(item.id)}>
                     <FontAwesomeIcon icon={faTrash} size="lg" />
                   </button>

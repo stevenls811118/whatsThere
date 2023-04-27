@@ -12,7 +12,7 @@ export default function CreateList({
   setSearchName,
   lists,
   setLists,
-  setItems
+  setItems,
 }) {
   const [name, setName] = useState("");
   const inputRef = useRef(null);
@@ -23,7 +23,7 @@ export default function CreateList({
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-    setSelecteList()
+    setSelecteList();
   };
 
   const handleFormSubmit = (event) => {
