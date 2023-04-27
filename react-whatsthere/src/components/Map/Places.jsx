@@ -36,10 +36,10 @@ export default function Place({ setCoords, setBounds }) {
   };
 
   return (
-    <div className="flex flex-row bg-white absolute top-0 left-0 item-center m-2" style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="flex flex-row bg-white absolute top-0 left-0 item-center m-2 z-20" style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)' }}>
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
-        className="z-20 relative pl-2 pt-3"
+        className="z-30 relative pl-2 pt-3"
       />
       <Combobox onSelect={handleSelect} className="absolute z-20">
         <ComboboxInput
@@ -48,7 +48,7 @@ export default function Place({ setCoords, setBounds }) {
           className="w-96 pl-8 pt-2 pb-2 pr-2 absolute"
           placeholder="Search an address"
         />
-        <ComboboxPopover>
+        <ComboboxPopover className="z-20">
           <ComboboxList>
             {status === "OK" &&
               data.map(({ place_id, description }) => (
