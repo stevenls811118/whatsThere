@@ -42,7 +42,7 @@ export default function Planner({ items, setItems, selectedList }) {
 
   return (
     <div>
-      <div className="bg-tertiary text-black text-lg flex justify-center px-2 font-bold border-2 border-black">
+      <div className="bg-tertiary text-black text-lg flex justify-center px-2 font-bold ">
         <div>Attractions to Visit</div>
       </div>
       <ul className="h-[50vh] overflow-y-auto">

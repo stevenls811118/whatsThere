@@ -6,15 +6,14 @@ import axios from "axios";
 // Components
 import Map from "./components/Map/Map";
 import Header from "./components/Header/Header";
-import Planner from "./components/Planner/Planner";
 import Adding from "./components/Map/Adding-Attractions";
 import Alert from "./components/Map/Alert";
-import CreateList from "./components/Planner/CreateList";
-import UserName from "./components/Users/UserName";
-import UserPic from "./components/Users/UserPic";
 import LandingPage from "./components/Welcome/LandingPage";
-import Logout from "./components/Users/Logout";
+
+// New User Dashboard
 import UserDash from "./components/Planner/UserDash";
+import UserInfo from "./components/Users/UserInfo";
+
 
 // Helpers / Hooks
 import { getAttractions } from "./components/Map/helper/getAttractions";
@@ -31,6 +30,7 @@ export default function App() {
   const [attractionInfoShown, setAttractionInfoShown] = useState(false);
   const [display, setDisplay] = useState("invisible");
   const [data, setData] = useState();
+  const [userDash, userDashShown] = useState(true);
 
   //login states
   const [user, setUser] = useState({});
@@ -148,94 +148,63 @@ export default function App() {
         )}
         {Object.keys(user).length !== 0 && (
           <>
-            <CssBaseline />
-            <Grid container spacing={1.5} item xs={12} className="bg-slate-50">
-              <Grid item xs={12} md={4} className="h-full">
-                <div
-                  className="bg-cover bg-center"
-                  style={{ backgroundImage: `url(${header})` }}
-                >
-                  <div className="h-full">
-                    <div>
-                      <Header />
-                    </div>
-                    <div className=" flex flex-row justify-around p-2 ">
-                      <div className="flex flex-col space-y-1 p-1 shadow-lg shadow-black bg-secondary/50 rounded-md">
-                        <UserPic userPicture={userPicture} />
-                      </div>
-                      <div className="shadow-lg shadow-black bg-secondary/30 rounded">
-                        <UserName
-                          userData={userData}
-                          user={user}
-                          setUser={setUser}
-                          setUserData={setUserData}
-                          setUserPicture={setUserPicture}
-                          setUserId={setUserId}
-                        />
-                      </div>
-                    </div>
-                  </div>
+          <div className="h-screen w-screen">
+            <div>
+              <Header />
+              <UserInfo
+                userData={userData}
+                user={user}
+                setUser={setUser}
+                setUserData={setUserData}
+                userPicture={userPicture}
+                setUserPicture={setUserPicture}
+                setUserId={setUserId}
+              /> 
+            </div>
+            <div className="absolute bottom-0 left-0 h-2/3 z-20">
+              <UserDash 
+                userId={userId}
+                showMenu={showMenu}
+                SetShowMenu={SetShowMenu}
+                selectedList={selectedList}
+                setSelecteList={setSelecteList}
+                searchName={searchName}
+                setSearchName={setSearchName}
+                lists={lists}
+                setLists={setLists}
+                items={items}
+                setItems={setItems}
+              />
+            </div>
+            <div className="absolute top-0 left-0 z-10 h-full w-full">
+              <Map
+                setCoords={setCoords}
+                setBounds={setBounds}
+                coords={coords}
+                attraction={attraction}
+                attractions={attractions}
+                setAttraction={setAttraction}
+                attractionInfoShown={attractionInfoShown}
+                setAttractionInfoShown={setAttractionInfoShown}
+                setDisplay={setDisplay}
+              />
+              <div className="flex justify-center">
+                <div className={display}>
+                  <Adding
+                    attraction={attraction}
+                    setDisplay={setDisplay}
+                    setData={setData}
+                    selectedList={selectedList}
+                  />
+                  <Alert
+                    items={items}
+                    setItems={setItems}
+                    selectedList={selectedList}
+                  />
                 </div>
-                {/* <CreateList
-                  userId={userId}
-                  showMenu={showMenu}
-                  SetShowMenu={SetShowMenu}
-                  selectedList={selectedList}
-                  setSelecteList={setSelecteList}
-                  searchName={searchName}
-                  setSearchName={setSearchName}
-                  lists={lists}
-                  setLists={setLists}
-                  setItems={setItems}
-                />
-                <Planner
-                  items={items}
-                  setItems={setItems}
-                  selectedList={selectedList}
-                /> */}
-                <UserDash 
-                  userId={userId}
-                  showMenu={showMenu}
-                  SetShowMenu={SetShowMenu}
-                  selectedList={selectedList}
-                  setSelecteList={setSelecteList}
-                  searchName={searchName}
-                  setSearchName={setSearchName}
-                  lists={lists}
-                  setLists={setLists}
-                  items={items}
-                  setItems={setItems}
-                />
-              </Grid>
-              <Grid item xs={12} md={8}>
-                <Map
-                  setCoords={setCoords}
-                  setBounds={setBounds}
-                  coords={coords}
-                  attraction={attraction}
-                  attractions={attractions}
-                  setAttraction={setAttraction}
-                  attractionInfoShown={attractionInfoShown}
-                  setAttractionInfoShown={setAttractionInfoShown}
-                  setDisplay={setDisplay}
-                />
-                <div className="flex justify-center">
-                  <div className={display}>
-                    <Adding
-                      attraction={attraction}
-                      setDisplay={setDisplay}
-                      setData={setData}
-                      selectedList={selectedList}
-                    />
-                    <Alert
-                      items={items}
-                      setItems={setItems}
-                      selectedList={selectedList}
-                    />
-                  </div>
-                </div>
-              </Grid>
-            </Grid>
+              </div>
+            </div>
+          </div>
           </>
         )}
       </main>

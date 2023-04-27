@@ -62,7 +62,7 @@ export default function CreateList({
         setSearchName={setSearchName}
         setItems={setItems}
       />
-      <div className="flex flex-col bg-tertiary border-2 border-black p-1 text-lg">
+      <div className="flex flex-col bg-tertiary p-1 text-lg">
         <form
           onSubmit={handleFormSubmit}
           className="flex flex-row justify-between "
@@ -79,7 +79,7 @@ export default function CreateList({
           </label>
           <button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-800 text-white font-bold rounded-md py-1 px-2 text-sm text-slate-200"
+            className="bg-blue-600 hover:bg-blue-800 font-bold rounded-md py-1 px-2 text-sm text-slate-200"
           >
             Create List
           </button>

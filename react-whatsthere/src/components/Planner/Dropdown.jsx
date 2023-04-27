@@ -89,7 +89,7 @@ export default function Dropdown({
 
   return (
     <>
-      <div className="dropdown-container bg-tertiary text-black text-lg border-2 border-black p-1 justify-between flex">
+      <div className="dropdown-container bg-tertiary text-black text-lg p-1 justify-between flex">
         <div onClick={handleInputClick} className="dropdown-input relative">
           <div className="relative flex flex-row items-center">
             <div className="mr-2 font-semibold">Trip Name:</div>
@@ -137,7 +137,7 @@ export default function Dropdown({
         </div>
         <button
           onClick={handleDeleteList}
-          className="bg-blue-600 hover:bg-blue-800 text-white font-bold rounded-md py-1 px-2 text-sm text-slate-200 pl-5 pr-5"
+          className="bg-blue-600 hover:bg-blue-800 font-bold rounded-md py-1 px-2 text-sm text-slate-200 pl-5 pr-5"
         >
           Delete
         </button>

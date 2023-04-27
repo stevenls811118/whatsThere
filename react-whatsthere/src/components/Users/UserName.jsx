@@ -15,7 +15,7 @@ export default function UserName({
 
   return (
     <div className="flex flex-row justify-around p-4 h-full ">
-      <div className="flex flex-col justify-center text-lg font-bold text-black font-mono px-3 text-slate-100 italic">
+      <div className="flex flex-col justify-center text-lg font-bold text-black font-mono px-3 italic">
         <div>
           {userData && userData.name ? (
             <div>
