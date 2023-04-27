@@ -14,6 +14,7 @@ import UserName from "./components/Users/UserName";
 import UserPic from "./components/Users/UserPic";
 import LandingPage from "./components/Welcome/LandingPage";
 import Logout from "./components/Users/Logout";
+import UserDash from "./components/Planner/UserDash";
 
 // Helpers / Hooks
 import { getAttractions } from "./components/Map/helper/getAttractions";
@@ -175,7 +176,7 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-                <CreateList
+                {/* <CreateList
                   userId={userId}
                   showMenu={showMenu}
                   SetShowMenu={SetShowMenu}
@@ -191,6 +192,19 @@ export default function App() {
                   items={items}
                   setItems={setItems}
                   selectedList={selectedList}
+                /> */}
+                <UserDash 
+                  userId={userId}
+                  showMenu={showMenu}
+                  SetShowMenu={SetShowMenu}
+                  selectedList={selectedList}
+                  setSelecteList={setSelecteList}
+                  searchName={searchName}
+                  setSearchName={setSearchName}
+                  lists={lists}
+                  setLists={setLists}
+                  items={items}
+                  setItems={setItems}
                 />
               </Grid>
               <Grid item xs={12} md={8}>

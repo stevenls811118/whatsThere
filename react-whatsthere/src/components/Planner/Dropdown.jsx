@@ -37,9 +37,9 @@ export default function Dropdown({
   };
 
   //search handlers
-  // const onSearch = (e) => {
-  //   setSearchName(e.target.value);
-  // };
+  const onSearch = (e) => {
+    setSearchName(e.target.value);
+  };
 
   const getLists = () => {
     if (!searchName) {
@@ -89,27 +89,28 @@ export default function Dropdown({
 
   return (
     <>
-      <div className="dropdown-container bg-tertiary text-black text-center text-lg border-2 border-black p-1 justify-between flex">
+      <div className="dropdown-container bg-tertiary text-black text-lg border-2 border-black p-1 justify-between flex">
         <div onClick={handleInputClick} className="dropdown-input relative">
           <div className="relative flex flex-row items-center">
             <div className="mr-2 font-semibold">Trip Name:</div>
             <div className="dropdown-container-wrapper relative flex-row items-center flex-grow">
               {showMenu && (
-                <div className="dropdown-menu absolute top-full left-0 w-36">
-                  {/* {searchable && (
-                    <div className="search-box">
+                <div className="dropdown-menu absolute top-full left-0 border-black border-2 w-64 overflow-y-auto h-[20vh]">
+                  {searchable && (
+                    <div className="search-box flex justify-center p-0.5">
                       <input
                         onChange={onSearch}
                         value={searchName}
                         ref={searchRef}
+                        className="p-1 border-1"
                       />
                     </div>
-                  )} */}
+                  )}
                   {getLists().map((list) => (
                     <div
                       onClick={() => OnItemClick(list)}
                       key={list.name}
-                      className="dropdown-item text-black flex items-center justify-between cursor-pointer bg-sky-100"
+                      className="dropdown-item text-black flex items-center cursor-pointer bg-sky-100 hover:bg-sky-300 px-1"
                     >
                       <div className="flex items-center">
                         {list.icon && (
@@ -117,7 +118,7 @@ export default function Dropdown({
                             <list.icon />
                           </div>
                         )}
-                        <div>{list.name}</div>
+                        <div className="p-0.5">{list.name}</div>
                       </div>
                     </div>
                   ))}

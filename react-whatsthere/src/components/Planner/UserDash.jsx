@@ -1,19 +1,19 @@
 import Planner from "./Planner";
-import Dropdown from "./Dropdown";
 import CreateList from "./CreateList";
 
 
 export default function UserDash({
   userId,
+  items,
+  setItems,
+  lists,
+  setLists,
   showMenu,
   SetShowMenu,
   selectedList,
   setSelecteList,
   searchName,
   setSearchName,
-  lists,
-  setLists,
-  setItems,
  }) {
   return (
     <>
