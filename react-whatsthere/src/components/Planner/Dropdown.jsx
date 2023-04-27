@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, react } from "react";
+import axios from "axios";
+import { useEffect, useRef } from "react";
 
 const Icon = () => {
   return (
@@ -8,8 +9,20 @@ const Icon = () => {
   );
 };
 
-export default function Dropdown({ placeHolder, lists, searchable, showMenu, SetShowMenu, selectedList, setSelecteList, searchName, setSearchName }) {
-
+export default function Dropdown({
+  userId,
+  placeHolder,
+  setLists,
+  lists,
+  searchable,
+  showMenu,
+  SetShowMenu,
+  selectedList,
+  setSelecteList,
+  searchName,
+  setSearchName,
+  setItems
+}) {
   const searchRef = useRef();
 
   const getDisplay = () => {
@@ -24,10 +37,10 @@ export default function Dropdown({ placeHolder, lists, searchable, showMenu, Set
   };
 
   //search handlers
-  const onSearch = (e) => {
-    setSearchName(e.target.value);
-  };
-  
+  // const onSearch = (e) => {
+  //   setSearchName(e.target.value);
+  // };
+
   const getLists = () => {
     if (!searchName) {
       return lists;
@@ -60,16 +73,30 @@ export default function Dropdown({ placeHolder, lists, searchable, showMenu, Set
     }
   }, [showMenu]);
 
+  const handleDeleteList = () => {
+    const ID = selectedList.id;
+    axios.delete(`/api/lists/${ID}`).then((res) => {
+      setSelecteList();
+      setItems([]);
+      axios
+        .put("/api/lists", { userId })
+        .then((res) => setLists(res.data))
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  };
+
   return (
     <>
-      <div className="dropdown-container bg-tertiary text-black text-center text-lg border-2 border-black p-1">
+      <div className="dropdown-container bg-tertiary text-black text-center text-lg border-2 border-black p-1 justify-between flex">
         <div onClick={handleInputClick} className="dropdown-input relative">
           <div className="relative flex flex-row items-center">
             <div className="mr-2 font-semibold">Trip Name:</div>
             <div className="dropdown-container-wrapper relative flex-row items-center flex-grow">
               {showMenu && (
-                <div className="dropdown-menu absolute top-full left-0 w-32">
-                  {searchable && (
+                <div className="dropdown-menu absolute top-full left-0 w-36">
+                  {/* {searchable && (
                     <div className="search-box">
                       <input
                         onChange={onSearch}
@@ -77,12 +104,12 @@ export default function Dropdown({ placeHolder, lists, searchable, showMenu, Set
                         ref={searchRef}
                       />
                     </div>
-                  )}
+                  )} */}
                   {getLists().map((list) => (
                     <div
                       onClick={() => OnItemClick(list)}
                       key={list.name}
-                      className="dropdown-item text-black flex items-center justify-between cursor-pointer"
+                      className="dropdown-item text-black flex items-center justify-between cursor-pointer bg-sky-100"
                     >
                       <div className="flex items-center">
                         {list.icon && (
@@ -107,6 +134,12 @@ export default function Dropdown({ placeHolder, lists, searchable, showMenu, Set
             </div>
           </div>
         </div>
+        <button
+          onClick={handleDeleteList}
+          className="bg-blue-600 hover:bg-blue-800 text-white font-bold rounded-md py-1 px-2 text-sm text-slate-200 pl-5 pr-5"
+        >
+          Delete
+        </button>
       </div>
     </>
   );

@@ -3,7 +3,6 @@ import {
   faSquareXmark,
   faMapLocationDot,
   faPlane,
-  faStar,
   faMapMarkedAlt,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
@@ -16,11 +15,11 @@ export default function AttractionInfo({
   setAttractionInfoShown,
   setDisplay,
 }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  // const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
+  // const handleFavorite = () => {
+  //   setIsFavorite(!isFavorite);
+  // };
 
   const handleClose = () => {
     setAttractionInfoShown(false);
@@ -41,7 +40,7 @@ export default function AttractionInfo({
       style={{ backdropFilter: "none" }}
     >
       {/* Container for attraction name and exit button */}
-      <div className="flex justify-between items-center p-1 bg-tertiary">
+      <div className="flex rounded-lg justify-between items-center p-1 bg-tertiary">
         <div></div>
         <h2
           className="text-lg font-semibold text-center overflow-hidden"
@@ -55,7 +54,7 @@ export default function AttractionInfo({
           {currentAttraction ? currentAttraction.name : ""}
         </h2>
         <button onClick={handleClose}>
-          <FontAwesomeIcon icon={faSquareXmark} size="xl" color="red" />
+          <FontAwesomeIcon icon={faSquareXmark} size="xl" color="PapayaWhip" />
         </button>
       </div>
       {/* Container for attraction image */}
@@ -67,7 +66,7 @@ export default function AttractionInfo({
             <div className="relative w-full h-full">
               <img
                 src={currentAttraction.photo.images.large.url}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full rounded-lg h-full object-cover"
                 alt={currentAttraction.name}
               />
             </div>
