@@ -22,6 +22,10 @@ const smallCardActionsStyles = {
   padding: 0,
 };
 
+const cardStyles = {
+  background: "#7b98bd",
+}
+
 export default function Map({
   coords,
   setCoords,
@@ -104,7 +108,7 @@ export default function Map({
           {attractions &&
             attractions.map((a, i) => (
               <div
-                className="absolute z-10 hover:z-20 hover:scale-125 rounded-lg"
+                className="absolute z-10 hover:z-20 hover:scale-125 rounded-lg "
                 lat={Number(a.latitude)}
                 lng={Number(a.longitude)}
                 key={i}
@@ -112,7 +116,8 @@ export default function Map({
                 {desktop ? (
                   <Card
                     elevation={3}
-                    className="w-40 p-1 flex flex-col cursor-pointer"
+                    className="w-40 p-1 flex flex-col cursor-pointer "
+                    sx={cardStyles}
                   >
                     <Typography variant="subtitle2">{a.name}</Typography>
                     <img
@@ -150,7 +155,7 @@ export default function Map({
                 ) : (
                   <Card
                     elevation={3}
-                    className="w-20 p-1 flex flex-col cursor-pointer"
+                      className="w-20 p-1 flex flex-col cursor-pointer"
                   >
                     <Typography variant="subtitle5">{a.name}</Typography>
                     <img
