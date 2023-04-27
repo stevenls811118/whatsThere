@@ -8,6 +8,7 @@ export default function Features() {
     >
       <article className="p-4">
         <img alt="feature 1"></img>
+        <h2><b>First Feature</b></h2>
         <p>
           temp data
         </p>
@@ -15,6 +16,7 @@ export default function Features() {
 
       <article className="p-4">
         <img alt="feature 2"></img>
+        <h2><b>Second feature</b></h2>
         <p>
           temp data
         </p>
@@ -22,6 +24,7 @@ export default function Features() {
 
       <article className="p-4">
         <img alt="feature 3"></img>
+        <h2><b>Third Feature</b></h2>
         <p>
           Temp data
         </p>
