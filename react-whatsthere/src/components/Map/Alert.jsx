@@ -82,7 +82,7 @@ export default function Alert({ items, setItems, selectedList }) {
   useEffect(() => {
     const interval = setInterval(() => {
       handleAlert(sortTimeArray);
-    }, 20000);
+    }, 30000);
     return () => clearInterval(interval);
   }, [sortTimeArray]);
 

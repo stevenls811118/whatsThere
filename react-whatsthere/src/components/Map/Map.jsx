@@ -23,7 +23,7 @@ const smallCardActionsStyles = {
 };
 
 const cardStyles = {
-  background: "#7b98bd",
+  background: "#F0F9FF",
 }
 
 export default function Map({
