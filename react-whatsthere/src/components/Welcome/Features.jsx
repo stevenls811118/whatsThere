@@ -12,15 +12,15 @@ export default function Features() {
           className="h-64 m-3 bg-black/20 rounded-lg"
         />
       </div>
-      <div className="h-full w-full flex flex-col bg-black/30 rounded-md">
+      <div className="h-full w-full flex flex-col bg-black/20 rounded-md">
         <div>
-          <h1 className="text-5xl font-bold text-center text-white p-4 space-y-2 bg-black/60 rounded-md font-mono ">
+          <h1 className="text-5xl font-bold text-center text-white p-4 space-y-2 bg-black/20 rounded-md font-mono ">
             Features
           </h1>
         </div>
         <div className="w-full h-full">
           <section className="flex flex-row justify-around p-2 text-white space-x-6 text-center h-full">
-            <article className="flex flex-col justify-start p-4 space-y-2 bg-black/60 rounded-lg w-1/3 h-full ">
+            <article className="flex flex-col justify-start p-4 space-y-2 bg-black/20 rounded-lg w-1/3 h-full ">
               <div>
                 <h1 className="text-center text-xl font-bold pb-1 underline font-mono">
                   Interactive Map and Attractions
@@ -41,7 +41,7 @@ export default function Features() {
                 </div>
               </div>
             </article>
-            <article className="flex flex-col justify-start items-center p-4 space-y-2 bg-black/60 rounded-lg w-1/3 h-full ">
+            <article className="flex flex-col justify-start items-center p-4 space-y-2 bg-black/20 rounded-lg w-1/3 h-full ">
               <div>
                 <h1 className="text-center text-xl font-bold pb-1 underline font-mono">
                   Plan Multiple Trips
@@ -61,7 +61,7 @@ export default function Features() {
                 </div>
               </div>
             </article>
-            <article className="flex flex-col justify-start items-center p-4 space-y-2 bg-black/60 rounded-lg w-1/3 h-full">
+            <article className="flex flex-col justify-start items-center p-4 space-y-2 bg-black/20 rounded-lg w-1/3 h-full">
               <div>
                 <h1 className="text-center text-xl font-bold pb-1 underline font-mono">
                   Visit Alerts
