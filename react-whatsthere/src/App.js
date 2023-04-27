@@ -150,7 +150,6 @@ export default function App() {
           <>
           <div className="h-screen w-screen">
             <div>
-              <Header />
               <UserInfo
                 userData={userData}
                 user={user}
@@ -161,7 +160,7 @@ export default function App() {
                 setUserId={setUserId}
               /> 
             </div>
-            <div className="absolute bottom-0 left-0 h-2/3 z-20">
+            <div className="absolute top-0 left-0 h-2/3 z-20">
               <UserDash 
                 userId={userId}
                 showMenu={showMenu}
@@ -176,7 +175,7 @@ export default function App() {
                 setItems={setItems}
               />
             </div>
-            <div className="absolute top-0 left-0 z-10 h-full w-full">
+            <div className="absolute top-0 left-0 z-10 h-full w-full ">
               <Map
                 setCoords={setCoords}
                 setBounds={setBounds}

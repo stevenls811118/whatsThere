@@ -89,10 +89,10 @@ export default function Dropdown({
 
   return (
     <>
-      <div className="dropdown-container bg-tertiary text-black text-lg p-1 justify-between flex">
+      <div className="dropdown-container bg-tertiary text-black text-lg p-1 justify-between flex rounded-t-md">
         <div onClick={handleInputClick} className="dropdown-input relative">
           <div className="relative flex flex-row items-center">
-            <div className="mr-2 font-semibold">Trip Name:</div>
+            <div className="mr-2 font-bold">Trip Name:</div>
             <div className="dropdown-container-wrapper relative flex-row items-center flex-grow">
               {showMenu && (
                 <div className="dropdown-menu absolute top-full left-0 border-black border-2 w-64 overflow-y-auto h-[20vh]">
