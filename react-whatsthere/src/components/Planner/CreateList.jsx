@@ -62,7 +62,7 @@ export default function CreateList({
         setSearchName={setSearchName}
         setItems={setItems}
       />
-      <div className="flex flex-col bg-tertiary p-1 text-lg">
+      <div className="flex flex-col bg-tertiary/80 p-1 text-lg">
         <form
           onSubmit={handleFormSubmit}
           className="flex flex-row justify-between "

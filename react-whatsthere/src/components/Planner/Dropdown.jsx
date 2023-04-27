@@ -89,7 +89,7 @@ export default function Dropdown({
 
   return (
     <>
-      <div className="dropdown-container bg-tertiary text-black text-lg p-1 justify-between flex rounded-t-md">
+      <div className="dropdown-container bg-tertiary/80 text-black text-lg p-1 justify-between flex rounded-t-md">
         <div onClick={handleInputClick} className="dropdown-input relative">
           <div className="relative flex flex-row items-center">
             <div className="mr-2 font-bold">Trip Name:</div>

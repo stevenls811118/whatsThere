@@ -36,7 +36,7 @@ export default function Place({ setCoords, setBounds }) {
   };
 
   return (
-    <div className="flex flex-row bg-white absolute top-0 left-1/2 item-center m-2" style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)' }}>
+    <div className="flex flex-row bg-white absolute top-0 left-0 item-center m-2" style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)' }}>
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
         className="z-20 relative pl-2 pt-3"

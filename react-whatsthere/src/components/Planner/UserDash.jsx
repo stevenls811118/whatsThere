@@ -18,13 +18,13 @@ export default function UserDash({
  }) {
   return (
     <>
-      <div className="" >
-        <div className="flex flex-col justify-center rounded-b-lg"> 
+      <div className="z-20" >
+        <div className="flex flex-col justify-center rounded-b-lg z-20"> 
           <div>
             <Header />
           </div>
           <div className="scale-90">
-            <div>
+            <div className="z-20">
               <CreateList
                 userId={userId}
                 showMenu={showMenu}
