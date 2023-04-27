@@ -147,7 +147,7 @@ export default function App() {
         {Object.keys(user).length !== 0 && (
           <>
             <CssBaseline />
-            <Grid container spacing={1.5} item xs={12}>
+            <Grid container spacing={1.5} item xs={12} className="bg-slate-100">
               <Grid item xs={12} md={4} className="h-full">
                 <div
                   className="bg-cover bg-center"
@@ -160,16 +160,16 @@ export default function App() {
                     <div className=" flex flex-row justify-around p-2 ">
                       <div className="flex flex-col space-y-1 p-1 shadow-lg shadow-black bg-secondary/50 rounded-md">
                         <UserPic userPicture={userPicture} />
-                        <Logout
+                      </div>
+                      <div className="shadow-lg shadow-black bg-secondary/30 rounded">
+                        <UserName
+                          userData={userData}
                           user={user}
                           setUser={setUser}
                           setUserData={setUserData}
                           setUserPicture={setUserPicture}
                           setUserId={setUserId}
                         />
-                      </div>
-                      <div className="shadow-lg shadow-black bg-secondary/30 rounded">
-                        <UserName userData={userData} />
                       </div>
                     </div>
                   </div>
