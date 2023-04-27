@@ -1,16 +1,12 @@
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import axios from "axios";
 
 // Components
 import Features from "./Features";
 import VideoPlayer from "./VideoPlayer";
 
-import logo from "../../images/logo.png";
-
-import placeholder from "../../images/placeholder.png";
-
-import header from "../../images/header.jpg";
+// Threejs components
+import World from "./threejs/World";
 
 export default function LandingPage({
   user,
@@ -40,8 +36,6 @@ export default function LandingPage({
     setUserPicture(userPic);
   };
 
-
-
   useEffect(() => {
     // global google
     if (Object.keys(user).length === 0) {
@@ -63,24 +57,13 @@ export default function LandingPage({
   });
 
   return (
-    <div className="h-full">
-      {/* top container with logo and login */}
-      <div>
-        <header className="flex items-center justify-between h-40 px-4 bg-top" style={{ backgroundImage: `url(${header})` }}>
-          <div className="flex-1"></div>
-          <div className="h-full flex items-center justify-center bg-cover" >
-            <img src={logo} alt="logo" className="h-full" />
-          </div>
-          <div className="flex-1 flex justify-end">
-            <div id='signInDiv'></div>
-          </div>
-        </header>
-        <Features />
+    <div className="h-screen w-screen bg-black ">
+      <div className="absolute top-0 right-0 z-20">
+        <div id='signInDiv' className="p-8"></div>
       </div>
-      <VideoPlayer />
-      <div>
-
-      </div>
+      <Features />
+      <World />
+      {/* <VideoPlayer /> */}
     </div>
   );
 }
