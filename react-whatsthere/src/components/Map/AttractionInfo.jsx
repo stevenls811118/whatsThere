@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   faSquareXmark,
   faMapLocationDot,
@@ -20,6 +19,7 @@ export default function AttractionInfo({
   // const handleFavorite = () => {
   //   setIsFavorite(!isFavorite);
   // };
+  console.log(attraction);
 
   const handleClose = () => {
     setAttractionInfoShown(false);

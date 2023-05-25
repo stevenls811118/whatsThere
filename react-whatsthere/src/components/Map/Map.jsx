@@ -57,11 +57,14 @@ export default function Map({
 
   const handleMore = (a) => {
     const rating = Number(a.rating);
+    const cord = `${a.latitude}, ${a.longitude}`;
+
     setAttraction({
       name: a.name,
       address: a.address,
       city: a.address_obj.city,
       rating: rating,
+      cord: cord,
     });
     setAttractionInfoShown(true);
   };

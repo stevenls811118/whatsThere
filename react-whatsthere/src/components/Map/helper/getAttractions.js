@@ -24,6 +24,7 @@ export const getAttractions = async (ne, sw) => {
     });
     const noAdd = data.filter((i) => i.ad_position === undefined);
     const result = noAdd.filter((i) => i.rating >= 4);
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
