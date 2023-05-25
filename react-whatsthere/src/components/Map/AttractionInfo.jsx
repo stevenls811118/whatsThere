@@ -6,6 +6,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getWeather } from "./helper/getWeather";
 
 export default function AttractionInfo({
   attractionInfoShown,
@@ -20,7 +21,8 @@ export default function AttractionInfo({
   //   setIsFavorite(!isFavorite);
   // };
   console.log(attraction);
-
+  getWeather();
+  
   const handleClose = () => {
     setAttractionInfoShown(false);
   };
