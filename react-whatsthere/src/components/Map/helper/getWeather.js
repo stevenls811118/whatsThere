@@ -1,28 +1,42 @@
+// https://api.open-meteo.com/v1/forecast?daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&timezone=auto
+
 import axios from "axios";
 
-const API_key = process.env.REACT_APP_X_Rapid_API_Key;
-const URL =
-'https://visual-crossing-weather.p.rapidapi.com/forecast';
+const URL = "https://api.open-meteo.com/v1/forecast?daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&timeformat=unixtime&timezone=auto";
 
-export const getWeather = async () => {
-  const cord = '51.17773369863653, -114.10285881591027';
-  try {
-    const data = await axios.get(URL, {
-      params: {
-        aggregateHours: '1',
-        location: cord,
-        contentType: 'json',
-        unitGroup: 'metric',
-        shortColumnNames: '0'
-      },
-      headers: {
-        "X-RapidAPI-Key": API_key,
-        "X-RapidAPI-Host": 'visual-crossing-weather.p.rapidapi.com',
-      },
-    });
-    console.log(data.data.locations[cord].values);
-    return data.data.locations[cord].values;
-  } catch (error) {
-    console.log(error);
+export const getWeather = (lat, lon) => {
+  return axios.get(URL, {
+    params: {
+      latitude: lat,
+      longitude: lon,
+    },
+  }).then(({data}) => {
+    return {
+      current: parseCurrentWeather(data),
+      daily: parseDailyWeather(data),
+    }
+  })
+};
+
+const parseCurrentWeather = ({current_weather}) => {
+  const {
+    temperature: currentTemp, 
+    weathercode: iconCode
+  } = current_weather;
+
+  return {
+    currentTemp: Math.round(currentTemp),
+    iconCode,
   }
+};
+
+const parseDailyWeather = ({daily}) => {
+  return daily.time.map((time, i) => {
+    return {
+      timestamp: time * 1000,
+      iconCode: daily.weathercode[i],
+      maxTemp: Math.round(daily.temperature_2m_max[i]),
+      minTemp: Math.round(daily.temperature_2m_min[i]),
+    }
+  })
 };

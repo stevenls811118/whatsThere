@@ -41,6 +41,8 @@ export default function Map({
   display,
   setDisplay,
   addingComponent,
+  weather,
+  setWeather,
 }) {
   const desktop = useMediaQuery("(min-width:900px)");
 
@@ -57,14 +59,16 @@ export default function Map({
 
   const handleMore = (a) => {
     const rating = Number(a.rating);
-    const cord = `${a.latitude}, ${a.longitude}`;
+    const lat = Number(a.latitude); 
+    const lon = Number(a.longitude);
 
     setAttraction({
       name: a.name,
       address: a.address,
       city: a.address_obj.city,
       rating: rating,
-      cord: cord,
+      lat: lat,
+      lon: lon,
     });
     setAttractionInfoShown(true);
   };
@@ -207,6 +211,8 @@ export default function Map({
             attractionInfoShown={attractionInfoShown}
             setAttractionInfoShown={setAttractionInfoShown}
             setDisplay={setDisplay}
+            weather={weather}
+            setWeather={setWeather}
           />
         )}
       </div>

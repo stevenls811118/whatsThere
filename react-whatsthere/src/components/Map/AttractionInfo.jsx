@@ -4,9 +4,10 @@ import {
   faPlane,
   faMapMarkedAlt,
   faPlus,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getWeather } from "./helper/getWeather";
+import RenderWeather from "./RenderWeather";
 
 export default function AttractionInfo({
   attractionInfoShown,
@@ -14,15 +15,15 @@ export default function AttractionInfo({
   attractions,
   setAttractionInfoShown,
   setDisplay,
+  weather,
+  setWeather,
 }) {
   // const [isFavorite, setIsFavorite] = useState(false);
 
   // const handleFavorite = () => {
   //   setIsFavorite(!isFavorite);
   // };
-  console.log(attraction);
-  getWeather();
-  
+
   const handleClose = () => {
     setAttractionInfoShown(false);
   };
@@ -112,7 +113,11 @@ export default function AttractionInfo({
           <div className="mb-2">
             <span className="font-semibold text-sm">Description:</span>
           </div>
-          <div className="mb-1 overflow-auto bg-slate-300 px-1 scale-95" style={{ maxHeight: "20vh" }}>
+
+          <div
+            className="mb-1 overflow-auto bg-slate-300 px-1 scale-95"
+            style={{ maxHeight: "20vh" }}
+          >
             <span className="text-xs whitespace-pre-wrap">
               {currentAttraction.description
                 ? currentAttraction.description
@@ -127,6 +132,11 @@ export default function AttractionInfo({
                 : "No ranking available"}
             </span>
           </div>
+          <RenderWeather
+            weather={weather}
+            setWeather={setWeather}
+            attraction={attraction}
+          />
           <div className="flex justify-between items-center mt-2 mb-2 px-5">
             {currentAttraction.address && (
               <button

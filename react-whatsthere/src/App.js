@@ -31,6 +31,7 @@ export default function App() {
   const [display, setDisplay] = useState("invisible");
   const [data, setData] = useState();
   const [userDash, userDashShown] = useState(true);
+  const [weather, setWeather] = useState({});
 
   //login states
   const [user, setUser] = useState({});
@@ -186,6 +187,8 @@ export default function App() {
                 attractionInfoShown={attractionInfoShown}
                 setAttractionInfoShown={setAttractionInfoShown}
                 setDisplay={setDisplay}
+                weather={weather}
+                setWeather={setWeather}
               />
               <div className="flex justify-center">
                 <div className={display}>
