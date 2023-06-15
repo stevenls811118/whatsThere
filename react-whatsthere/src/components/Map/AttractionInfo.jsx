@@ -39,7 +39,7 @@ export default function AttractionInfo({
     <div
       className={`attraction-info ${
         attractionInfoShown ? "show" : ""
-      } w-2/5 h-2/3 rounded-t-lg shadow-md flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-black`}
+      } w-5/12 h-3/4 rounded-t-lg shadow-md flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-black`}
       style={{ backdropFilter: "none" }}
     >
       {/* Container for attraction name and exit button */}
