@@ -11,7 +11,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const weatherIcon = (iconCode) => {
-  console.log(iconCode);
+
   switch (iconCode) {
     case 0:
     case 1:
