@@ -3,6 +3,7 @@ import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getWeather } from "./helper/getWeather";
 import { displayDate } from "./helper/displayDate";
+import { weatherIcon } from "./helper/weatherIcon";
 
 export default function RenderWeather({ attraction, weather, setWeather }) {
   
@@ -20,21 +21,22 @@ export default function RenderWeather({ attraction, weather, setWeather }) {
     <div>
       {Object.keys(weather).length !== 0 && 
       <div>
-        <div className="mb-2">
+        <div className="mb-1">
           <span className="font-semibold text-sm mr-2">Current weather:</span>{" "}
-          <FontAwesomeIcon icon={faSun} size="2xl" className="mr-2" />
-          <span current-temp> {weather.current.currentTemp} </span>&deg;C
+          {weatherIcon(weather.current.iconCode)}
+          <span className="ml-2"> {weather.current.currentTemp} </span>&deg;C
         </div>
-        <div className="mb-2">
+        <div className="mb-1">
           <span className="font-semibold text-sm mr-2">Forecast:</span>{" "}
           <div className="flex flex-row justify-between">
             {weather.daily.map((w, i) => (
                 <div className="flex flex-col items-center scale-90" key={i}>
-                  <FontAwesomeIcon icon={faSun} size="2xl" className="mb-2" />
+                  {weatherIcon(w.iconCode)}
                   <span> {i === 0 ? "Today" : displayDate(w.timestamp)} </span>
                   <span> {w.minTemp} ~ {w.maxTemp} &deg;C</span>
                 </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </div>

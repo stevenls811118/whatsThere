@@ -4,7 +4,6 @@ import {
   faPlane,
   faMapMarkedAlt,
   faPlus,
-  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RenderWeather from "./RenderWeather";
@@ -86,7 +85,7 @@ export default function AttractionInfo({
       {/* Container for attraction data */}
       {currentAttraction && (
         <div className="flex flex-col justify-end overflow-y-auto px-4 bg-[#bdb09a] rounded-b-lg">
-          <div className="mb-2">
+          <div className="mb-1">
             <span className="font-semibold text-sm">Address:</span>{" "}
             <span className="text-sm">
               {currentAttraction.address
@@ -94,15 +93,15 @@ export default function AttractionInfo({
                 : "No address available"}
             </span>
           </div>
-          <div className="mb-2">
+          {/* <div className="mb-2">
             <span className="font-semibold text-sm">City:</span>{" "}
             <span className="text-sm">
               {currentAttraction.ranking_geo
                 ? currentAttraction.ranking_geo
                 : "No city available"}
             </span>
-          </div>
-          <div className="mb-2">
+          </div> */}
+          <div className="mb-1">
             <span className="font-semibold text-sm">Rating:</span>{" "}
             <span className="text-sm">
               {currentAttraction.rating
@@ -110,7 +109,7 @@ export default function AttractionInfo({
                 : "No rating available"}
             </span>
           </div>
-          <div className="mb-2">
+          <div className="mb-1">
             <span className="font-semibold text-sm">Description:</span>
           </div>
 
@@ -124,7 +123,7 @@ export default function AttractionInfo({
                 : "No description available"}
             </span>
           </div>
-          <div className="mb-2">
+          <div className="mb-1">
             <span className="font-semibold text-sm">Ranking:</span>{" "}
             <span className="text-sm">
               {currentAttraction.ranking
@@ -137,7 +136,7 @@ export default function AttractionInfo({
             setWeather={setWeather}
             attraction={attraction}
           />
-          <div className="flex justify-between items-center mt-2 mb-2 px-5">
+          <div className="flex justify-between items-center mt-2 mb-1 px-5">
             {currentAttraction.address && (
               <button
                 onClick={() =>
